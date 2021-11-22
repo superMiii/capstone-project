@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
@@ -43,6 +43,51 @@ class AuthController extends Controller
                 'message' => 'Register failed!!',
                 'data' => []
             ], 400);
+        }
+    }
+
+    public function login(Request $request)
+    {
+        // validation
+        $validation = $this->validate($request, [
+            'email' => 'required|email',
+            'password' => 'required|min:6',
+        ]);
+
+        $email = $validation['email'];
+        $password = $validation['password'];
+
+        $user = User::where('email', $email)->first();
+
+        if ($user) {
+            if (Hash::check($password, $user->password)) {
+                $api_token = base64_encode(Str::random(40));
+
+                $user->update([
+                    'api_token' => $api_token,
+                ]);
+
+                return response()->json([
+                    'status' => 'success',
+                    'message' => 'Login Successfully!!',
+                    'data' => [
+                        'user' => $user,
+                        'api_token' => $api_token,
+                    ]
+                ], 200);
+            } else {
+                return response()->json([
+                    'status' => 'failed',
+                    'message' => 'Wrong password',
+                    'data' => []
+                ], 400);
+            }
+        } else {
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'Email isn\'t registered. Please register first!!',
+                'data' => []
+            ], 404);
         }
     }
 }
