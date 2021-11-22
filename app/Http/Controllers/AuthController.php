@@ -90,4 +90,27 @@ class AuthController extends Controller
             ], 404);
         }
     }
+
+    public function logout(Request $request)
+    {
+        $api_token = $request->input('api_token');
+        $user = User::where('api_token', $api_token)->first();
+        if ($user) {
+            $user->update([
+                'api_token' => null,
+            ]);
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Logout Successfully!!',
+                'data' => []
+            ], 200);
+        } else {
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'Api token not found!!',
+                'data' => []
+            ], 404);
+        }
+    }
 }
