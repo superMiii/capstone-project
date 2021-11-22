@@ -39,7 +39,7 @@ class AuthController extends Controller
             ], 201);
         } else {
             return response()->json([
-                'status' => 'success',
+                'status' => 'failed',
                 'message' => 'Register failed!!',
                 'data' => []
             ], 400);
