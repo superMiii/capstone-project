@@ -22,5 +22,27 @@ class AuthController extends Controller
         $name = $validation['name'];
         $email = $validation['email'];
         $password = Hash::make($validation['name']);
+
+        // store data to db
+        $register = User::create([
+            'name' => $name,
+            'email' => $email,
+            'password' => $password
+        ]);
+
+        // create response api
+        if ($register) {
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Register success!!',
+                'data' => $register
+            ], 201);
+        } else {
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Register failed!!',
+                'data' => []
+            ], 400);
+        }
     }
 }
