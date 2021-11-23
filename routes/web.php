@@ -20,5 +20,11 @@ $router->get('/', function () use ($router) {
 $router->group(['prefix' => 'api/v1'], function () use ($router) {
     $router->post('/register', 'AuthController@register');
     $router->post('/login', 'AuthController@login');
+
+    $router->get('/categories', 'CategoryController@showAll');
+    $router->get('/categories/{id}', 'CategoryController@showById');
+    $router->post('/categories', 'CategoryController@store');
+    $router->put('/categories/{id}', 'CategoryController@update');
+    $router->delete('/categories/{id}', 'CategoryController@destroy');
     $router->post('/logout', 'AuthController@logout');
 });
