@@ -21,10 +21,14 @@ $router->group(['prefix' => 'api/v1'], function () use ($router) {
     $router->post('/register', 'AuthController@register');
     $router->post('/login', 'AuthController@login');
 
+    // categories
     $router->get('/categories', 'CategoryController@showAll');
     $router->get('/categories/{id}', 'CategoryController@showById');
     $router->post('/categories', 'CategoryController@store');
     $router->put('/categories/{id}', 'CategoryController@update');
     $router->delete('/categories/{id}', 'CategoryController@destroy');
+
+    // events
+    $router->get('/events', 'EventController@showAll');
     $router->post('/logout', 'AuthController@logout');
 });
