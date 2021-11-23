@@ -17,4 +17,14 @@ class Event extends Model
     protected $fillable = [
         'name', 'description', 'poster', 'time', 'place', 'date', 'register_link', 'ticket_price', 'category_id', 'user_id'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
+    }
 }

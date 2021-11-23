@@ -9,7 +9,7 @@ class CategoryController extends Controller
 {
     public function showAll()
     {
-        $data = Category::all();
+        $data = Category::paginate(10);
 
         if ($data) {
             return response()->json([
