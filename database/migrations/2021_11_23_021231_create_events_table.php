@@ -21,7 +21,7 @@ class CreateEventsTable extends Migration
             $table->string('time');
             $table->string('place');
             $table->string('date');
-            $table->string('regiter_link');
+            $table->string('register_link');
             $table->string('ticket_price');
             $table->integer('category_id');
             $table->integer('user_id');
