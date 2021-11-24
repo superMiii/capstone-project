@@ -71,5 +71,27 @@ class EventController extends Controller
         }
     }
 
+    public function update(Request $request, $id)
+    {
+        $validation = $this->validate($request, [
+            'name' => 'required|min:5',
+            'description' => 'required',
+            'poster' => 'mimes:jpg,png,jpeg',
+            'time' => 'required',
+            'place' => 'required',
+            'date' => 'required',
+            'register_link' => 'required',
+            'ticket_price' => 'required',
+            'category_id' => 'required|numeric',
+            'user_id' => 'required|numeric',
+        ]);
+
+        $event = Event::find($id);
+        $path_name = 'poster_uploads/' . $event->poster;
+        unlink($path_name);
+
+        $posterName = time() . '-' . $validation['poster']->getClientOriginalName();
+        $validation['poster']->move('poster_uploads', $posterName);
+    }
     //
 }
