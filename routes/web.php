@@ -30,5 +30,6 @@ $router->group(['prefix' => 'api/v1'], function () use ($router) {
 
     // events
     $router->get('/events', 'EventController@showAll');
+    $router->post('/events', 'EventController@store');
     $router->post('/logout', 'AuthController@logout');
 });
