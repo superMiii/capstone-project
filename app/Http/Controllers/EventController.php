@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Event;
+use Illuminate\Support\Facades\Validator;
 
 class EventController extends Controller
 {
@@ -73,7 +74,55 @@ class EventController extends Controller
 
     public function update(Request $request, $id)
     {
-        $validation = $this->validate($request, [
+        // $this->validate($request, [
+        //     'name' => 'required|min:5',
+        //     'description' => 'required',
+        //     'poster' => 'mimes:jpg,png,jpeg',
+        //     'time' => 'required',
+        //     'place' => 'required',
+        //     'date' => 'required',
+        //     'register_link' => 'required',
+        //     'ticket_price' => 'required',
+        //     'category_id' => 'required|numeric',
+        //     'user_id' => 'required|numeric',
+        // ]);
+
+        // $event = Event::find($id);
+        // if (!$event->poster) {
+        //     $path_name = 'poster_uploads/' . $event->poster;
+        //     unlink($path_name);
+        // }
+
+        // $posterName = time() . '-' . $request->poster->getClientOriginalName();
+        // $request->poster->move('poster_uploads', $posterName);
+
+        // $data = $event->update([
+        //     'name' => $request->name,
+        //     'description' => $request->description,
+        //     'poster' => $request->poster,
+        //     'time' => $request->time,
+        //     'place' => $request->place,
+        //     'date' => $request->date,
+        //     'register_link' => $request->register_link,
+        //     'ticket_price' => $request->ticket_price,
+        //     'category_id' => $request->category_id,
+        //     'user_id' => $request->user_id,
+        // ]);
+
+        // if ($data) {
+        //     return response()->json([
+        //         'status' => 'success',
+        //         'message' => 'update successfully',
+        //         'data' => $data
+        //     ], 200);
+        // } else {
+        //     return response()->json([
+        //         'status' => 'failed',
+        //         'message' => 'failed to update',
+        //         'data' => []
+        //     ], 400);
+        // }
+        $validator = Validator::make($request->all(), [
             'name' => 'required|min:5',
             'description' => 'required',
             'poster' => 'mimes:jpg,png,jpeg',
@@ -86,12 +135,50 @@ class EventController extends Controller
             'user_id' => 'required|numeric',
         ]);
 
-        $event = Event::find($id);
-        $path_name = 'poster_uploads/' . $event->poster;
-        unlink($path_name);
+        if ($validator->fails()) {
 
-        $posterName = time() . '-' . $validation['poster']->getClientOriginalName();
-        $validation['poster']->move('poster_uploads', $posterName);
+            return response()->json([
+                'success' => false,
+                'message' => 'Semua Kolom Wajib Diisi!',
+                'data'   => $validator->errors()
+            ], 400);
+        } else {
+
+            $event = Event::find($id);
+            if ($event->poster) {
+                $path_name = 'poster_uploads/' . $event->poster;
+                unlink($path_name);
+            }
+
+            $posterName = time() . '-' . $request->poster->getClientOriginalName();
+            $request->poster->move('poster_uploads', $posterName);
+
+            $data = $event->update([
+                'name' => $request->name,
+                'description' => $request->description,
+                'poster' => $posterName,
+                'time' => $request->time,
+                'place' => $request->place,
+                'date' => $request->date,
+                'register_link' => $request->register_link,
+                'ticket_price' => $request->ticket_price,
+                'category_id' => $request->category_id,
+                'user_id' => $request->user_id,
+            ]);
+
+            if ($data) {
+                return response()->json([
+                    'status' => 'success',
+                    'message' => 'update successfully',
+                    'data' => $data
+                ], 200);
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'update failed!',
+                ], 400);
+            }
+        }
     }
     //
 }
