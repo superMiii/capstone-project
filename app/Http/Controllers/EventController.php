@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\User;
@@ -11,7 +12,7 @@ class EventController extends Controller
 {
     public function showAll()
     {
-        $data = Event::with(['user', 'category'])->paginate(10);
+        $data = Event::latest()->with(['user', 'category'])->paginate(10);
         if ($data) {
             return response()->json([
                 'status' => true,
@@ -49,11 +50,38 @@ class EventController extends Controller
     {
         $user = User::find($id);
         if ($user) {
-            $data = Event::with(['user', 'category'])->where('user_id', $id)->get();
+            $data = Event::latest()->with(['user', 'category'])->where('user_id', $id)->paginate(10);
             if ($data) {
                 return response()->json([
                     'status' => true,
-                    'message' => 'get one data successfully',
+                    'message' => 'get data successfully',
+                    'data' => $data
+                ], 200);
+            } else {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'get data failed. Data not found',
+                    'data' => []
+                ], 404);
+            }
+        } else {
+            return response()->json([
+                'status' => false,
+                'message' => 'user not found',
+                'data' => []
+            ], 404);
+        }
+    }
+
+    public function showByIdCategory($id)
+    {
+        $category = Category::find($id);
+        if ($category) {
+            $data = Event::latest()->with(['user', 'category'])->where('category_id', $id)->paginate(10);
+            if ($data) {
+                return response()->json([
+                    'status' => true,
+                    'message' => 'get data successfully',
                     'data' => $data
                 ], 200);
             } else {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller
 {
@@ -13,13 +14,13 @@ class CategoryController extends Controller
 
         if ($data) {
             return response()->json([
-                'status' => 'success',
+                'status' => true,
                 'message' => 'successfully get data.',
                 'data' => $data
             ], 201);
         } else {
             return response()->json([
-                'status' => 'failed',
+                'status' => false,
                 'message' => 'data not found',
                 'data' => []
             ], 404);
@@ -32,13 +33,13 @@ class CategoryController extends Controller
 
         if ($data) {
             return response()->json([
-                'status' => 'success',
+                'status' => true,
                 'message' => 'successfully get one data.',
                 'data' => $data
             ], 201);
         } else {
             return response()->json([
-                'status' => 'failed',
+                'status' => false,
                 'message' => 'data not found',
                 'data' => []
             ], 404);
@@ -47,55 +48,67 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
-        $validation = $this->validate($request, [
+        $validator = Validator::make($request->all(), [
             'category_name' => 'required|min:3|unique:categories',
         ]);
 
-        $categoryName = $validation['category_name'];
-
-        $create = Category::create([
-            'category_name' => $categoryName
-        ]);
-
-        if ($create) {
+        if ($validator->fails()) {
             return response()->json([
-                'status' => 'success',
-                'message' => 'successfully added',
-                'data' => $create
-            ], 201);
-        } else {
-            return response()->json([
-                'status' => 'failed',
-                'message' => 'failed to added',
-                'data' => []
+                'status' => false,
+                'message' => $validator->errors(),
             ], 400);
+        } else {
+            $create = Category::create([
+                'category_name' => $request->category_name
+            ]);
+
+            if ($create) {
+                return response()->json([
+                    'status' => true,
+                    'message' => 'successfully added',
+                    'data' => $create
+                ], 201);
+            } else {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'failed to added',
+                    'data' => []
+                ], 400);
+            }
         }
     }
 
     public function update(Request $request, $id)
     {
-        $validation = $this->validate($request, [
+        $validator = Validator::make($request->all(), [
             'category_name' => 'required|min:3'
         ]);
 
-        $category = Category::find($id);
-
-        $data = $category->update([
-            'category_name' => $validation['category_name']
-        ]);
-
-        if ($data) {
+        if ($validator->fails()) {
             return response()->json([
-                'status' => 'success',
-                'message' => 'data category successfully updated',
-                'data' => $category
-            ], 201);
-        } else {
-            return response()->json([
-                'status' => 'failed',
-                'message' => 'failed to update data',
-                'data' => []
+                'status' => false,
+                'message' => $validator->errors(),
             ], 400);
+        } else {
+            $category = Category::find($id);
+
+            $data = $category->update([
+                'category_name' => $request->category_name
+            ]);
+
+            if ($data) {
+                return response()->json([
+                    'status' => true,
+                    'message' => 'data category successfully updated',
+                    'data' => $category
+                ], 201);
+            } else {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'failed to update data',
+                    'data' => []
+                ], 400);
+            }
         }
     }
 
@@ -107,13 +120,13 @@ class CategoryController extends Controller
             $category->delete();
 
             return response()->json([
-                'status' => 'success',
+                'status' => true,
                 'message' => 'delete successfully',
                 'data' => []
             ], 200);
         } else {
             return response()->json([
-                'status' => 'failed',
+                'status' => false,
                 'message' => 'delete failed. Data not found',
                 'data' => []
             ], 404);

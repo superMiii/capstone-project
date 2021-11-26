@@ -6,88 +6,95 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
     public function register(Request $request)
     {
         // validation
-        $validation = $this->validate($request, [
+        $validator = Validator::make($request->all(), [
             'name' => 'required|min:3|max:64|',
             'email' => 'required|email|unique:users',
             'password' => 'required|confirmed|min:6',
         ]);
 
-        // restore data to each variable
-        $name = $validation['name'];
-        $email = $validation['email'];
-        $password = Hash::make($validation['name']);
-
-        // store data to db
-        $register = User::create([
-            'name' => $name,
-            'email' => $email,
-            'password' => $password
-        ]);
-
-        // create response api
-        if ($register) {
+        if ($validator->fails()) {
             return response()->json([
-                'status' => 'success',
-                'message' => 'Register success!!',
-                'data' => $register
-            ], 201);
-        } else {
-            return response()->json([
-                'status' => 'failed',
-                'message' => 'Register failed!!',
-                'data' => []
+                'status' => false,
+                'message' => $validator->errors(),
             ], 400);
+        } else {
+            // store data to db
+            $register = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password)
+            ]);
+
+            // create response api
+            if ($register) {
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Register success!!',
+                    'data' => $register
+                ], 201);
+            } else {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Register failed!!',
+                    'data' => []
+                ], 400);
+            }
         }
     }
 
     public function login(Request $request)
     {
         // validation
-        $validation = $this->validate($request, [
+        $validator = Validator::make($request->all(), [
             'email' => 'required|email',
             'password' => 'required|min:6',
         ]);
 
-        $email = $validation['email'];
-        $password = $validation['password'];
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'message' => $validator->errors(),
+            ], 400);
+        } else {
+            $user = User::where('email', $request->email)->first();
 
-        $user = User::where('email', $email)->first();
+            if ($user) {
+                if (Hash::check($request->password, $user->password)) {
+                    $api_token = base64_encode(Str::random(40));
 
-        if ($user) {
-            if (Hash::check($password, $user->password)) {
-                $api_token = base64_encode(Str::random(40));
-
-                $user->update([
-                    'api_token' => $api_token,
-                ]);
-
-                return response()->json([
-                    'status' => 'success',
-                    'message' => 'Login Successfully!!',
-                    'data' => [
-                        'user' => $user,
+                    $user->update([
                         'api_token' => $api_token,
-                    ]
-                ], 200);
+                    ]);
+
+                    return response()->json([
+                        'status' => true,
+                        'message' => 'Login Successfully!!',
+                        'data' => [
+                            'user' => $user,
+                            'api_token' => $api_token,
+                        ]
+                    ], 200);
+                } else {
+                    return response()->json([
+                        'status' => false,
+                        'message' => 'Wrong password',
+                        'data' => []
+                    ], 400);
+                }
             } else {
                 return response()->json([
-                    'status' => 'failed',
-                    'message' => 'Wrong password',
+                    'status' => false,
+                    'message' => 'Email isn\'t registered. Please register first!!',
                     'data' => []
-                ], 400);
+                ], 404);
             }
-        } else {
-            return response()->json([
-                'status' => 'failed',
-                'message' => 'Email isn\'t registered. Please register first!!',
-                'data' => []
-            ], 404);
         }
     }
 
@@ -101,13 +108,13 @@ class AuthController extends Controller
             ]);
 
             return response()->json([
-                'status' => 'success',
+                'status' => true,
                 'message' => 'Logout Successfully!!',
                 'data' => []
             ], 200);
         } else {
             return response()->json([
-                'status' => 'failed',
+                'status' => false,
                 'message' => 'Api token not found!!',
                 'data' => []
             ], 404);
