@@ -10,7 +10,7 @@ class CategoryController extends Controller
 {
     public function showAll()
     {
-        $data = Category::paginate(10);
+        $data = Category::all();
 
         if ($data) {
             return response()->json([
@@ -100,13 +100,11 @@ class CategoryController extends Controller
                 return response()->json([
                     'status' => true,
                     'message' => 'data category successfully updated',
-                    'data' => $category
-                ], 201);
+                ], 200);
             } else {
                 return response()->json([
                     'status' => false,
                     'message' => 'failed to update data',
-                    'data' => []
                 ], 400);
             }
         }
@@ -122,13 +120,11 @@ class CategoryController extends Controller
             return response()->json([
                 'status' => true,
                 'message' => 'delete successfully',
-                'data' => []
             ], 200);
         } else {
             return response()->json([
                 'status' => false,
                 'message' => 'delete failed. Data not found',
-                'data' => []
             ], 404);
         }
     }

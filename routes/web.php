@@ -22,6 +22,8 @@ $router->group(['prefix' => 'api/v1'], function () use ($router) {
     $router->post('/login', 'AuthController@login');
 
     $router->get('/events', 'EventController@showAll');
+    $router->get('/events/popular', 'EventController@showPopular');
+    $router->post('/search/events', 'EventController@showByKeyword');
     $router->get('/events/{id}', 'EventController@showById');
     $router->get('/categories', 'CategoryController@showAll');
     $router->get('/events/category/{id}', 'EventController@showByIdCategory');

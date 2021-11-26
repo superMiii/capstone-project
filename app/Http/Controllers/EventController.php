@@ -46,6 +46,48 @@ class EventController extends Controller
         }
     }
 
+    public function showByKeyword(Request $request)
+    {
+        $data = Event::with(['user', 'category'])
+            ->where('name', 'LIKE', '%' . $request->keyword . '%')
+            ->orWhere('place', 'LIKE', '%' . $request->keyword . '%')
+            ->orWhereHas('category', function ($q) use ($request) {
+                $q->where('category_name', 'LIKE', '%' . $request->keyword . '%');
+            })
+            ->paginate(10);
+        if ($data) {
+            return response()->json([
+                'status' => true,
+                'message' => 'get by search data successfully',
+                'data' => $data
+            ], 200);
+        } else {
+            return response()->json([
+                'status' => false,
+                'message' => 'get data failed. Data not found',
+                'data' => []
+            ], 404);
+        }
+    }
+
+    public function showPopular()
+    {
+        $data = Event::latest()->limit(4)->with(['user', 'category'])->get();
+        if ($data) {
+            return response()->json([
+                'status' => true,
+                'message' => 'get popular data successfully',
+                'data' => $data
+            ], 200);
+        } else {
+            return response()->json([
+                'status' => false,
+                'message' => 'get data failed. Data not found',
+                'data' => []
+            ], 404);
+        }
+    }
+
     public function showByIdUser($id)
     {
         $user = User::find($id);
@@ -141,7 +183,7 @@ class EventController extends Controller
                 return response()->json([
                     'status' => true,
                     'message' => 'create data successfully',
-                ], 200);
+                ], 201);
             } else {
                 return response()->json([
                     'status' => false,
@@ -200,7 +242,7 @@ class EventController extends Controller
                 return response()->json([
                     'status' => true,
                     'message' => 'update successfully',
-                ], 200);
+                ], 201);
             } else {
                 return response()->json([
                     'status' => false,
@@ -224,7 +266,7 @@ class EventController extends Controller
             return response()->json([
                 'status' => true,
                 'message' => 'delete successfully',
-            ], 200);
+            ], 201);
         } else {
             return response()->json([
                 'status' => false,
