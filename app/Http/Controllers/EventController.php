@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Event;
+use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 
 class EventController extends Controller
@@ -21,6 +22,51 @@ class EventController extends Controller
             return response()->json([
                 'status' => false,
                 'message' => 'get data failed. Data not found',
+                'data' => []
+            ], 404);
+        }
+    }
+
+    public function showById($id)
+    {
+        $data = Event::with(['user', 'category'])->find($id);
+        if ($data) {
+            return response()->json([
+                'status' => true,
+                'message' => 'get one data successfully',
+                'data' => $data
+            ], 200);
+        } else {
+            return response()->json([
+                'status' => false,
+                'message' => 'get data failed. Data not found',
+                'data' => []
+            ], 404);
+        }
+    }
+
+    public function showByIdUser($id)
+    {
+        $user = User::find($id);
+        if ($user) {
+            $data = Event::with(['user', 'category'])->where('user_id', $id)->get();
+            if ($data) {
+                return response()->json([
+                    'status' => true,
+                    'message' => 'get one data successfully',
+                    'data' => $data
+                ], 200);
+            } else {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'get data failed. Data not found',
+                    'data' => []
+                ], 404);
+            }
+        } else {
+            return response()->json([
+                'status' => false,
+                'message' => 'user not found',
                 'data' => []
             ], 404);
         }
