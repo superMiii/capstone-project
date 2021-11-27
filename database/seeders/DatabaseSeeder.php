@@ -2,6 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
+use App\Models\Event;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,5 +17,21 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // $this->call('UsersTableSeeder');
+        User::factory(5)->create();
+
+        Category::create([
+            'category_name' => 'Weminar'
+        ]);
+        Category::create([
+            'category_name' => 'Contest'
+        ]);
+        Category::create([
+            'category_name' => 'Scholarship'
+        ]);
+        Category::create([
+            'category_name' => 'Concert'
+        ]);
+
+        Event::factory(40)->create();
     }
 }
