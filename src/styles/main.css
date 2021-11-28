@@ -12,7 +12,18 @@ body {
     font-family: "Outfit";
 }
 
-/* button */
+/* === NAVBAR === */
+nav {
+    background-color: white;
+    box-shadow: 0 5px 3px rgba(242, 230, 250, 0.2);
+    margin-bottom: 10px;
+}
+
+nav .container-fluid {
+    margin: 0 20px 0 20px;
+}
+
+/* button navabar*/
 .btn-sign-in {
     background-color: #F2E9FE;
     color: #5921F6;
@@ -20,7 +31,13 @@ body {
     border: none;
     margin: 3px;
     border-radius: 50px;
-    padding: 10px 15px 10px 15px;
+    padding: 5px 15px 5px 15px;
+    border: 1px solid white;
+    }
+
+    .btn-sign-in:hover {
+        border: 1px solid #5921F6;
+        background-color: white;
 }
 
 .btn-sign-up {
@@ -30,10 +47,17 @@ body {
     border: none;
     margin: 3px;
     border-radius: 50px;
-    padding: 10px 15px 10px 15px;
+    padding: 5px 15px 5px 15px;
+    border: 1px solid white;
     }
 
-    /* footer */
+.btn-sign-up:hover {
+    border: 1px solid #5921F6;
+    background-color: white;
+    color: #5921F6;
+}
+
+/* === FOOTER === */
     footer {
         text-align: center;
         padding: 20px;
