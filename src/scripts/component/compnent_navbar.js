@@ -5,7 +5,7 @@ class componentNavbar extends HTMLElement {
   
     render() {
       this.innerHTML = `
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">
                     <img src="./images/logo/SME_FIT.png" height="30" alt="">

@@ -5,5 +5,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 // import component
 import './component/compnent_navbar';
+import './component/component_footer';
 
 console.log('Hello Coders! :)');
