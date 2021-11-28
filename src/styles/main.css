@@ -1,3 +1,34 @@
-img {
-    display: block;
+/* font */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@200;700&display=swap');
+
+/* konfigurasi awal */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Outfit";
+}
+
+/* button */
+.btn-sign-in {
+    background-color: #F2E9FE;
+    color: #5921F6;
+    text-decoration: none;
+    border: none;
+    margin: 3px;
+    border-radius: 50px;
+    padding: 10px;
+}
+
+.btn-sign-up {
+    background-color: #5921F6;
+    color: white;
+    text-decoration: none;
+    border: none;
+    margin: 3px;
+    border-radius: 50px;
+    padding: 10px;
 }
