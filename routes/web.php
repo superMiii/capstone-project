@@ -22,7 +22,7 @@ $router->group(['prefix' => 'api/v1'], function () use ($router) {
     $router->post('/login', 'AuthController@login');
 
     $router->get('/events', 'EventController@showAll');
-    $router->get('/events/popular', 'EventController@showPopular');
+    $router->get('/events/latest', 'EventController@showLatestLimit');
     $router->post('/search/events', 'EventController@showByKeyword');
     $router->get('/events/{id}', 'EventController@showById');
     $router->get('/categories', 'CategoryController@showAll');
@@ -42,6 +42,11 @@ $router->group(['prefix' => 'api/v1'], function () use ($router) {
         $router->post('/events', 'EventController@store');
         $router->put('/events/{id}', 'EventController@update');
         $router->delete('/events/{id}', 'EventController@destroy');
+
+        // profile
+        $router->get('/user', 'UserController@showProfile');
+        $router->put('/user', 'UserController@updateProfile');
+        $router->put('/user/changepassword', 'UserController@changePassword');
 
         // logout
         $router->post('/logout', 'AuthController@logout');

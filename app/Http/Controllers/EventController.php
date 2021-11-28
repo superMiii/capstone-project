@@ -70,13 +70,13 @@ class EventController extends Controller
         }
     }
 
-    public function showPopular()
+    public function showLatestLimit()
     {
         $data = Event::latest()->limit(4)->with(['user', 'category'])->get();
         if ($data) {
             return response()->json([
                 'status' => true,
-                'message' => 'get popular data successfully',
+                'message' => 'get latest data successfully',
                 'data' => $data
             ], 200);
         } else {
@@ -214,40 +214,55 @@ class EventController extends Controller
                 'message' => $validator->errors()
             ], 400);
         } else {
+            $user_id = User::where('api_token', $request->api_token)->get();
             $event = Event::find($id);
-            if ($event->poster) {
-                $path_name = 'poster_uploads/' . $event->poster;
-                if (file_exists($path_name)) {
-                    unlink($path_name);
+            if ($event) {
+                if ($event->user_id == $user_id[0]->id) {
+                    if ($event->poster) {
+                        $path_name = 'poster_uploads/' . $event->poster;
+                        if (file_exists($path_name)) {
+                            unlink($path_name);
+                        }
+                    }
+
+                    $posterName = time() . '-' . $request->poster->getClientOriginalName();
+                    $request->poster->move('poster_uploads', $posterName);
+
+                    $data = $event->update([
+                        'name' => $request->name,
+                        'description' => $request->description,
+                        'poster' => $posterName,
+                        'time' => $request->time,
+                        'place' => $request->place,
+                        'date' => $request->date,
+                        'register_link' => $request->register_link,
+                        'ticket_price' => $request->ticket_price,
+                        'category_id' => $request->category_id,
+                        'user_id' => $request->user_id,
+                    ]);
+
+                    if ($data) {
+                        return response()->json([
+                            'status' => true,
+                            'message' => 'update successfully',
+                        ], 201);
+                    } else {
+                        return response()->json([
+                            'status' => false,
+                            'message' => 'update failed!',
+                        ], 400);
+                    }
+                } else {
+                    return response()->json([
+                        'status' => false,
+                        'message' => 'this event post isn\'t yours',
+                    ], 400);
                 }
-            }
-
-            $posterName = time() . '-' . $request->poster->getClientOriginalName();
-            $request->poster->move('poster_uploads', $posterName);
-
-            $data = $event->update([
-                'name' => $request->name,
-                'description' => $request->description,
-                'poster' => $posterName,
-                'time' => $request->time,
-                'place' => $request->place,
-                'date' => $request->date,
-                'register_link' => $request->register_link,
-                'ticket_price' => $request->ticket_price,
-                'category_id' => $request->category_id,
-                'user_id' => $request->user_id,
-            ]);
-
-            if ($data) {
-                return response()->json([
-                    'status' => true,
-                    'message' => 'update successfully',
-                ], 201);
             } else {
                 return response()->json([
                     'status' => false,
-                    'message' => 'update failed!',
-                ], 400);
+                    'message' => 'event not found',
+                ], 404);
             }
         }
     }

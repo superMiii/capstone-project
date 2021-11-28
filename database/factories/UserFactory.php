@@ -24,6 +24,7 @@ class UserFactory extends Factory
     {
         return [
             'name' => $this->faker->name,
+            'picture' => $this->faker->imageUrl(360, 360, 'user', true, 'profile', true),
             'email' => $this->faker->unique()->safeEmail,
             'password' => Hash::make('supermi'),
         ];
