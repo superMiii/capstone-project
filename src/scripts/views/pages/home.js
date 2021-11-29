@@ -1,3 +1,5 @@
+import manipulateNavbarLink from "../../utils/manipulate_navbar_link";
+
 const Home = {
     async render() {
       return `
@@ -6,7 +8,10 @@ const Home = {
     },
    
     async afterRender() {
-      // Fungsi ini akan dipanggil setelah render()
+      // manipulasi dom navbar
+      const elementLinkNavHome = document.querySelector(".nav-home a");
+      const elementLinkNavFav = document.querySelector(".nav-favorite a");
+      manipulateNavbarLink(elementLinkNavHome, elementLinkNavFav);
     },
   };
    

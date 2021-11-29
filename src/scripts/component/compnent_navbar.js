@@ -15,10 +15,10 @@ class componentNavbar extends HTMLElement {
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
+                        <li class="nav-item nav-home">
                             <a class="nav-link" aria-current="page" href="#/home">Home</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item nav-favorite">
                             <a class="nav-link" aria-current="page" href="#/favorite">Favorite</a>
                         </li>
                     </ul>
