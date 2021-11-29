@@ -23,8 +23,8 @@ class componentNavbar extends HTMLElement {
                         </li>
                     </ul>
                     <div class="d-flex">
-                        <button class="btn-sign-in">Sign In</button>
-                        <button class="btn-sign-up">Sign Up</button>
+                        <a href="#/sign_in" class="btn-sign-in">Sign In</a>
+                        <a href="#/sign_up" class="btn-sign-up">Sign Up</a>
                     </div>
                 </div>
             </div>

@@ -88,3 +88,18 @@
 .all-benefit {
     margin-top: 40px;
 }
+/* === NEW EVENT === */
+.newEvent {
+    margin-top: 40px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.newEvent-title {
+    text-align: center;
+}
+
+.newEvent-title h2 {
+    color: #17A471;
+}

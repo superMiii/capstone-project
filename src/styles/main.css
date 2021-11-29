@@ -41,6 +41,7 @@ nav .container-fluid {
     .btn-sign-in:hover {
         border: 1px solid #5921F6;
         background-color: white;
+        color: #5921F6;
 }
 
 .btn-sign-up {
