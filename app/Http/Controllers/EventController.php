@@ -48,9 +48,11 @@ class EventController extends Controller
 
     public function showByKeyword(Request $request)
     {
-        $data = Event::with(['user', 'category'])
+        $data = Event::latest()->with(['user', 'category'])
             ->where('name', 'LIKE', '%' . $request->keyword . '%')
             ->orWhere('place', 'LIKE', '%' . $request->keyword . '%')
+            ->orWhere('date', 'LIKE', '%' . $request->keyword . '%')
+            ->orWhere('description', 'LIKE', '%' . $request->keyword . '%')
             ->orWhereHas('category', function ($q) use ($request) {
                 $q->where('category_name', 'LIKE', '%' . $request->keyword . '%');
             })
@@ -58,7 +60,7 @@ class EventController extends Controller
         if ($data) {
             return response()->json([
                 'status' => true,
-                'message' => 'get by search data successfully',
+                'message' => 'get by search query successfully',
                 'data' => $data
             ], 200);
         } else {
@@ -70,9 +72,9 @@ class EventController extends Controller
         }
     }
 
-    public function showLatestLimit()
+    public function showLatestLimit(Request $request)
     {
-        $data = Event::latest()->limit(4)->with(['user', 'category'])->get();
+        $data = Event::latest()->with(['user', 'category'])->limit($request->limit)->get();
         if ($data) {
             return response()->json([
                 'status' => true,
@@ -136,7 +138,7 @@ class EventController extends Controller
         } else {
             return response()->json([
                 'status' => false,
-                'message' => 'user not found',
+                'message' => 'category not found',
                 'data' => []
             ], 404);
         }

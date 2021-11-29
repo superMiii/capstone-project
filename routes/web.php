@@ -23,7 +23,7 @@ $router->group(['prefix' => 'api/v1'], function () use ($router) {
 
     $router->get('/events', 'EventController@showAll');
     $router->get('/events/latest', 'EventController@showLatestLimit');
-    $router->post('/search/events', 'EventController@showByKeyword');
+    $router->get('/events/search', 'EventController@showByKeyword');
     $router->get('/events/{id}', 'EventController@showById');
     $router->get('/categories', 'CategoryController@showAll');
     $router->get('/events/category/{id}', 'EventController@showByIdCategory');
