@@ -1,0 +1,68 @@
+.container-sign-in {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sign-in {
+    box-shadow: 0 8px 16px 0 rgba(179, 65, 250, 0.2);
+    margin: 40px 0 40px 0;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+    width: fit-content;
+    padding: 30px;
+}
+
+.sign-in h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.sign-in #email {
+    width: 300px;
+    border: none;
+    border-radius: 20px;
+    background-color: #C4C4C4;
+    height: 30px;
+    margin-top: 10px;
+}
+
+.sign-in #password {
+    width: 300px;
+    border: none;
+    border-radius: 20px;
+    background-color: #C4C4C4;
+    height: 30px;
+    margin-top: 10px;
+}
+
+.sign-in p {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.sign-in p a {
+    text-decoration: none;
+    border: none;
+    color: rgb(81, 81, 255);
+}
+
+.btn-submit-sme {
+    margin-top: 20px;
+    width: 100%;
+    background-color: #5921F6;
+    color: white;
+    padding: 5px 0;
+    font-size: 18px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    border: 1px solid white;
+}
+
+.btn-submit-sme:hover {
+    border: 1px solid #5921F6;
+    background-color: white;
+    color: #5921F6;
+}
