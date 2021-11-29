@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './views/app';
 
 // import component
-import './component/compnent_navbar';
+import './component/component_navbar';
 import './component/component_footer';
 
 const app = new App({

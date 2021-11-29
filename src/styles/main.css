@@ -51,10 +51,10 @@ nav .container-fluid {
     border: 1px solid white;
     }
 
-.btn-sign-up:hover {
-    border: 1px solid #5921F6;
-    background-color: white;
-    color: #5921F6;
+    .btn-sign-up:hover {
+        border: 1px solid #5921F6;
+        background-color: white;
+        color: #5921F6;
 }
 
 /* === FOOTER === */
