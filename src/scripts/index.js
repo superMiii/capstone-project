@@ -2,6 +2,7 @@ import 'regenerator-runtime'; /* for async await transpile */
 import '../styles/main.css';
 import '../styles/home.css';
 import '../styles/sign_in.css';
+import '../styles/sign_up.css';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './views/app';
