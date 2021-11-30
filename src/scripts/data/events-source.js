@@ -1,30 +1,30 @@
 import API_ENDPOINT from "../globals/api-endpoint";
 
 class EventsSource {
-    static async AllEvents() {
+    static async allEvents() {
         const response = await fetch(API_ENDPOINT.EVENTS);
         const responseJson = await response.json();
         return responseJson.data;
     }
     
-    static async EventById(id) {
+    static async eventById(id) {
         const response = await fetch(API_ENDPOINT.EVENT_DETAIL(id));
         return response.json();
     }
     
-    static async EventByUserId(id, apiToken) {
+    static async eventByUserId(id, apiToken) {
         const response = await fetch(API_ENDPOINT.EVENTS_USER(id, apiToken));
         const responseJson = await response.json();
         return responseJson.data;
     }
 
-    static async LatestEvent(limit) {
+    static async latestEvent(limit) {
         const response = await fetch(API_ENDPOINT.EVENT_LATEST(limit));
         const responseJson = await response.json();
         return responseJson.data;
     }
 
-    static async EventByCategory(id, apiToken) {
+    static async eventByCategory(id, apiToken) {
         const response = await fetch(API_ENDPOINT.EVENTS_CATEGORY(id, apiToken));
         const responseJson = await response.json();
         return responseJson.data;
