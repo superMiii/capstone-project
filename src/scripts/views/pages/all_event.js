@@ -1,9 +1,13 @@
+import EventsSource from "../../data/events-source";
 import manipulateNavbarLink from "../../utils/manipulate_navbar_link";
 
 const allEvent = {
     async render() {
       return `
-        hi
+        <div class="container">
+          <div class="row event-item">
+          </div>
+        </div>
       `;
     },
    
@@ -11,6 +15,23 @@ const allEvent = {
         const elementLinkNavAll = document.querySelector(".nav-allEvent a");
         const allNavLink = document.querySelectorAll('.nav-item .nav-link');
         manipulateNavbarLink(elementLinkNavAll, allNavLink);
+
+        const events = await EventsSource.allEvents();
+        const eventsElement = document.querySelector('.event-item');
+        events.data.forEach((event) => {
+          eventsElement.innerHTML += `
+          <div class="col-lg-4">
+            <div class="card">
+              <img src="${event.poster}" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">${event.name}</h5>
+                <p class="card-text">${event.description}</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+          </div>
+          `;
+        });
     },
   };
    
