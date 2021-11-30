@@ -18,7 +18,11 @@ const Sign_In = {
     },
    
     async afterRender() {
-    
+    // manipulasi dom navbar
+    const navbarLink = document.querySelectorAll('.nav-item .nav-link');
+    for (let i = 0; i < navbarLink.length; i++) {
+        navbarLink[i].classList.remove('active');
+    }
     },
   };
    

@@ -21,6 +21,9 @@ class componentNavbar extends HTMLElement {
                         <li class="nav-item nav-favorite">
                             <a class="nav-link" aria-current="page" href="#/favorite">Favorite</a>
                         </li>
+                        <li class="nav-item nav-allEvent">
+                            <a class="nav-link" aria-current="page" href="#/all_event">All Event</a>
+                        </li>
                     </ul>
                     <div class="d-flex">
                         <a href="#/sign_in" class="btn-sign-in">Sign In</a>

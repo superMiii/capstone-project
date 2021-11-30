@@ -66,3 +66,11 @@
     background-color: white;
     color: #5921F6;
 }
+/* === MEDIA QUERY === */
+@media (max-width: 400px) {
+
+    .sign-in #email,
+    .sign-in #password {
+        width: 100%;
+    }
+}

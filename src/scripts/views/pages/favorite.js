@@ -10,8 +10,8 @@ const Favorite = {
     async afterRender() {
       // manipulasi dom navbar
       const elementLinkNavFav = document.querySelector(".nav-favorite a");
-      const elementLinkNavHome = document.querySelector(".nav-home a");
-      manipulateNavbarLink(elementLinkNavFav, elementLinkNavHome);
+      const allNavLink = document.querySelectorAll('.nav-item .nav-link');
+      manipulateNavbarLink(elementLinkNavFav, allNavLink);
     },
   };
    

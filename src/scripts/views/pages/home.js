@@ -83,8 +83,8 @@ const Home = {
     async afterRender() {
       // manipulasi dom navbar
       const elementLinkNavHome = document.querySelector(".nav-home a");
-      const elementLinkNavFav = document.querySelector(".nav-favorite a");
-      manipulateNavbarLink(elementLinkNavHome, elementLinkNavFav);
+      const allNavLink = document.querySelectorAll('.nav-item .nav-link');
+      manipulateNavbarLink(elementLinkNavHome, allNavLink);
     },
   };
    
