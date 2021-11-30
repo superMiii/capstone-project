@@ -1,3 +1,4 @@
+import EventsSource from "../../data/events-source";
 import manipulateNavbarLink from "../../utils/manipulate_navbar_link";
 
 const Home = {
@@ -55,16 +56,7 @@ const Home = {
           </div>
           <div class="carouselEvent">
             <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <img class="d-block w-100" src="./images/heros/hero-image_1.jpg" alt="First slide">
-                </div>
-                <div class="carousel-item">
-                  <img class="d-block w-100" src="./images/heros/hero-image_2.jpg" alt="Second slide">
-                </div>
-                <div class="carousel-item">
-                  <img class="d-block w-100" src="./images/heros/hero-image_3.jpg" alt="Third slide">
-                </div>
+              <div class="carousel-inner" id="events-item">
               </div>
               <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -85,6 +77,16 @@ const Home = {
       const elementLinkNavHome = document.querySelector(".nav-home a");
       const allNavLink = document.querySelectorAll('.nav-item .nav-link');
       manipulateNavbarLink(elementLinkNavHome, allNavLink);
+
+      // ambil data latest
+      const latestEvent = await EventsSource.latestEvent(5);
+      const latestEventElement = document.querySelector('#events-item');
+      latestEvent.forEach((event) => {
+        latestEventElement.innerHTML += `
+        <div class="carousel-item active">
+          <img class="d-block w-100" src="${event.poster}" alt="First slide">
+        </div>`
+      });
     },
   };
    
