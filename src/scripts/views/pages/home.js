@@ -1,4 +1,5 @@
 import EventsSource from "../../data/events-source";
+import { createCardEventTemplate } from "../templates/template-creator";
 import manipulateNavbarLink from "../../utils/manipulate_navbar_link";
 
 const Home = {
@@ -13,7 +14,7 @@ const Home = {
               <a href="#" >Get Started</a>
           </div>
           <div class="description-img">
-            <img src="./images/heros/hero-image_1.jpg" alt="">
+            <img src="./images/heros/myhero.jpg" alt="">
           </div>
         </div>
 
@@ -55,17 +56,26 @@ const Home = {
             <h3>Five latest events</h3>
           </div>
           <div class="carouselEvent">
-            <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
-              <div class="carousel-inner" id="events-item">
+            <div class="container-carouselEvent d-flex flex-wrap justify-content-evenly">
+              <div id="carouselExampleControls" class="carousel carousel-dark slide justify-content-center" style="width: 20rem;" data-bs-ride="carousel">
+                
+                <div class="carousel-inner">
+                  
+                </div>
+
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
               </div>
-              <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-              </a>
-              <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-              </a>
+              <div class="description-new-event" style="width: 18rem;">
+                <h1>Latest events</h1>
+                <p>Please choose the event you want and register immediately, because you might run out of tickets</p>
+              </div>
             </div>
           </div>
         </div>
@@ -79,14 +89,26 @@ const Home = {
       manipulateNavbarLink(elementLinkNavHome, allNavLink);
 
       // ambil data latest
-      const latestEvent = await EventsSource.latestEvent(5);
-      const latestEventElement = document.querySelector('#events-item');
-      latestEvent.forEach((event) => {
-        latestEventElement.innerHTML += `
-        <div class="carousel-item active">
-          <img class="d-block w-100" src="${event.poster}" alt="First slide">
+      // const latestEvent = await EventsSource.latestEvent(5);
+      // const latestEventElement = document.querySelector('#events-item');
+      // latestEvent.forEach((event) => {
+      //   latestEventElement.innerHTML += `
+      //   <div class="carousel-item active">
+      //     <img class="d-block w-100" src="${event.poster}" alt="First slide">
+      //   </div>`
+      // });
+
+      // kodingan sementara @fahmi kamu bisa ganti pake API
+      const innerCarousel = document.querySelector(".carousel-inner");
+      for (let i = 0; i < 5; i++) {
+        innerCarousel.innerHTML += `<div class="carousel-item">
+          ${createCardEventTemplate()}
         </div>`
-      });
+      };
+
+      // kodingan untuk tambah class active biar card muncul di carousel
+      const carouselItem = document.querySelector(".carousel-item:nth-child(1)");
+      carouselItem.classList.add("active");
     },
   };
    

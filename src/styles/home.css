@@ -103,3 +103,30 @@
 .newEvent-title h2 {
     color: #17A471;
 }
+.carouselEvent {
+    margin-top: 30px;
+}
+
+/* === MEDIA QUERY === */
+@media (max-width: 900px) {
+
+    .description {
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+
+    .description-img img {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .container-carouselEvent {
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+
+    .description-new-event {
+        text-align: center;
+    }
+}
