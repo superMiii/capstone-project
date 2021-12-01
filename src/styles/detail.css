@@ -1,0 +1,32 @@
+.container-detail {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.image-detail {
+    text-align: center;
+    padding: 20px;
+}
+
+.info-detail {
+    padding: 20px;
+}
+
+.all-info-detail {
+    padding: 10px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    margin: 10px;
+    width: 70%;
+}
+
+.description-detail {
+    padding: 10px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    margin: 10px;
+    width: 70%;
+    padding: 20px;
+    margin-top: 20px;
+}

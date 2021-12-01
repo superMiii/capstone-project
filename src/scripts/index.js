@@ -6,6 +6,7 @@ import '../styles/sign_up.css';
 import '../styles/card.css';
 import '../styles/favorite.css';
 import '../styles/all-event.css';
+import '../styles/detail.css';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './views/app';
