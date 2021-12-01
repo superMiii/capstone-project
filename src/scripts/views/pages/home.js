@@ -57,22 +57,22 @@ const Home = {
           </div>
           <div class="carouselEvent">
             <div class="container-carouselEvent d-flex flex-wrap justify-content-evenly">
-              <div id="carouselExampleControls" class="carousel carousel-dark slide justify-content-center" style="width: 20rem;" data-bs-ride="carousel">
+              <div id="carouselControls" class="carousel carousel-dark slide justify-content-center" data-bs-ride="carousel">
                 
                 <div class="carousel-inner">
                   
                 </div>
 
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselControls" data-bs-slide="prev">
                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                   <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselControls" data-bs-slide="next">
                   <span class="carousel-control-next-icon" aria-hidden="true"></span>
                   <span class="visually-hidden">Next</span>
                 </button>
               </div>
-              <div class="description-new-event" style="width: 18rem;">
+              <div class="description-new-event">
                 <h1>Latest events</h1>
                 <p>Please choose the event you want and register immediately, because you might run out of tickets</p>
               </div>

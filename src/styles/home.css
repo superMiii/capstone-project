@@ -107,6 +107,15 @@
     margin-top: 30px;
 }
 
+/* === CAROUSEL === */
+#carouselControls {
+    width: 20rem;
+}
+
+.description-new-event {
+    width: 18rem;
+}
+
 /* === MEDIA QUERY === */
 @media (max-width: 900px) {
 
@@ -128,5 +137,14 @@
 
     .description-new-event {
         text-align: center;
+    }
+}
+@media (max-width: 500px) {
+    #carouselControls {
+        width: fit-content;
+    }
+
+    .description-new-event {
+        width: 100%;
     }
 }
