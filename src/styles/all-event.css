@@ -50,6 +50,21 @@
     margin-top: 7px;
 }
 
+.webinar a,
+.contest a,
+.scolarship a,
+.etc-event a {
+    text-decoration: none;
+    color: black;
+}
+
+.webinar div:hover,
+.contest div:hover,
+.scolarship div:hover,
+.etc-event div:hover {
+    background-color: #afafaf;
+}
+
 .inner-all-event-card {
     margin-bottom: 30px;
 }

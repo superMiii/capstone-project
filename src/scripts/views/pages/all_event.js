@@ -10,28 +10,36 @@ const allEvent = {
           <h1>All Event</h1>
           <div class="category-all-event d-flex flex-wrap flex-row justify-content-evenly">
             <div class="webinar">
-              <div>
-                <img src="./images/assets/webinar.png" alt=""> 
-              </div>
-              <p>Webinar</p>
+              <a href="#">
+                <div>
+                  <img src="./images/assets/webinar.png" alt=""> 
+                </div>
+                <p>Webinar</p>
+              </a>
             </div>
             <div class="contest">
-              <div>
-                <img src="./images/assets/contest.png" alt=""> 
-              </div>
-              <p>Contest</p>
+              <a href="#">
+                <div>
+                  <img src="./images/assets/contest.png" alt=""> 
+                </div>
+                <p>Contest</p>
+              </a>
             </div>
             <div class="scolarship">
-              <div>
-                <img src="./images/assets/beasiswa.png" alt="">
-              </div>
-              <p>Scolarship</p>
+              <a href="#">
+                <div>
+                  <img src="./images/assets/beasiswa.png" alt="">
+                </div>
+                <p>Scolarship</p>
+              </a>
             </div>
             <div class="etc-event">
-              <div>
-                <img src="./images/assets/bookmark.png" alt="">
-              </div>
-              <p>Etc</p>
+              <a href="#">
+                <div>
+                  <img src="./images/assets/bookmark.png" alt="">
+                </div>
+                <p>Etc</p>
+              </a>
             </div>
           </div>
           <div class="inner-all-event">
