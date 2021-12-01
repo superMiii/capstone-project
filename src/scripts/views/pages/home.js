@@ -107,6 +107,7 @@ const Home = {
       };
 
       // kodingan untuk tambah class active biar card muncul di carousel
+      // class active harus cuman satu di child pertama
       const carouselItem = document.querySelector(".carousel-item:nth-child(1)");
       carouselItem.classList.add("active");
     },
