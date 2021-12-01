@@ -4,7 +4,8 @@ import '../styles/home.css';
 import '../styles/sign_in.css';
 import '../styles/sign_up.css';
 import '../styles/card.css';
-import '../styles/favorite.css'
+import '../styles/favorite.css';
+import '../styles/all-event.css';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './views/app';

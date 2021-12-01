@@ -1,0 +1,55 @@
+.conatiner-all-event {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.category-all-event {
+    margin: 10px 30px;
+    padding: 10px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+.category-all-event p {
+    margin-bottom: 0;
+}
+
+.inner-all-event {
+    padding: 10px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    margin: 10px;
+}
+
+.webinar div,
+.scolarship div {
+    width: 70px;
+    height: 66px;
+    background-color: #5921F6;
+    border-radius: 50%;
+    margin: 10px;
+}
+
+.contest div,
+.etc-event div {
+    width: 70px;
+    height: 66px;
+    background-color: #17A471;
+    border-radius: 50%;
+    margin: 10px;
+}
+
+.webinar img,
+.contest img,
+.scolarship img,
+.etc-event img {
+    width: 50px;
+    margin-top: 7px;
+}
+
+.inner-all-event-card {
+    margin-bottom: 30px;
+}
