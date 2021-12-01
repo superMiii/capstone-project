@@ -26,3 +26,8 @@
 .date-card p {
     display: inline;
 }
+
+.card-title {
+    text-decoration: none;
+    color: black;
+}

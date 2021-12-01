@@ -47,7 +47,9 @@ const createCardEventTemplate = () => `
     <div class="myCard">
         <img src="https://asset-a.grid.id/crop/0x0:0x0/700x465/photo/haifoto/original/81932_foto-kebetulan-yang-keren-abis.jpg" class="card-img-top" alt="...">
         <div class="card-body">
-            <h5 class="card-title">Card title</h5>
+            <a class="card-title" href="#/detail/1">
+                <h5>Card title</h5>
+            </a>
             <div class="category-card">
                 <img src="./images/assets/category.png" alt="">
                 <p>Lain - Lain</p>
