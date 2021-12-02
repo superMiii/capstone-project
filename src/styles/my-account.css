@@ -8,9 +8,17 @@
 /* == COMBINED PAGE == */
 .combined-page {
     padding: 10px;
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 16px 0 rgba(179, 65, 250, 0.2);
     border-radius: 20px;
     margin: 10px;
+}
+
+.combined-title {
+    text-align: center;
+}
+
+.combined-title p {
+    color: #17A471;
 }
 
 /* == NAVIGASI == */
@@ -27,6 +35,8 @@
 /* == MY ACCOUNT == */
 .img-account img {
     width: 18rem;
+    background-color: #17A471;
+    border-radius: 50%;
 }
 
 .data-account p:nth-child(2n) {
@@ -38,6 +48,31 @@
 /* == MY EVENT == */
 
 /* == UPLOAD EVEMT == */
+.upload-event {
+    padding: 20px;
+    margin: 30px;
+    background-color: rgb(199, 199, 199);
+    border-radius: 10px;
+}
+
+.upload-event input {
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+}
+
+.upload-event textarea {
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    height: 100px
+}
+
+.upload-event select {
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+}
 
 /* === MEDIA QUERY === */
 @media (max-width: 670px) {

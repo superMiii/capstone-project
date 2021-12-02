@@ -95,36 +95,38 @@ const createMyAccountTemplate = () => `
 `
 
 const createUploadEventTemplate = () => `
-    <form action="#">
-        <br>
-        <label for="image-input">Image:</label><br>
-        <input type="file" id="image-input" name="image-input"><br><br>
+    <div class="upload-event">
+        <form action="#">
+            <br>
+            <label for="image-input"><h6>Image:</h6></label><br>
+            <input type="file" id="image-input" name="image-input"><br><br>
 
-        <label for="name-event">Name Of Event:</label><br>
-        <input type="text" id="name-event" name="name-event"><br><br>
+            <label for="category-event"><h6>Category Of Event:</h6></label><br>
+            <select name="category-event" id="category-event">
+                <option value="lain-lain">lain-lain</option>
+                <option value="webinar">webinar</option>
+                <option value="contest">contest</option>
+                <option value="scolarship">scolarship</option>
+            </select><br><br>
 
-        <label for="category-event">Category Of Event:</label><br>
-        <select name="category-event" id="category-event">
-            <option value="lain-lain">lain-lain</option>
-            <option value="webinar">webinar</option>
-            <option value="contest">contest</option>
-            <option value="scolarship">scolarship</option>
-        </select><br><br>
+            <label for="name-event"><h6>Name Of Event:</h6></label><br>
+            <input type="text" id="name-event" name="name-event"><br><br>
 
-        <label for="date-event">Date Of Event:</label><br>
-        <input type="date" id="date-event" name="date-event"><br><br>
+            <label for="date-event"><h6>Date Of Event:</h6></label><br>
+            <input type="date" id="date-event" name="date-event"><br><br>
 
-        <label for="time-event">Time Of Event:</label><br>
-        <input type="time" id="time-event" name="time-event"><br><br>
+            <label for="time-event"><h6>Time Of Event:</h6></label><br>
+            <input type="time" id="time-event" name="time-event"><br><br>
 
-        <label for="place-event">Place Of Event:</label><br>
-        <input type="text" id="place-event" name="place-event"><br><br>
+            <label for="place-event"><h6>Place Of Event:</h6></label><br>
+            <input type="text" id="place-event" name="place-event"><br><br>
 
-        <label for="description-event">Description:</label><br>
-        <textarea id="description-event" name="description-event"></textarea><br><br>
+            <label for="description-event"><h6>Description:</h6></label><br>
+            <textarea id="description-event" name="description-event"></textarea><br><br>
 
-        <button class="btn-submit-sme" type="submit">Submit</button>
-    </form>
+            <button class="btn-submit-sme" type="submit">Submit</button>
+        </form>
+    </div>
 `
 
     export {

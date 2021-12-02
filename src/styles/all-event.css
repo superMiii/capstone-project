@@ -7,7 +7,7 @@
 .category-all-event {
     margin: 10px 30px;
     padding: 10px;
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 16px 0 rgba(179, 65, 250, 0.2);
     border-radius: 20px;
     width: 100%;
     text-align: center;
@@ -19,7 +19,7 @@
 
 .inner-all-event {
     padding: 10px;
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 16px 0 rgba(179, 65, 250, 0.2);
     border-radius: 20px;
     margin: 10px;
 }

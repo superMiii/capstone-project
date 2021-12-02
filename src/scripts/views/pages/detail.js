@@ -6,6 +6,7 @@ const detail = {
         <div class="container-detail">
             <div class="detail d-flex align-items-center justify-content-center flex-column">
                 <h1>Detail Event</h1>
+                <p style="color: #17A471;">this is detail off event</p>
                 <div class="inner-detail d-flex justify-content-center align-items-center flex-column">
 
                 </div>

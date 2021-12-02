@@ -8,6 +8,7 @@ const allEvent = {
       <div class="conatiner-all-event">
         <div class="all-event d-flex flex-column align-items-center">
           <h1>All Event</h1>
+          <p style="color: #17A471;">all event in here</p>
           <div class="category-all-event d-flex flex-wrap flex-row justify-content-evenly">
             <div class="webinar">
               <a href="#">

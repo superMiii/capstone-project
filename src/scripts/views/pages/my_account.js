@@ -7,6 +7,7 @@ const my_account = {
             <div class="my-account d-flex flex-column justify-content-center align-items-center">
                 <div class="combined-title">
                     <h1>My Account</h1>
+                    <p>you can see your acccount in here</p>
                 </div>
                 <div class="combined-page">
                     <div class="navigatio-page-account d-flex justify-content-center align-items-center flex-wrap">

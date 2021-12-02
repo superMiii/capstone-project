@@ -8,7 +8,7 @@ const Favorite = {
       <div class="container-favorite">
         <div class="favorite d-flex flex-column align-items-center">
           <h1>My Favorite Event</h1>
-          <br>
+          <p style="color: #17A471;">your favorite event in here</p>
           <div class="inner-favorite d-flex flex-wrap flex-row justify-content-center">
           </div>
         </div>
