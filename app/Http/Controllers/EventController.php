@@ -90,11 +90,11 @@ class EventController extends Controller
         }
     }
 
-    public function showByIdUser($id)
+    public function showByIdUser(Request $request)
     {
-        $user = User::find($id);
+        $user = User::where('api_token', $request->api_token)->get();
         if ($user) {
-            $data = Event::latest()->with(['user', 'category'])->where('user_id', $id)->paginate(10);
+            $data = Event::latest()->with(['user', 'category'])->whereHas('user_id', $user->id)->paginate(10);
             if ($data) {
                 return response()->json([
                     'status' => true,
