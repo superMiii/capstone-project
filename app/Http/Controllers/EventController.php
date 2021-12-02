@@ -90,23 +90,31 @@ class EventController extends Controller
         }
     }
 
-    public function showByIdUser($id)
+    public function showByIdUser(Request $request, $id)
     {
         $user = User::find($id);
         if ($user) {
-            $data = Event::latest()->with(['user', 'category'])->where('user_id', $id)->paginate(10);
-            if ($data) {
-                return response()->json([
-                    'status' => true,
-                    'message' => 'get data successfully',
-                    'data' => $data
-                ], 200);
+            $user_id = User::where('api_token', $request->api_token)->get();
+            if ($id == $user_id[0]->id) {
+                $data = Event::latest()->with(['user', 'category'])->where('user_id', $id)->paginate(10);
+                if ($data) {
+                    return response()->json([
+                        'status' => true,
+                        'message' => 'get data successfully',
+                        'data' => $data
+                    ], 200);
+                } else {
+                    return response()->json([
+                        'status' => false,
+                        'message' => 'get data failed. Data not found',
+                        'data' => []
+                    ], 404);
+                }
             } else {
                 return response()->json([
                     'status' => false,
-                    'message' => 'get data failed. Data not found',
-                    'data' => []
-                ], 404);
+                    'message' => 'this user id isn\'t yours',
+                ], 400);
             }
         } else {
             return response()->json([
@@ -269,21 +277,29 @@ class EventController extends Controller
         }
     }
     //
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
+        $user_id = User::where('api_token', $request->api_token)->get();
         $event = Event::find($id);
         if ($event) {
-            if ($event->poster) {
-                $path_name = 'poster_uploads/' . $event->poster;
-                if (file_exists($path_name)) {
-                    unlink($path_name);
+            if ($event->user_id == $user_id[0]->id) {
+                if ($event->poster) {
+                    $path_name = 'poster_uploads/' . $event->poster;
+                    if (file_exists($path_name)) {
+                        unlink($path_name);
+                    }
                 }
+                $event->delete();
+                return response()->json([
+                    'status' => true,
+                    'message' => 'delete successfully',
+                ], 201);
+            } else {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'user id isn\'t yours',
+                ], 400);
             }
-            $event->delete();
-            return response()->json([
-                'status' => true,
-                'message' => 'delete successfully',
-            ], 201);
         } else {
             return response()->json([
                 'status' => false,
