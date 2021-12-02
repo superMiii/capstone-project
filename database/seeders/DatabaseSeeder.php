@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
         User::factory(5)->create();
 
         Category::create([
-            'category_name' => 'Weminar'
+            'category_name' => 'Webinar'
         ]);
         Category::create([
             'category_name' => 'Contest'
@@ -30,6 +30,9 @@ class DatabaseSeeder extends Seeder
         ]);
         Category::create([
             'category_name' => 'Concert'
+        ]);
+        Category::create([
+            'category_name' => 'Lain-lain'
         ]);
 
         Event::factory(40)->create();
