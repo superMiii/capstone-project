@@ -80,5 +80,57 @@ const createPaginationItemTemplate = () => `
         </ul>
     </div>
 `
+const createMyAccountTemplate = () => `
+    <div class="img-account" style="margin: 30px;">
+        <img src="./images/assets/account.png" alt="">
+    </div>
+    <div class="data-account" style="margin: 30px;">
+        <p>Nama :</p>
+        <p>M Muzayyid Al Hakim</p>
+        <p>Email :</p>
+        <p>mochamadzayyid@gmail.com</p>
+        <p>Password :</p>
+        <p>inipasswordsayay</p>
+    </div>
+`
 
-    export { createCardEventTemplate, createPaginationItemTemplate, createDetailTemplate };
+const createUploadEventTemplate = () => `
+    <form action="#">
+        <br>
+        <label for="image-input">Image:</label><br>
+        <input type="file" id="image-input" name="image-input"><br><br>
+
+        <label for="name-event">Name Of Event:</label><br>
+        <input type="text" id="name-event" name="name-event"><br><br>
+
+        <label for="category-event">Category Of Event:</label><br>
+        <select name="category-event" id="category-event">
+            <option value="lain-lain">lain-lain</option>
+            <option value="webinar">webinar</option>
+            <option value="contest">contest</option>
+            <option value="scolarship">scolarship</option>
+        </select><br><br>
+
+        <label for="date-event">Date Of Event:</label><br>
+        <input type="date" id="date-event" name="date-event"><br><br>
+
+        <label for="time-event">Time Of Event:</label><br>
+        <input type="time" id="time-event" name="time-event"><br><br>
+
+        <label for="place-event">Place Of Event:</label><br>
+        <input type="text" id="place-event" name="place-event"><br><br>
+
+        <label for="description-event">Description:</label><br>
+        <textarea id="description-event" name="description-event"></textarea><br><br>
+
+        <button class="btn-submit-sme" type="submit">Submit</button>
+    </form>
+`
+
+    export {
+        createCardEventTemplate, 
+        createPaginationItemTemplate, 
+        createDetailTemplate,
+        createMyAccountTemplate,
+        createUploadEventTemplate, 
+    };

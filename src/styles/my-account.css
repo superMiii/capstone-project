@@ -1,0 +1,51 @@
+/* == container == */
+.container-my-account {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* == COMBINED PAGE == */
+.combined-page {
+    padding: 10px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    margin: 10px;
+}
+
+/* == NAVIGASI == */
+.navigatio-page-account {
+    padding-top: 10px;
+    border-bottom: 1px solid black;
+    padding-bottom: 10px;
+}
+
+.navigatio-page-account .btn {
+    margin: 5px;
+}
+
+/* == MY ACCOUNT == */
+.img-account img {
+    width: 18rem;
+}
+
+.data-account p:nth-child(2n) {
+    background-color: rgb(165, 164, 164);
+    color: white;
+    border-radius: 5px;
+}
+
+/* == MY EVENT == */
+
+/* == UPLOAD EVEMT == */
+
+/* === MEDIA QUERY === */
+@media (max-width: 670px) {
+    .img-account img {
+        width: 100%;
+    }
+
+    .data-account {
+        width: 80%;
+    }
+}
