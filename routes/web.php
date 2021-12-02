@@ -38,7 +38,7 @@ $router->group(['prefix' => 'api/v1'], function () use ($router) {
         $router->delete('/categories/{id}', 'CategoryController@destroy');
 
         // events
-        $router->get('/events/user', 'EventController@showByIdUser');
+        $router->get('/events/user/{id}', 'EventController@showByIdUser');
         $router->post('/events', 'EventController@store');
         $router->put('/events/{id}', 'EventController@update');
         $router->delete('/events/{id}', 'EventController@destroy');
