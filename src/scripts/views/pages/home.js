@@ -89,22 +89,21 @@ const Home = {
       manipulateNavbarLink(elementLinkNavHome, allNavLink);
 
       // ambil data latest
-      // const latestEvent = await EventsSource.latestEvent(5);
-      // const latestEventElement = document.querySelector('#events-item');
-      // latestEvent.forEach((event) => {
-      //   latestEventElement.innerHTML += `
-      //   <div class="carousel-item active">
-      //     <img class="d-block w-100" src="${event.poster}" alt="First slide">
-      //   </div>`
-      // });
+      const latestEvent = await EventsSource.latestEvent(5);
+      const latestEventElement = document.querySelector('.carousel-inner');
+      latestEvent.forEach((event) => {
+        latestEventElement.innerHTML += `<div class="carousel-item">
+            ${createCardEventTemplate(event)}
+            </div>`
+      });
 
       // kodingan sementara @fahmi kamu bisa ganti pake API
-      const innerCarousel = document.querySelector(".carousel-inner");
-      for (let i = 0; i < 5; i++) {
-        innerCarousel.innerHTML += `<div class="carousel-item">
-          ${createCardEventTemplate()}
-        </div>`
-      };
+      // const innerCarousel = document.querySelector(".carousel-inner");
+      // for (let i = 0; i < 5; i++) {
+      //   innerCarousel.innerHTML += `<div class="carousel-item">
+      //     ${createCardEventTemplate()}
+      //   </div>`
+      // };
 
       // kodingan untuk tambah class active biar card muncul di carousel
       // class active harus cuman satu di child pertama

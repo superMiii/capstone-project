@@ -58,34 +58,24 @@ const allEvent = {
         const allNavLink = document.querySelectorAll('.nav-item .nav-link');
         manipulateNavbarLink(elementLinkNavAll, allNavLink);
 
-        // const events = await EventsSource.allEvents();
-        // const eventsElement = document.querySelector('.event-item');
-        // events.data.forEach((event) => {
-        //   eventsElement.innerHTML += `
-        //   <div class="col-lg-4">
-        //     <div class="card">
-        //       <img src="${event.poster}" class="card-img-top" alt="...">
-        //       <div class="card-body">
-        //         <h5 class="card-title">${event.name}</h5>
-        //         <p class="card-text">${event.description}</p>
-        //         <a href="#" class="btn btn-primary">Go somewhere</a>
-        //       </div>
-        //     </div>
-        //   </div>
-        //   `;
-        // });
+        const events = await EventsSource.allEvents();
+        console.log(events);
+        const eventsElement = document.querySelector('.inner-all-event-card');
+        events.data.forEach((event) => {
+          eventsElement.innerHTML += createCardEventTemplate(event) ;
+        });
 
-        // codingan sementara @fahmi bisa kamu ganti panggil pake API
-        const elementInnerAllEvent = document.querySelector(".inner-all-event")
-        const elementCard = document.querySelector(".inner-all-event-card");
-        for (let i = 0; i < 5; i++) {
-          elementCard.innerHTML += createCardEventTemplate();
-        }
+        // // codingan sementara @fahmi bisa kamu ganti panggil pake API
+        // const elementInnerAllEvent = document.querySelector(".inner-all-event")
+        // const elementCard = document.querySelector(".inner-all-event-card");
+        // for (let i = 0; i < 5; i++) {
+        //   elementCard.innerHTML += createCardEventTemplate();
+        // }
 
-        // untuk menambahkan pagination
-        elementInnerAllEvent.innerHTML += `
-          ${createPaginationItemTemplate()}
-        `
+        // // untuk menambahkan pagination
+        // elementInnerAllEvent.innerHTML += `
+        //   ${createPaginationItemTemplate()}
+        // `
     },
   };
    

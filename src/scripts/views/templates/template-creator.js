@@ -1,13 +1,13 @@
-const createDetailTemplate = () => `
+const createDetailTemplate = (detail) => `
     <div class="all-info-detail d-flex flex-row justify-content-evenly flex-wrap">
         <div class="image-detail">
             <button data-bs-toggle="modal" data-bs-target="#myModal">
-                <img src="https://asset-a.grid.id/crop/0x0:0x0/700x465/photo/haifoto/original/81932_foto-kebetulan-yang-keren-abis.jpg" alt="">
+                <img src="${detail.poster}" alt="">
             </button>
             <p>*click to enlarge image</p>
         </div>
         <div class="info-detail">
-            <h2>This is Title</h2>
+            <h2>${detail.name}</h2>
             <div class="category-card">
                 <img src="./images/assets/category.png" alt="">
                 <p>Lain - Lain</p>
@@ -43,24 +43,24 @@ const createDetailTemplate = () => `
     </div>
 `
 
-const createCardEventTemplate = () => `
+const createCardEventTemplate = (event) => `
     <div class="myCard">
-        <img src="https://asset-a.grid.id/crop/0x0:0x0/700x465/photo/haifoto/original/81932_foto-kebetulan-yang-keren-abis.jpg" class="card-img-top" alt="...">
+        <img src="${event.poster}" class="card-img-top" alt="${event.name}">
         <div class="card-body">
-            <a class="card-title" href="#/detail/1">
-                <h5>Card title</h5>
+            <a class="card-title" href="#/detail/${event.id}">
+                <h5>${event.name}</h5>
             </a>
             <div class="category-card">
                 <img src="./images/assets/category.png" alt="">
-                <p>Lain - Lain</p>
+                <p>${event.category.category_name}</p>
             </div>
             <div class="date-card">
                 <img src="./images/assets/time.png" alt="">
-                <p>16 - 18 Sep 2021</p>
+                <p>${event.date}</p>
             </div>
             <div class="place-card">
                 <img src="./images/assets/place.png" alt="">
-                <p>Online</p>
+                <p>${event.place}</p>
             </div>
         </div>
     </div>

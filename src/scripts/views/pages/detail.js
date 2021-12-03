@@ -1,4 +1,6 @@
+import EventsSource from "../../data/events-source";
 import { createDetailTemplate } from "../templates/template-creator";
+import UrlParser from "../../routes/url-parser";
 
 const detail = {
     async render() {
@@ -22,10 +24,20 @@ const detail = {
             navbarLink[i].classList.remove('active');
         }
 
+        // ambil data id dari url
+        const url = UrlParser.parseActiveUrlWithoutCombiner();
+        const dataId = url.id;
+
+        // ambil data dari API
+        const detailEvent = await EventsSource.eventById(dataId);
+        console.log(detailEvent);
+
         // manipulasi innerdetail
         const innerDetailElement = document.querySelector(".inner-detail");
-        innerDetailElement.innerHTML = createDetailTemplate();
+        detailEvent.forEach(detail => {
+          console.log(detail)
+        });
     },
   };
-   
+
   export default detail;
