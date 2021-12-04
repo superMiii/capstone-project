@@ -30,13 +30,11 @@ const detail = {
 
         // ambil data dari API
         const detailEvent = await EventsSource.eventById(dataId);
-        console.log(detailEvent);
+        const details = detailEvent.data;
 
         // manipulasi innerdetail
         const innerDetailElement = document.querySelector(".inner-detail");
-        detailEvent.forEach(detail => {
-          console.log(detail)
-        });
+        innerDetailElement.innerHTML = createDetailTemplate(details);
     },
   };
 
