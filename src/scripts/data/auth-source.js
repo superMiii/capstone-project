@@ -13,7 +13,10 @@ class AuthSource {
     static async login(data) {
         const response = await fetch(API_ENDPOINT.LOGIN, {
             method: 'POST',
-            body: data
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
         });
         const responseJson = await response.json();
         return responseJson;
