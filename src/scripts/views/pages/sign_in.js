@@ -40,6 +40,7 @@ const Sign_In = {
 
     async _login(data) {
       const login = await AuthSource.login(data);
+      // yid buat validasi di frone-end nya ini masih kureng banget, nnti tinggal refactor lagi aja ya code nya
       if(login.status == false) {
         if(login.message.email || login.message.password) {
           alert(login.message.email);
