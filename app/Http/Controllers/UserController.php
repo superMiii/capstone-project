@@ -11,7 +11,7 @@ class UserController extends Controller
 {
     public function showProfile(Request $request)
     {
-        $user = User::where('api_token', $request->api_token)->get();
+        $user = User::where('api_token', $request->api_token)->first();
         if ($user) {
             return response()->json([
                 'status' => true,
@@ -40,10 +40,10 @@ class UserController extends Controller
                 'message' => $validator->errors()
             ], 400);
         } else {
-            $user = User::where('api_token', $request->api_token)->get();
+            $user = User::where('api_token', $request->api_token)->first();
             if ($request->picture) {
-                if ($user[0]->picture) {
-                    $path_name = 'users_profile/' . $user[0]->picture;
+                if ($user->picture) {
+                    $path_name = 'users_profile/' . $user->picture;
                     if (file_exists($path_name)) {
                         unlink($path_name);
                     }
@@ -51,14 +51,14 @@ class UserController extends Controller
                 $pictureName = time() . '-' . $request->picture->getClientOriginalName();
                 $request->picture->move('users_profile', $pictureName);
 
-                $data = $user[0]->update([
+                $data = $user->update([
                     'name' => $request->name,
                     'picture' => $pictureName,
                 ]);
             } else {
-                $data = $user[0]->update([
+                $data = $user->update([
                     'name' => $request->name,
-                    'picture' => $user[0]->picture,
+                    'picture' => $user->picture,
                 ]);
             }
 
@@ -88,9 +88,9 @@ class UserController extends Controller
                 'message' => $validator->errors(),
             ], 400);
         } else {
-            $user = User::where('api_token', $request->api_token)->get();
+            $user = User::where('api_token', $request->api_token)->first();
             if ($user) {
-                $data = $user[0]->update([
+                $data = $user->update([
                     'password' => Hash::make($request->password)
                 ]);
                 if ($data) {
