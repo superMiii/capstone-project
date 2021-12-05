@@ -1,3 +1,4 @@
+import UsersSource from '../../data/users-source';
 import { createCardEventTemplate, createMyAccountTemplate, createUploadEventTemplate } from "../templates/template-creator";
 
 const my_account = {
@@ -37,13 +38,15 @@ const my_account = {
         const btnUploadEvent = document.querySelector(".btn-uploadEvent")
         const elementTitle = document.querySelector(".combined-title h1");
         const elementInnerMyAccount = document.querySelector(".inner-my-account");
-        elementInnerMyAccount.innerHTML = createMyAccountTemplate();
+        const userLocalStorage = JSON.parse(localStorage.getItem('user'));
+        const myAccount = await UsersSource.showProfile(userLocalStorage.api_token);
+        elementInnerMyAccount.innerHTML = createMyAccountTemplate(myAccount);
 
         //manipulasi ketika button di klik
         btnMyAccount.addEventListener('click', function(){
             elementInnerMyAccount.innerHTML = '';
             elementTitle.innerHTML = 'My Account';
-            elementInnerMyAccount.innerHTML = createMyAccountTemplate();
+            elementInnerMyAccount.innerHTML = createMyAccountTemplate(myAccount);
         })
 
         btnMyEvent.addEventListener('click', function() {

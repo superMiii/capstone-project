@@ -1,3 +1,5 @@
+import CONFIG from '../../globals/config';
+
 const createDetailTemplate = (detail) => `
     <div class="all-info-detail d-flex flex-row justify-content-evenly flex-wrap">
         <div class="image-detail">
@@ -80,17 +82,17 @@ const createPaginationItemTemplate = () => `
         </ul>
     </div>
 `
-const createMyAccountTemplate = () => `
+const createMyAccountTemplate = (myAccount) => `
     <div class="img-account" style="margin: 30px;">
-        <img src="./images/assets/account.png" alt="">
+        <img src="${CONFIG.BASE_IMAGE_USER_URL + myAccount.poster == undefined ? CONFIG.BASE_IMAGE_USER_URL + myAccount.poster : './images/assets/account.png'}" alt="">
     </div>
     <div class="data-account" style="margin: 30px;">
         <p>Nama :</p>
-        <p>M Muzayyid Al Hakim</p>
+        <p>${myAccount.name}</p>
         <p>Email :</p>
-        <p>mochamadzayyid@gmail.com</p>
+        <p>${myAccount.email}</p>
         <p>Password :</p>
-        <p>inipasswordsayay</p>
+        <p>****</p>
     </div>
 `
 

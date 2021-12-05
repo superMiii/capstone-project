@@ -26,8 +26,7 @@ class componentNavbar extends HTMLElement {
                         </li>
                     </ul>
                     <div class="d-flex">
-                        <a href="#/sign_in" class="btn-sign-in">Sign In</a>
-                        <a href="#/sign_up" class="btn-sign-up">Sign Up</a>
+                        ${localStorage.getItem('user') ? '<component-login-button></component-login-button>' : '<a href="#/sign_in" class="btn-sign-in">Sign In</a><a href="#/sign_up" class="btn-sign-up">Sign Up</a>'}
                     </div>
                 </div>
             </div>
