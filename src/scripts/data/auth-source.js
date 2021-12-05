@@ -26,7 +26,9 @@ class AuthSource {
     }
 
     static async logout(apiToken) {
-        const response = await fetch(API_ENDPOINT.LOGOUT(apiToken));
+        const response = await fetch(API_ENDPOINT.LOGOUT(apiToken), {
+            method: 'POST'
+        });
         const responseJson = await response.json();
         return responseJson;
     }
