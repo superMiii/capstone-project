@@ -94,8 +94,8 @@ class EventController extends Controller
     {
         $user = User::find($id);
         if ($user) {
-            $user_id = User::where('api_token', $request->api_token)->get();
-            if ($id == $user_id[0]->id) {
+            $user_id = User::where('api_token', $request->api_token)->first();
+            if ($id == $user_id->id) {
                 $data = Event::latest()->with(['user', 'category'])->where('user_id', $id)->paginate(10);
                 if ($data) {
                     return response()->json([
@@ -224,10 +224,10 @@ class EventController extends Controller
                 'message' => $validator->errors()
             ], 400);
         } else {
-            $user_id = User::where('api_token', $request->api_token)->get();
+            $user_id = User::where('api_token', $request->api_token)->first();
             $event = Event::find($id);
             if ($event) {
-                if ($event->user_id == $user_id[0]->id) {
+                if ($event->user_id == $user_id->id) {
                     if ($event->poster) {
                         $path_name = 'poster_uploads/' . $event->poster;
                         if (file_exists($path_name)) {
@@ -279,10 +279,10 @@ class EventController extends Controller
     //
     public function destroy(Request $request, $id)
     {
-        $user_id = User::where('api_token', $request->api_token)->get();
+        $user_id = User::where('api_token', $request->api_token)->first();
         $event = Event::find($id);
         if ($event) {
-            if ($event->user_id == $user_id[0]->id) {
+            if ($event->user_id == $user_id->id) {
                 if ($event->poster) {
                     $path_name = 'poster_uploads/' . $event->poster;
                     if (file_exists($path_name)) {
@@ -303,8 +303,8 @@ class EventController extends Controller
         } else {
             return response()->json([
                 'status' => false,
-                'message' => 'delete failed!',
-            ], 400);
+                'message' => 'delete failed! Data not found',
+            ], 404);
         }
     }
 }
