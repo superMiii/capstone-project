@@ -67,17 +67,27 @@ const createCardEventTemplate = (event) => `
         </div>
     </div>
 `
-const createPaginationItemTemplate = () => `
+const createCategoryTemplate = (category) => `
+            <div class="${category.category_name.toLowerCase()}">
+              <a href="#/event-category/${category.id}">
+                <div>
+                  <img src="./images/assets/${category.category_name.toLowerCase()}.png" alt=""> 
+                </div>
+                <p>${category.category_name}</p>
+              </a>
+            </div>
+`;
+const createPaginationItemTemplate = (page) => `
     <div aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
-            <li class="page-item disabled">
-                <a class="page-link">Previous</a>
+            <li class="page-item ${page.current_page == 1 ? 'disabled' : ''}">
+                <a class="page-link" href="#/all_event/${page.current_page - 1}">Previous</a>
             </li>
             <li class="page-item"><a class="page-link" href="#">1</a></li>
             <li class="page-item"><a class="page-link" href="#">2</a></li>
             <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-                <a class="page-link" href="#">Next</a>
+            <li class="page-item ${page.current_page == page.last_page ? 'disabled' : ''}">
+                <a class="page-link next" href="#/all_event/${page.current_page + 1}">Next</a>
             </li>
         </ul>
     </div>
@@ -133,7 +143,8 @@ const createUploadEventTemplate = () => `
 
     export {
         createCardEventTemplate, 
-        createPaginationItemTemplate, 
+        createPaginationItemTemplate,
+        createCategoryTemplate, 
         createDetailTemplate,
         createMyAccountTemplate,
         createUploadEventTemplate, 

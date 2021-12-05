@@ -25,8 +25,8 @@
 }
 
 .webinar div,
-.etc-event div,
-.scolarship div {
+.lain-lain div,
+.scholarship div {
     width: 70px;
     height: 66px;
     background-color: #5921F6;
@@ -45,27 +45,27 @@
 
 .webinar img,
 .contest img,
-.scolarship img,
+.scholarship img,
 .concert img,
-.etc-event img {
+.lain-lain img {
     width: 45px;
     margin-top: 10px;
 }
 
 .webinar a,
 .contest a,
-.scolarship a,
+.scholarship a,
 .concert a,
-.etc-event a {
+.lain-lain a {
     text-decoration: none;
     color: black;
 }
 
 .webinar div:hover,
 .contest div:hover,
-.scolarship div:hover,
+.scholarship div:hover,
 .concert div:hover,
-.etc-event div:hover {
+.lain-lain div:hover {
     background-color: #afafaf;
 }
 

@@ -1,15 +1,15 @@
 import EventsSource from "../../data/events-source";
 import CategoriesSource from "../../data/categories-source";
 import { createCategoryTemplate, createCardEventTemplate, createPaginationItemTemplate } from "../templates/template-creator";
-import manipulateNavbarLink from "../../utils/manipulate_navbar_link";
 import UrlParser from "../../routes/url-parser";
+import manipulateNavbarLink from "../../utils/manipulate_navbar_link";
 
-const allEvent = {
+const eventCategory = {
     async render() {
       return `
       <div class="conatiner-all-event">
         <div class="all-event d-flex flex-column align-items-center">
-          <h1>All Event</h1>
+          <h1>Event By Category</h1>
           <p style="color: #17A471;">all event in here</p>
           <div class="category-all-event d-flex flex-wrap flex-row justify-content-evenly">
             
@@ -28,11 +28,10 @@ const allEvent = {
         const elementLinkNavAll = document.querySelector(".nav-allEvent a");
         const allNavLink = document.querySelectorAll('.nav-item .nav-link');
         manipulateNavbarLink(elementLinkNavAll, allNavLink);
-        
+
         const url = UrlParser.parseActiveUrlWithoutCombiner();
         const dataId = url.id;
-        const events = await EventsSource.allEvents(dataId);
-        console.log(events);
+        const events = await EventsSource.eventByCategory(dataId);
         const eventsElement = document.querySelector('.inner-all-event-card');
         events.data.forEach((event) => {
           eventsElement.innerHTML += createCardEventTemplate(event) ;
@@ -60,4 +59,4 @@ const allEvent = {
     },
   };
    
-  export default allEvent;
+  export default eventCategory;

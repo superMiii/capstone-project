@@ -1,8 +1,8 @@
 import API_ENDPOINT from "../globals/api-endpoint";
 
 class EventsSource {
-    static async allEvents() {
-        const response = await fetch(API_ENDPOINT.EVENTS);
+    static async allEvents(page) {
+        const response = await fetch(API_ENDPOINT.EVENTS(page));
         const responseJson = await response.json();
         return responseJson.data;
     }
@@ -24,8 +24,8 @@ class EventsSource {
         return responseJson.data;
     }
 
-    static async eventByCategory(id, apiToken) {
-        const response = await fetch(API_ENDPOINT.EVENTS_CATEGORY(id, apiToken));
+    static async eventByCategory(id) {
+        const response = await fetch(API_ENDPOINT.EVENTS_CATEGORY(id));
         const responseJson = await response.json();
         return responseJson.data;
     }
