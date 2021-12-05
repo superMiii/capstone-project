@@ -34,6 +34,14 @@ const allEvent = {
                 <p>Scolarship</p>
               </a>
             </div>
+            <div class="concert">
+              <a href="#">
+                <div>
+                  <img src="./images/assets/concert.png" alt="">
+                </div>
+                <p>Concert</p>
+              </a>
+            </div>
             <div class="etc-event">
               <a href="#">
                 <div>
@@ -66,16 +74,17 @@ const allEvent = {
         });
 
         // // codingan sementara @fahmi bisa kamu ganti panggil pake API
-        // const elementInnerAllEvent = document.querySelector(".inner-all-event")
+        
         // const elementCard = document.querySelector(".inner-all-event-card");
         // for (let i = 0; i < 5; i++) {
         //   elementCard.innerHTML += createCardEventTemplate();
         // }
 
-        // // untuk menambahkan pagination
-        // elementInnerAllEvent.innerHTML += `
-        //   ${createPaginationItemTemplate()}
-        // `
+        // untuk menambahkan pagination
+        const elementInnerAllEvent = document.querySelector(".inner-all-event")
+        elementInnerAllEvent.innerHTML += `
+          ${createPaginationItemTemplate()}
+        `
     },
   };
    

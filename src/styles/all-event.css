@@ -25,6 +25,7 @@
 }
 
 .webinar div,
+.etc-event div,
 .scolarship div {
     width: 70px;
     height: 66px;
@@ -34,7 +35,7 @@
 }
 
 .contest div,
-.etc-event div {
+.concert div {
     width: 70px;
     height: 66px;
     background-color: #17A471;
@@ -45,14 +46,16 @@
 .webinar img,
 .contest img,
 .scolarship img,
+.concert img,
 .etc-event img {
-    width: 50px;
-    margin-top: 7px;
+    width: 45px;
+    margin-top: 10px;
 }
 
 .webinar a,
 .contest a,
 .scolarship a,
+.concert a,
 .etc-event a {
     text-decoration: none;
     color: black;
@@ -61,6 +64,7 @@
 .webinar div:hover,
 .contest div:hover,
 .scolarship div:hover,
+.concert div:hover,
 .etc-event div:hover {
     background-color: #afafaf;
 }
