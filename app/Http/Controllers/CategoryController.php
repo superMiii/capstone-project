@@ -17,7 +17,7 @@ class CategoryController extends Controller
                 'status' => true,
                 'message' => 'successfully get data.',
                 'data' => $data
-            ], 201);
+            ], 200);
         } else {
             return response()->json([
                 'status' => false,

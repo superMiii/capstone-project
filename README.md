@@ -22,3 +22,11 @@ If you discover a security vulnerability within Lumen, please send an e-mail to 
 ## License
 
 The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Deployed API to Heroku
+
+And this url endpoint for deployed API [SME Heroku](https://sme-capstone-backend.herokuapp.com/api/v1/events).
+
+## Documentation API
+
+And this for API Documentation Website Share My Events [Documentation SME API From Postman](https://documenter.getpostman.com/view/12251477/UVJfjFdA).
