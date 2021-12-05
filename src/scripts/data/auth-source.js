@@ -4,7 +4,10 @@ class AuthSource {
     static async register(data) {
         const response = await fetch(API_ENDPOINT.REGISTER, {
             method: 'POST',
-            body: data
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
         });
         const responseJson = await response.json();
         return responseJson;
