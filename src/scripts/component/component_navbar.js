@@ -22,11 +22,11 @@ class componentNavbar extends HTMLElement {
                             <a class="nav-link" aria-current="page" href="#/favorite">Favorite</a>
                         </li>
                         <li class="nav-item nav-allEvent">
-                            <a class="nav-link" aria-current="page" href="#/all_event">All Event</a>
+                            <a class="nav-link" aria-current="page" href="#/all_event/1">All Event</a>
                         </li>
                     </ul>
                     <div class="d-flex">
-                        ${localStorage.getItem('user') ? '<a href="#/my_account/'+JSON.parse(localStorage.getItem('user')).id+'" class="btn-sign-in">'+JSON.parse(localStorage.getItem('user')).name+'</a><a href="#" class="btn-sign-up">Sign_out</a>' : '<a href="#/sign_in" class="btn-sign-in">Sign In</a><a href="#/sign_up" class="btn-sign-up">Sign Up</a>'}
+                        ${localStorage.getItem('user') ? '<a href="#/my_account/" class="btn-sign-in">'+JSON.parse(localStorage.getItem('user')).name+'</a><a href="#" class="btn-sign-up">Sign_out</a>' : '<a href="#/sign_in" class="btn-sign-in">Sign In</a><a href="#/sign_up" class="btn-sign-up">Sign Up</a>'}
                     </div>
                 </div>
             </div>

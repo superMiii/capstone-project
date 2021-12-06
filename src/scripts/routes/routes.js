@@ -16,7 +16,7 @@ const routes = {
   '/event-category/:id': eventCategory,
   '/all_event/:id': allEvent,
   '/detail/:id': detail,
-  '/my_account/:id': my_account,
+  '/my_account': my_account,
 };
  
 export default routes;

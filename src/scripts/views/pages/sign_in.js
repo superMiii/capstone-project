@@ -58,7 +58,7 @@ const Sign_In = {
         };
         localStorage.setItem('user', JSON.stringify(dataLogin));
         alert(login.message);
-        location.href = '#/my_account/'+dataLogin.id
+        location.href = '#/my_account';
       }
     }
   };

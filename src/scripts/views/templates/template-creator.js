@@ -94,7 +94,7 @@ const createPaginationItemTemplate = (page) => `
 `
 const createMyAccountTemplate = (myAccount) => `
     <div class="img-account" style="margin: 30px;">
-        <img src="${CONFIG.BASE_IMAGE_USER_URL + myAccount.poster == undefined ? CONFIG.BASE_IMAGE_USER_URL + myAccount.poster : './images/assets/account.png'}" alt="">
+        <img src="${CONFIG.BASE_IMAGE_USER_URL + myAccount.poster ? './images/assets/account.png' : CONFIG.BASE_IMAGE_USER_URL + myAccount.poster}" alt="">
     </div>
     <div class="data-account" style="margin: 30px;">
         <p>Nama :</p>

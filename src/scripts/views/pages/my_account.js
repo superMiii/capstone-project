@@ -1,4 +1,5 @@
 import UsersSource from '../../data/users-source';
+import EventsSource from '../../data/events-source';
 import { createCardEventTemplate, createMyAccountTemplate, createUploadEventTemplate } from "../templates/template-creator";
 
 const my_account = {
@@ -49,12 +50,13 @@ const my_account = {
             elementInnerMyAccount.innerHTML = createMyAccountTemplate(myAccount);
         })
 
-        btnMyEvent.addEventListener('click', function() {
+        btnMyEvent.addEventListener('click', async function() {
+            const myEvent = await EventsSource.eventByUserId(userLocalStorage.id, userLocalStorage.api_token);
             elementInnerMyAccount.innerHTML = '';
             elementTitle.innerHTML = 'My Events';
-            for (let i = 0; i < 5; i++) {
-                elementInnerMyAccount.innerHTML += createCardEventTemplate();
-            }
+            myEvent.data.forEach((event) => {
+                elementInnerMyAccount.innerHTML += createCardEventTemplate(event);
+            });
         })
 
         btnUploadEvent.addEventListener('click', function() {
