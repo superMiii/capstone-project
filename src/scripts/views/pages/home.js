@@ -1,6 +1,6 @@
 import EventsSource from "../../data/events-source";
 import { createCardEventTemplate } from "../templates/template-creator";
-import manipulateNavbarLink from "../../utils/manipulate_navbar_link";
+import addClassActive from "../../utils/add-class-active";
 import logout from "../../utils/logout";
 
 const Home = {
@@ -87,7 +87,7 @@ const Home = {
       // manipulasi dom navbar
       const elementLinkNavHome = document.querySelector(".nav-home a");
       const allNavLink = document.querySelectorAll('.nav-item .nav-link');
-      manipulateNavbarLink(elementLinkNavHome, allNavLink);
+      addClassActive(elementLinkNavHome, allNavLink);
 
       // ambil data latest
       const latestEvent = await EventsSource.latestEvent(5);

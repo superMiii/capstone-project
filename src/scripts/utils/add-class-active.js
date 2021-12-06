@@ -1,4 +1,4 @@
-const manipulateNavbarLink = (destinationPage, allNavLink) => {
+const addClassActive = (destinationPage, allNavLink) => {
     for (let i = 0; i < allNavLink.length; i++) {
         if ( allNavLink[i] == destinationPage ) {
             allNavLink[i].classList.add('active');
@@ -8,4 +8,4 @@ const manipulateNavbarLink = (destinationPage, allNavLink) => {
     };
 };
 
-export default manipulateNavbarLink;
+export default addClassActive;

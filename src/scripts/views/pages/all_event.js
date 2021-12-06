@@ -1,7 +1,11 @@
 import EventsSource from "../../data/events-source";
 import CategoriesSource from "../../data/categories-source";
-import { createCategoryTemplate, createCardEventTemplate, createPaginationItemTemplate } from "../templates/template-creator";
-import manipulateNavbarLink from "../../utils/manipulate_navbar_link";
+import { createCategoryTemplate, 
+        createCardEventTemplate, 
+        createPaginationItemTemplate,
+        createPageNumber,
+        } from "../templates/template-creator";
+import addClassActive from "../../utils/add-class-active";
 import UrlParser from "../../routes/url-parser";
 import logout from "../../utils/logout";
 
@@ -28,7 +32,7 @@ const allEvent = {
     async afterRender() {
         const elementLinkNavAll = document.querySelector(".nav-allEvent a");
         const allNavLink = document.querySelectorAll('.nav-item .nav-link');
-        manipulateNavbarLink(elementLinkNavAll, allNavLink);
+        addClassActive(elementLinkNavAll, allNavLink);
         
         const url = UrlParser.parseActiveUrlWithoutCombiner();
         const dataId = url.id;
@@ -46,10 +50,22 @@ const allEvent = {
         });
 
         // untuk menambahkan pagination
-        const elementInnerAllEvent = document.querySelector(".inner-all-event")
+        const elementInnerAllEvent = document.querySelector(".inner-all-event");
+        const pageOrigin = url.resource;
         elementInnerAllEvent.innerHTML += `
-          ${createPaginationItemTemplate(events, url.resource)}
+          ${createPaginationItemTemplate(events, pageOrigin)}
         `;
+        // inner pagination
+        const innerPageNumber = document.querySelector('.inner-page-number');
+        for (let i = 1; i <= events.last_page; i++) {
+          innerPageNumber.innerHTML += createPageNumber(pageOrigin, i);
+        };
+        // menambahkan class active ke pagination
+        const destinationPageNum = document.querySelector(`.inner-page-number .page-number:nth-child(${dataId}) .page-link`);
+        const otherPageNum = document.querySelectorAll('.page-number .page-link');
+        console.log(destinationPageNum);
+        console.log(otherPageNum);
+        addClassActive(destinationPageNum, otherPageNum);
 
         // logout
         logout;

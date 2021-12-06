@@ -83,15 +83,19 @@ const createPaginationItemTemplate = (page, pageOrigin) => `
             <li class="page-item ${page.current_page == 1 ? 'disabled' : ''}">
                 <a class="page-link" href="#/${pageOrigin}/${page.current_page - 1}">Previous</a>
             </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <div class="inner-page-number d-flex flex-row">
+                
+            </div>
             <li class="page-item ${page.current_page == page.last_page ? 'disabled' : ''}">
                 <a class="page-link next" href="#/${pageOrigin}/${page.current_page + 1}">Next</a>
             </li>
         </ul>
     </div>
 `
+const createPageNumber = (pageOrigin, number) => `
+    <li class="page-number"><a class="page-link" href="#/${pageOrigin}/${number}">${number}</a></li>
+`;
+
 const createMyAccountTemplate = (myAccount) => `
     <div class="img-account" style="margin: 30px;">
         <img src="${CONFIG.BASE_IMAGE_USER_URL + myAccount.poster ? './images/assets/account.png' : CONFIG.BASE_IMAGE_USER_URL + myAccount.poster}" alt="">
@@ -155,5 +159,6 @@ const createUploadEventTemplate = () => `
         createCategoryTemplate, 
         createDetailTemplate,
         createMyAccountTemplate,
-        createUploadEventTemplate, 
+        createUploadEventTemplate,
+        createPageNumber, 
     };

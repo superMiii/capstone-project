@@ -1,5 +1,5 @@
 import logout from "../../utils/logout";
-import manipulateNavbarLink from "../../utils/manipulate_navbar_link";
+import addClassActive from "../../utils/add-class-active";
 import { createCardEventTemplate } from "../templates/template-creator";
 
 const Favorite = {
@@ -21,7 +21,7 @@ const Favorite = {
       // manipulasi dom navbar
       const elementLinkNavFav = document.querySelector(".nav-favorite a");
       const allNavLink = document.querySelectorAll('.nav-item .nav-link');
-      manipulateNavbarLink(elementLinkNavFav, allNavLink);
+      addClassActive(elementLinkNavFav, allNavLink);
 
       // kodingan sementara @fahmi boleh diubah dengan API
       const elementCard = document.querySelector(".inner-favorite");

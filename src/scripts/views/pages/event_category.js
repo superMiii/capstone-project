@@ -1,8 +1,12 @@
 import EventsSource from "../../data/events-source";
 import CategoriesSource from "../../data/categories-source";
-import { createCategoryTemplate, createCardEventTemplate, createPaginationItemTemplate } from "../templates/template-creator";
+import { createCategoryTemplate, 
+        createCardEventTemplate, 
+        createPaginationItemTemplate,
+        createPageNumber,
+        } from "../templates/template-creator";
 import UrlParser from "../../routes/url-parser";
-import manipulateNavbarLink from "../../utils/manipulate_navbar_link";
+import addClassActive from "../../utils/add-class-active";
 import logout from "../../utils/logout";
 
 const eventCategory = {
@@ -28,7 +32,7 @@ const eventCategory = {
     async afterRender() {
         const elementLinkNavAll = document.querySelector(".nav-allEvent a");
         const allNavLink = document.querySelectorAll('.nav-item .nav-link');
-        manipulateNavbarLink(elementLinkNavAll, allNavLink);
+        addClassActive(elementLinkNavAll, allNavLink);
 
         const url = UrlParser.parseActiveUrlWithoutCombiner();
         const dataId = url.id;
@@ -52,6 +56,17 @@ const eventCategory = {
         elementInnerAllEvent.innerHTML += `
           ${createPaginationItemTemplate(events, pageOrigin)}
         `;
+        // inner pagination
+        const innerPageNumber = document.querySelector('.inner-page-number');
+        for (let i = 1; i <= events.last_page; i++) {
+          innerPageNumber.innerHTML += createPageNumber(pageOrigin, i);
+        };
+        // menambahkan class active ke pagination
+        const destinationPageNum = document.querySelector(`.inner-page-number .page-number:nth-child(${dataPage}) .page-link`);
+        const otherPageNum = document.querySelectorAll('.page-number .page-link');
+        console.log(destinationPageNum);
+        console.log(otherPageNum);
+        addClassActive(destinationPageNum, otherPageNum);
 
         // logout
         logout;
