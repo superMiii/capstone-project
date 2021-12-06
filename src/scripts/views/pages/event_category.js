@@ -64,8 +64,6 @@ const eventCategory = {
         // menambahkan class active ke pagination
         const destinationPageNum = document.querySelector(`.inner-page-number .page-number:nth-child(${dataPage}) .page-link`);
         const otherPageNum = document.querySelectorAll('.page-number .page-link');
-        console.log(destinationPageNum);
-        console.log(otherPageNum);
         addClassActive(destinationPageNum, otherPageNum);
 
         // logout

@@ -63,8 +63,6 @@ const allEvent = {
         // menambahkan class active ke pagination
         const destinationPageNum = document.querySelector(`.inner-page-number .page-number:nth-child(${dataId}) .page-link`);
         const otherPageNum = document.querySelectorAll('.page-number .page-link');
-        console.log(destinationPageNum);
-        console.log(otherPageNum);
         addClassActive(destinationPageNum, otherPageNum);
 
         // logout
