@@ -1,6 +1,7 @@
 import EventsSource from "../../data/events-source";
 import { createCardEventTemplate } from "../templates/template-creator";
 import manipulateNavbarLink from "../../utils/manipulate_navbar_link";
+import logout from "../../utils/logout";
 
 const Home = {
     async render() {
@@ -109,6 +110,8 @@ const Home = {
       // class active harus cuman satu di child pertama
       const carouselItem = document.querySelector(".carousel-item:nth-child(1)");
       carouselItem.classList.add("active");
+
+      logout();
     },
   };
    

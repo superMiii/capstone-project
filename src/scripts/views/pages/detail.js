@@ -1,6 +1,7 @@
 import EventsSource from "../../data/events-source";
 import { createDetailTemplate } from "../templates/template-creator";
 import UrlParser from "../../routes/url-parser";
+import logout from "../../utils/logout";
 
 const detail = {
     async render() {
@@ -35,6 +36,9 @@ const detail = {
         // manipulasi innerdetail
         const innerDetailElement = document.querySelector(".inner-detail");
         innerDetailElement.innerHTML = createDetailTemplate(details);
+
+        // logout
+        logout;
     },
   };
 

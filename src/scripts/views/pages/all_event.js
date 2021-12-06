@@ -3,6 +3,7 @@ import CategoriesSource from "../../data/categories-source";
 import { createCategoryTemplate, createCardEventTemplate, createPaginationItemTemplate } from "../templates/template-creator";
 import manipulateNavbarLink from "../../utils/manipulate_navbar_link";
 import UrlParser from "../../routes/url-parser";
+import logout from "../../utils/logout";
 
 const allEvent = {
     async render() {
@@ -48,7 +49,10 @@ const allEvent = {
         const elementInnerAllEvent = document.querySelector(".inner-all-event")
         elementInnerAllEvent.innerHTML += `
           ${createPaginationItemTemplate(events, url.resource)}
-        `
+        `;
+
+        // logout
+        logout;
     },
   };
    

@@ -3,6 +3,7 @@ import CategoriesSource from "../../data/categories-source";
 import { createCategoryTemplate, createCardEventTemplate, createPaginationItemTemplate } from "../templates/template-creator";
 import UrlParser from "../../routes/url-parser";
 import manipulateNavbarLink from "../../utils/manipulate_navbar_link";
+import logout from "../../utils/logout";
 
 const eventCategory = {
     async render() {
@@ -50,7 +51,10 @@ const eventCategory = {
         const pageOrigin = `${url.resource}/${url.id}`;
         elementInnerAllEvent.innerHTML += `
           ${createPaginationItemTemplate(events, pageOrigin)}
-        `
+        `;
+
+        // logout
+        logout;
     },
   };
    

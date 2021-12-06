@@ -1,3 +1,4 @@
+import logout from "../../utils/logout";
 import manipulateNavbarLink from "../../utils/manipulate_navbar_link";
 import { createCardEventTemplate } from "../templates/template-creator";
 
@@ -26,7 +27,9 @@ const Favorite = {
       const elementCard = document.querySelector(".inner-favorite");
       for (let i = 0; i < 5; i++) {
         elementCard.innerHTML += createCardEventTemplate();
-      }
+      };
+
+      logout;
     },
   };
    

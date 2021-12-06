@@ -1,6 +1,7 @@
 import UsersSource from '../../data/users-source';
 import EventsSource from '../../data/events-source';
 import { createCardEventTemplate, createMyAccountTemplate, createUploadEventTemplate } from "../templates/template-creator";
+import logout from '../../utils/logout';
 
 const my_account = {
     async render() {
@@ -102,6 +103,9 @@ const my_account = {
             });
 
         });
+
+        // logout
+        logout;
     },
   };
    
