@@ -19,6 +19,7 @@ import logout from './utils/logout';
 
   const app = new App({
     content: document.querySelector('#mainContent'),
+    navbar: document.querySelector('.myNavbar')
   });
   
   window.addEventListener('hashchange', () => {
