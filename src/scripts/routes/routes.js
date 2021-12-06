@@ -13,7 +13,7 @@ const routes = {
   '/favorite': Favorite,
   '/sign_in': Sign_In,
   '/sign_up': Sign_Up,
-  '/event-category/:id': eventCategory,
+  '/event-category/:id/:page': eventCategory,
   '/all_event/:id': allEvent,
   '/detail/:id': detail,
   '/my_account': my_account,

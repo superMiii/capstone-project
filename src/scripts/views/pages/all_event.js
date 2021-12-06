@@ -32,18 +32,10 @@ const allEvent = {
         const url = UrlParser.parseActiveUrlWithoutCombiner();
         const dataId = url.id;
         const events = await EventsSource.allEvents(dataId);
-        console.log(events);
         const eventsElement = document.querySelector('.inner-all-event-card');
         events.data.forEach((event) => {
           eventsElement.innerHTML += createCardEventTemplate(event) ;
         });
-
-        // // codingan sementara @fahmi bisa kamu ganti panggil pake API
-        
-        // const elementCard = document.querySelector(".inner-all-event-card");
-        // for (let i = 0; i < 5; i++) {
-        //   elementCard.innerHTML += createCardEventTemplate();
-        // }
 
         // untuk menampilkan event berdasarkan category
         const categories = await CategoriesSource.allCategories();
@@ -55,7 +47,7 @@ const allEvent = {
         // untuk menambahkan pagination
         const elementInnerAllEvent = document.querySelector(".inner-all-event")
         elementInnerAllEvent.innerHTML += `
-          ${createPaginationItemTemplate(events)}
+          ${createPaginationItemTemplate(events, url.resource)}
         `
     },
   };

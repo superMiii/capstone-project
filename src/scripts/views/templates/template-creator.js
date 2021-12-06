@@ -69,7 +69,7 @@ const createCardEventTemplate = (event) => `
 `
 const createCategoryTemplate = (category) => `
             <div class="${category.category_name.toLowerCase()}">
-              <a href="#/event-category/${category.id}">
+              <a href="#/event-category/${category.id}/1">
                 <div>
                   <img src="./images/assets/${category.category_name.toLowerCase()}.png" alt=""> 
                 </div>
@@ -77,17 +77,17 @@ const createCategoryTemplate = (category) => `
               </a>
             </div>
 `;
-const createPaginationItemTemplate = (page) => `
+const createPaginationItemTemplate = (page, pageOrigin) => `
     <div aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
             <li class="page-item ${page.current_page == 1 ? 'disabled' : ''}">
-                <a class="page-link" href="#/all_event/${page.current_page - 1}">Previous</a>
+                <a class="page-link" href="#/${pageOrigin}/${page.current_page - 1}">Previous</a>
             </li>
             <li class="page-item"><a class="page-link" href="#">1</a></li>
             <li class="page-item"><a class="page-link" href="#">2</a></li>
             <li class="page-item"><a class="page-link" href="#">3</a></li>
             <li class="page-item ${page.current_page == page.last_page ? 'disabled' : ''}">
-                <a class="page-link next" href="#/all_event/${page.current_page + 1}">Next</a>
+                <a class="page-link next" href="#/${pageOrigin}/${page.current_page + 1}">Next</a>
             </li>
         </ul>
     </div>

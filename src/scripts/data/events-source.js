@@ -24,8 +24,8 @@ class EventsSource {
         return responseJson.data;
     }
 
-    static async eventByCategory(id) {
-        const response = await fetch(API_ENDPOINT.EVENTS_CATEGORY(id));
+    static async eventByCategory(id, page) {
+        const response = await fetch(API_ENDPOINT.EVENTS_CATEGORY(id, page));
         const responseJson = await response.json();
         return responseJson.data;
     }
