@@ -15,8 +15,9 @@ import App from './views/app';
 // import component
 import './component/component_navbar';
 import './component/component_footer';
+import logout from './utils/logout';
 
-const app = new App({
+  const app = new App({
     content: document.querySelector('#mainContent'),
   });
   
@@ -27,3 +28,11 @@ const app = new App({
   window.addEventListener('load', () => {
     app.renderPage();
   });
+
+  if(localStorage.getItem('user')) {
+    const logoutBtn = document.querySelector('.sign-out');
+    logoutBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      logout();
+    });
+  }

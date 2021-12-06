@@ -26,7 +26,12 @@ class componentNavbar extends HTMLElement {
                         </li>
                     </ul>
                     <div class="d-flex">
-                        ${localStorage.getItem('user') ? '<a href="#/my_account/" class="btn-sign-in">'+JSON.parse(localStorage.getItem('user')).name+'</a><a href="#" class="btn-sign-up">Sign_out</a>' : '<a href="#/sign_in" class="btn-sign-in">Sign In</a><a href="#/sign_up" class="btn-sign-up">Sign Up</a>'}
+                        ${localStorage.getItem('user') 
+                            ? 
+                            `<a href="#/my_account/" class="btn-sign-in">'${JSON.parse(localStorage.getItem('user')).name}'</a>
+                            <a href="#" class="btn-sign-up sign-out">Sign_out</a>` 
+                            : 
+                            '<a href="#/sign_in" class="btn-sign-in">Sign In</a><a href="#/sign_up" class="btn-sign-up">Sign Up</a>'}
                     </div>
                 </div>
             </div>

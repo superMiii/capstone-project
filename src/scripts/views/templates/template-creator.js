@@ -4,7 +4,7 @@ const createDetailTemplate = (detail) => `
     <div class="all-info-detail d-flex flex-row justify-content-evenly flex-wrap">
         <div class="image-detail">
             <button data-bs-toggle="modal" data-bs-target="#myModal">
-                <img src="${detail.poster}" alt="">
+                <img src="${detail.poster.match('https://') ? detail.poster : CONFIG.BASE_IMAGE_POSTER_URL+detail.poster}" alt="">
             </button>
             <p>*click to enlarge image</p>
         </div>
@@ -38,7 +38,7 @@ const createDetailTemplate = (detail) => `
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <img src="${detail.poster}" class="card-img-top" alt="...">
+            <img src="${detail.poster.match('https://') ? detail.poster : CONFIG.BASE_IMAGE_POSTER_URL+detail.poster}" class="card-img-top" alt="...">
         </div>
         </div>
     </div>
@@ -47,7 +47,7 @@ const createDetailTemplate = (detail) => `
 
 const createCardEventTemplate = (event) => `
     <div class="myCard">
-        <img src="${event.poster}" class="card-img-top" alt="${event.name}">
+        <img src="${event.poster.match('https://') ? event.poster : CONFIG.BASE_IMAGE_POSTER_URL+event.poster}" class="card-img-top" alt="${event.name}">
         <div class="card-body">
             <a class="card-title" href="#/detail/${event.id}">
                 <h5>${event.name}</h5>
@@ -108,33 +108,41 @@ const createMyAccountTemplate = (myAccount) => `
 
 const createUploadEventTemplate = () => `
     <div class="upload-event">
-        <form action="#">
+        <form action="#" id="add-event">
             <br>
             <label for="image-input"><h6>Image:</h6></label><br>
-            <input type="file" id="image-input" name="image-input"><br><br>
+            <img id="preview-image">
+            <input type="file" id="image-input" accept="image/png, image/jpg, image/jpeg" name="image-input"><br><br>
 
             <label for="category-event"><h6>Category Of Event:</h6></label><br>
-            <select name="category-event" id="category-event">
-                <option value="lain-lain">lain-lain</option>
-                <option value="webinar">webinar</option>
-                <option value="contest">contest</option>
-                <option value="scolarship">scolarship</option>
+            <select name="category-event" id="category-event" required>
+                <option value="5">Lain-lain</option>
+                <option value="1">Webinar</option>
+                <option value="2">Contest</option>
+                <option value="4">Concert</option>
+                <option value="3">Scholarship</option>
             </select><br><br>
 
             <label for="name-event"><h6>Name Of Event:</h6></label><br>
-            <input type="text" id="name-event" name="name-event"><br><br>
+            <input type="text" id="name-event" name="name-event" required min="5"><br><br>
 
             <label for="date-event"><h6>Date Of Event:</h6></label><br>
-            <input type="date" id="date-event" name="date-event"><br><br>
+            <input type="date" id="date-event" name="date-event" required><br><br>
 
             <label for="time-event"><h6>Time Of Event:</h6></label><br>
-            <input type="time" id="time-event" name="time-event"><br><br>
+            <input type="time" id="time-event" name="time-event" required><br><br>
 
             <label for="place-event"><h6>Place Of Event:</h6></label><br>
-            <input type="text" id="place-event" name="place-event"><br><br>
+            <input type="text" id="place-event" name="place-event" required><br><br>
+
+            <label for="register-link"><h6>Register Link:</h6></label><br>
+            <input type="text" id="register-link" name="register-link" required><br><br>
+
+            <label for="ticket-price"><h6>Ticket Price:</h6></label><br>
+            <input type="number" id="ticket-price" name="ticket-price" required><br><br>
 
             <label for="description-event"><h6>Description:</h6></label><br>
-            <textarea id="description-event" name="description-event"></textarea><br><br>
+            <textarea id="description-event" name="description-event" required></textarea><br><br>
 
             <button class="btn-submit-sme" type="submit">Submit</button>
         </form>
