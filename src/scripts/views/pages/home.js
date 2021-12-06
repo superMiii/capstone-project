@@ -98,14 +98,6 @@ const Home = {
             </div>`
       });
 
-      // kodingan sementara @fahmi kamu bisa ganti pake API
-      // const innerCarousel = document.querySelector(".carousel-inner");
-      // for (let i = 0; i < 5; i++) {
-      //   innerCarousel.innerHTML += `<div class="carousel-item">
-      //     ${createCardEventTemplate()}
-      //   </div>`
-      // };
-
       // kodingan untuk tambah class active biar card muncul di carousel
       // class active harus cuman satu di child pertama
       const carouselItem = document.querySelector(".carousel-item:nth-child(1)");
