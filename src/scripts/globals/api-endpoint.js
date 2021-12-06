@@ -12,7 +12,7 @@ const API_ENDPOINT = {
     EVENT_SEARCH: (keyword) => `${CONFIG.BASE_URL}events/search?keyword=${keyword}`,
     EVENT_LATEST: (limit) => `${CONFIG.BASE_URL}events/latest?limit=${limit}`,
     EVENTS_USER: (id, apiToken) => `${CONFIG.BASE_URL}events/user/${id}?api_token=${apiToken}`,
-    EVENTS_CATEGORY: (id) => `${CONFIG.BASE_URL}events/category/${id}`,
+    EVENTS_CATEGORY: (id, page) => `${CONFIG.BASE_URL}events/category/${id}?page=${page}`,
     ADD_EVENT: (apiToken) => `${CONFIG.BASE_URL}events?api_token=${apiToken}`,
     UPDATE_EVENT: (id, apiToken) => `${CONFIG.BASE_URL}events/${id}?api_token=${apiToken}`,
     DELETE_EVENT: (id, apiToken) => `${CONFIG.BASE_URL}events/${id}?api_token=${apiToken}`,
