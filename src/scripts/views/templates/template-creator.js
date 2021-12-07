@@ -49,9 +49,9 @@ const createCardEventTemplate = (event) => `
     <div class="myCard">
         <img src="${event.poster.match('https://') ? event.poster : CONFIG.BASE_IMAGE_POSTER_URL+event.poster}" class="card-img-top" alt="${event.name}">
         <div class="card-body">
-            <a class="card-title" href="#/detail/${event.id}">
-                <h5>${event.name}</h5>
-            </a>
+            <h5 class="card-title">
+                <a href="#/detail/${event.id}">${event.name}</a>
+            </h5>
             <div class="category-card">
                 <img src="./images/assets/category.png" alt="">
                 <p>${event.category.category_name}</p>
@@ -79,15 +79,19 @@ const createCategoryTemplate = (category) => `
 `;
 const createPaginationItemTemplate = (page, pageOrigin) => `
     <div aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
+        <ul class="pagination justify-content-center align-items-center">
             <li class="page-item ${page.current_page == 1 ? 'disabled' : ''}">
-                <a class="page-link" href="#/${pageOrigin}/${page.current_page - 1}">Previous</a>
+                <a class="page-link" href="#/${pageOrigin}/${page.current_page - 1}">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
             </li>
-            <div class="inner-page-number d-flex flex-row">
+            <div class="inner-page-number d-flex flex-row flex-wrap justify-content-center">
                 
             </div>
             <li class="page-item ${page.current_page == page.last_page ? 'disabled' : ''}">
-                <a class="page-link next" href="#/${pageOrigin}/${page.current_page + 1}">Next</a>
+                <a class="page-link next" href="#/${pageOrigin}/${page.current_page + 1}">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
             </li>
         </ul>
     </div>

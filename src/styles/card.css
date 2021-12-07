@@ -3,7 +3,8 @@
     transition: 0.3s;
     margin: 10px;
     border-radius: 10px;
-    max-width: 300px;
+    width: 300px;
+    height: 450px;
     background-color: white;
 }
 
@@ -28,6 +29,20 @@
 }
 
 .card-title {
+    font-size: 1rem;
+    margin-bottom: 0.8rem;
+    max-height: 4rem;
+    overflow: hidden;
+    }
+
+    .card-title a {
     text-decoration: none;
-    color: black;
+    color: #555;
+    }
+
+    /* === MEDIA QUERY === */
+    @media (max-width: 400px) {
+        .myCard {
+            width: 100%;
+        }
 }
