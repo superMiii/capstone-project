@@ -228,28 +228,42 @@ class EventController extends Controller
             $event = Event::find($id);
             if ($event) {
                 if ($event->user_id == $user_id->id) {
-                    if ($event->poster) {
-                        $path_name = 'poster_uploads/' . $event->poster;
-                        if (file_exists($path_name)) {
-                            unlink($path_name);
+                    if ($request->poster) {
+                        if ($event->poster) {
+                            $path_name = 'poster_uploads/' . $event->poster;
+                            if (file_exists($path_name)) {
+                                unlink($path_name);
+                            }
                         }
+
+                        $posterName = time() . '-' . $request->poster->getClientOriginalName();
+                        $request->poster->move('poster_uploads', $posterName);
+
+                        $data = $event->update([
+                            'name' => $request->name,
+                            'description' => $request->description,
+                            'poster' => $posterName,
+                            'time' => $request->time,
+                            'place' => $request->place,
+                            'date' => $request->date,
+                            'register_link' => $request->register_link,
+                            'ticket_price' => $request->ticket_price,
+                            'category_id' => $request->category_id,
+                            'user_id' => $request->user_id,
+                        ]);
+                    } else {
+                        $data = $event->update([
+                            'name' => $request->name,
+                            'description' => $request->description,
+                            'time' => $request->time,
+                            'place' => $request->place,
+                            'date' => $request->date,
+                            'register_link' => $request->register_link,
+                            'ticket_price' => $request->ticket_price,
+                            'category_id' => $request->category_id,
+                            'user_id' => $request->user_id,
+                        ]);
                     }
-
-                    $posterName = time() . '-' . $request->poster->getClientOriginalName();
-                    $request->poster->move('poster_uploads', $posterName);
-
-                    $data = $event->update([
-                        'name' => $request->name,
-                        'description' => $request->description,
-                        'poster' => $posterName,
-                        'time' => $request->time,
-                        'place' => $request->place,
-                        'date' => $request->date,
-                        'register_link' => $request->register_link,
-                        'ticket_price' => $request->ticket_price,
-                        'category_id' => $request->category_id,
-                        'user_id' => $request->user_id,
-                    ]);
 
                     if ($data) {
                         return response()->json([
