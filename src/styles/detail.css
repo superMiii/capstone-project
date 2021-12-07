@@ -10,7 +10,7 @@
 }
 
 .image-detail img {
-    width: 25rem;
+    max-width: 160px;
 }
 
 .image-detail button {
