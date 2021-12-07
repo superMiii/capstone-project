@@ -1,6 +1,6 @@
 import UsersSource from '../../data/users-source';
 import EventsSource from '../../data/events-source';
-import { createCardEventTemplate, createMyAccountTemplate, createUploadEventTemplate } from "../templates/template-creator";
+import { createTableEventTemplate, createMyAccountTemplate, createUploadEventTemplate } from "../templates/template-creator";
 import logout from '../../utils/logout';
 
 const my_account = {
@@ -53,11 +53,37 @@ const my_account = {
 
         btnMyEvent.addEventListener('click', async function() {
             const myEvent = await EventsSource.eventByUserId(userLocalStorage.id, userLocalStorage.api_token);
-            elementInnerMyAccount.innerHTML = '';
+            elementInnerMyAccount.innerHTML = `
+                    <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Event Name</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="event-table">
+
+                    </tbody>
+                </table>    
+            `;
+            const elementTable = document.querySelector('.event-table');
             elementTitle.innerHTML = 'My Events';
-            myEvent.data.forEach((event) => {
-                elementInnerMyAccount.innerHTML += createCardEventTemplate(event);
+            myEvent.data.forEach((event, index) => {
+                elementTable.innerHTML += createTableEventTemplate(event, index+1);
             });
+            const imgInput = document.querySelector('#image-input');
+            const formAddEvent = document.querySelector('#add-event');
+            const imgPreview = document.querySelector('#preview-image');
+            imgInput.onchange = (e) => {
+                const [file] = imgInput.files;
+                console.log(file);
+                if(file) {
+                    imgPreview.src = URL.createObjectURL(file);
+                    imgPreview.className = 'img-thumbnail w-50';
+                }
+            };
         })
 
         btnUploadEvent.addEventListener('click', function() {
