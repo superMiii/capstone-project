@@ -16,12 +16,18 @@
     object-position: center;
 }
 
+.link-card img,
+.price-card img,
+.time-card img,
 .category-card img,
 .place-card img,
 .date-card img {
     width: 17px;
 }
 
+.link-card p,
+.price-card p,
+.time-card p,
 .category-card p,
 .place-card p,
 .date-card p {

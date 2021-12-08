@@ -15,12 +15,24 @@ const createDetailTemplate = (detail) => `
                 <p>${detail.category.category_name}</p>
             </div>
             <div class="date-card">
-                <img src="./images/assets/time.png" alt="">
+                <img src="./images/assets/calendar.png" alt="">
                 <p>${detail.date}</p>
+            </div>
+            <div class="time-card">
+                <img src="./images/assets/time.png" alt="">
+                <p>${detail.time}</p>
+            </div>
+            <div class="price-card">
+                <img src="./images/assets/ticket.png" alt="">
+                <p>${detail.ticket_price}</p>
             </div>
             <div class="place-card">
                 <img src="./images/assets/place.png" alt="">
                 <p>${detail.place}</p>
+            </div>
+            <div class="link-card">
+                <img src="./images/assets/link.png" alt="">
+                <p>${detail.register_link}</p>
             </div>
         </div>
     </div>
