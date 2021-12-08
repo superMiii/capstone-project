@@ -1,7 +1,8 @@
 import UsersSource from '../../data/users-source';
 import EventsSource from '../../data/events-source';
-import { createCardEventTemplate, createMyAccountTemplate, createUploadEventTemplate } from "../templates/template-creator";
+import { createTableEventTemplate, createMyAccountTemplate, createUploadEventTemplate } from "../templates/template-creator";
 import logout from '../../utils/logout';
+import updateEvent from '../../utils/updateEvent';
 
 const my_account = {
     async render() {
@@ -53,13 +54,54 @@ const my_account = {
 
         btnMyEvent.addEventListener('click', async function() {
             const myEvent = await EventsSource.eventByUserId(userLocalStorage.id, userLocalStorage.api_token);
-            elementInnerMyAccount.innerHTML = '';
+            elementInnerMyAccount.innerHTML = `
+                    <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Event Name</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="event-table">
+
+                    </tbody>
+                </table>    
+            `;
+            const elementTable = document.querySelector('.event-table');
             elementTitle.innerHTML = 'My Events';
-            myEvent.data.forEach((event) => {
-                elementInnerMyAccount.innerHTML += createCardEventTemplate(event);
+            myEvent.data.forEach((event, index) => {
+                elementTable.innerHTML += createTableEventTemplate(event, index+1);
+            });
+            const imgInput = document.querySelector('#image-input');
+            const btnUpdateEvent = document.querySelector('#submit');
+            const btnDeleteEvent = document.querySelector('#delete');
+            const imgPreview = document.querySelector('#preview-image');
+            // update event
+            imgInput.onchange = (e) => {
+                const [file] = imgInput.files;
+                console.log(file);
+                if(file) {
+                    imgPreview.src = URL.createObjectURL(file);
+                }
+            };
+            btnUpdateEvent.addEventListener('click', async (e) => {
+                e.preventDefault();
+                updateEvent();
+            });
+
+            // delete event
+            btnDeleteEvent.addEventListener('click', async (e) => {
+                e.preventDefault();
+                const id = e.target.getAttribute('data-value');
+                console.log(id);
+                const userLocalStorage = JSON.parse(localStorage.getItem('user'));
+                const deleteEvent = await EventsSource.deleteEvent()
             });
         })
 
+        // add event
         btnUploadEvent.addEventListener('click', function() {
             elementTitle.innerHTML = 'Upload Event';
             elementInnerMyAccount.innerHTML = createUploadEventTemplate();

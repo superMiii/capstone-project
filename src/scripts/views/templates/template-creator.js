@@ -79,6 +79,79 @@ const createCardEventTemplate = (event) => `
         </div>
     </div>
 `
+
+const createTableEventTemplate = (event, index) => `
+    <tr>
+        <th scope="row">${index++}</th>
+        <td>${event.name}</td>
+        <td>${event.category.category_name}</td>
+        <td>
+            <a href="#/detail/${event.id}" class="badge btn-sign-up">Detail</a>        
+            <a href="#" id="delete" data-value="${event.id}" class="badge btn-danger text-decoration-none">Hapus</a>
+            <a data-bs-toggle="modal" class="badge btn-success" data-bs-target="#myModal${event.id}">Edit
+            </a>
+        </td>
+    </tr>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal${event.id}" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="myModalLabel">${event.name}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            ${createUpdateEventTemplate(event)}
+        </div>
+        </div>
+    </div>
+    </div>
+`;
+
+const createUpdateEventTemplate = (event) => `
+    <div class="upload-event">
+            <br>
+            <input type="hidden" id="id-event" name="id-event" value="${event.id}"><br><br>
+            <label for="image-input"><h6>Image:</h6></label><br>
+            <img id="preview-image" src="${event.poster.match('https://') ? event.poster : CONFIG.BASE_IMAGE_POSTER_URL+event.poster}" class="img-thumbnail w-50">
+            <input type="file" id="image-input" accept="image/png, image/jpg, image/jpeg" name="image-input"><br><br>
+
+            <label for="category-event"><h6>Category Of Event:</h6></label><br>
+            <select name="category-event" id="category-event" required>
+                <option value="5" ${event.category_id == 5 ? 'selected' : ''}>Lain-lain</option>
+                <option value="1" ${event.category_id == 1 ? 'selected' : ''}>Webinar</option>
+                <option value="2" ${event.category_id == 2 ? 'selected' : ''}>Contest</option>
+                <option value="4" ${event.category_id == 4 ? 'selected' : ''}>Concert</option>
+                <option value="3" ${event.category_id == 3 ? 'selected' : ''}>Scholarship</option>
+            </select><br><br>
+
+            <label for="name-event"><h6>Name Of Event:</h6></label><br>
+            <input type="text" id="name-event" name="name-event" required min="5" value="${event.name}"><br><br>
+
+            <label for="date-event"><h6>Date Of Event:</h6></label><br>
+            <input type="date" id="date-event" name="date-event" required value="${event.date}"><br><br>
+
+            <label for="time-event"><h6>Time Of Event:</h6></label><br>
+            <input type="time" id="time-event" name="time-event" required value="${event.time}"><br><br>
+
+            <label for="place-event"><h6>Place Of Event:</h6></label><br>
+            <input type="text" id="place-event" name="place-event" required value="${event.place}"><br><br>
+
+            <label for="register-link"><h6>Register Link:</h6></label><br>
+            <input type="text" id="register-link" name="register-link" required value="${event.register_link}"><br><br>
+
+            <label for="ticket-price"><h6>Ticket Price:</h6></label><br>
+            <input type="number" id="ticket-price" name="ticket-price" required value="${event.ticket_price}"><br><br>
+
+            <label for="description-event"><h6>Description:</h6></label><br>
+            <textarea id="description-event" name="description-event" required>${event.description}</textarea><br><br>
+
+            <button class="btn-submit-sme" type="submit" id="submit">Submit</button>
+    </div>
+`;
+
 const createCategoryTemplate = (category) => `
             <div class="${category.category_name.toLowerCase()}">
               <a href="#/event-category/${category.id}/1">
@@ -171,10 +244,12 @@ const createUploadEventTemplate = () => `
 
     export {
         createCardEventTemplate, 
+        createTableEventTemplate, 
         createPaginationItemTemplate,
         createCategoryTemplate, 
         createDetailTemplate,
         createMyAccountTemplate,
         createUploadEventTemplate,
+        createUpdateEventTemplate,
         createPageNumber, 
     };
