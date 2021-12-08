@@ -45,7 +45,7 @@ class EventsSource {
         return responseJson;
     }
 
-    static async updateEvent(id, apiToken) {
+    static async updateEvent(id, apiToken, data) {
         const response = await fetch(API_ENDPOINT.UPDATE_EVENT(id, apiToken), {
             method: 'POST',
             body: data
