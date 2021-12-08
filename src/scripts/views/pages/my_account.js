@@ -75,7 +75,7 @@ const my_account = {
                 elementTable.innerHTML += createTableEventTemplate(event, index+1);
             });
             const imgInput = document.querySelector('#image-input');
-            const btnUpdateEvent = document.querySelector('#submit');
+            const btnUpdateEvent = document.querySelectorAll('.submit-edit');
             const btnDeleteEvent = document.querySelector('#delete');
             const imgPreview = document.querySelector('#preview-image');
             // update event
@@ -86,10 +86,12 @@ const my_account = {
                     imgPreview.src = URL.createObjectURL(file);
                 }
             };
-            btnUpdateEvent.addEventListener('click', async (e) => {
-                e.preventDefault();
-                updateEvent();
-            });
+            for (let i = 0; i <= btnUpdateEvent.length; i++) {
+                btnUpdateEvent[i].addEventListener('click', async (e) => {
+                    e.preventDefault();
+                    updateEvent();
+                });
+            }
 
             // delete event
             btnDeleteEvent.addEventListener('click', async (e) => {

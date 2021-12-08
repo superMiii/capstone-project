@@ -148,7 +148,7 @@ const createUpdateEventTemplate = (event) => `
             <label for="description-event"><h6>Description:</h6></label><br>
             <textarea id="description-event" name="description-event" required>${event.description}</textarea><br><br>
 
-            <button class="btn-submit-sme" type="submit" id="submit">Submit</button>
+            <button class="btn-submit-sme submit-edit" type="submit">Submit</button>
     </div>
 `;
 
