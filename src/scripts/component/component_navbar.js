@@ -35,8 +35,8 @@ class componentNavbar extends HTMLElement {
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                     <li><a class="dropdown-item" href="#/my_account">My Account</a></li>
-                                    <li><a class="dropdown-item btn-my-events" href="#/my_account">My Events</a></li>
-                                    <li><a class="dropdown-item btn-upload-event" href="#/my_account">Upload Event</a></li>
+                                    <li><a class="dropdown-item btn-my-events" href="#/my_events">My Events</a></li>
+                                    <li><a class="dropdown-item btn-upload-event" href="#/upload_event">Upload Event</a></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li><button class="dropdown-item sign-out">Log Out</button></li>
                                 </ul>

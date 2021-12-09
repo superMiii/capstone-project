@@ -6,6 +6,8 @@ import allEvent from '../views/pages/all_event';
 import eventCategory from '../views/pages/event_category';
 import detail from '../views/pages/detail';
 import my_account from '../views/pages/my_account';
+import my_events from '../views/pages/my_events';
+import upload_event from '../views/pages/upload_event';
  
 const routes = {
   '/': Home, // default page
@@ -17,6 +19,8 @@ const routes = {
   '/all_event/:id': allEvent,
   '/detail/:id': detail,
   '/my_account': my_account,
+  '/my_events': my_events,
+  '/upload_event': upload_event,
 };
  
 export default routes;
