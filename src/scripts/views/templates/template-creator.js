@@ -32,9 +32,16 @@ const createDetailTemplate = (detail) => `
             </div>
             <div class="link-card">
                 <img src="./images/assets/link.png" alt="">
-                <a href="${detail.register_link}" target="_blank" rel="noreferrer"
-                    <p>Click here if You want to register the events</p>
-                </a>
+                <p>
+                    <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseRegisterLink" role="button" aria-expanded="false" aria-controls="collapseRegisterLink">
+                        Register Link
+                    </a>
+                </p>
+                <div class="collapse" id="collapseRegisterLink">
+                    <div class="card card-body">
+                    ${detail.register_link}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -63,9 +70,14 @@ const createCardEventTemplate = (event) => `
     <div class="myCard">
         <img src="${event.poster.match('https://') ? event.poster : CONFIG.BASE_IMAGE_POSTER_URL+event.poster}" class="card-img-top" alt="${event.name}">
         <div class="card-body">
-            <h5 class="card-title">
-                <a href="#/detail/${event.id}">${event.name}</a>
-            </h5>
+            <div class="d-flex justify-content-between align-items-lg-start">
+                <h5 class="card-title">
+                    <a href="#/detail/${event.id}">${event.name}</a>
+                </h5>
+                <button class="btn-like" style="border: none; background-color: white">
+                    <img src="./images/assets/like.png" style="width: 30px; height: 30px;" alt="">
+                </button>
+            </div>
             <div class="category-card">
                 <img src="./images/assets/category.png" alt="">
                 <p>${event.category.category_name}</p>
