@@ -38,7 +38,7 @@ const detail = {
         innerDetailElement.innerHTML = createDetailTemplate(details);
 
         // logout
-        logout;
+        logout();
     },
   };
 

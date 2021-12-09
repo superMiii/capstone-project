@@ -149,7 +149,7 @@ const my_account = {
         });
 
         // logout
-        logout;
+        logout();
     },
   };
    

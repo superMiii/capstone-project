@@ -29,7 +29,7 @@ const Favorite = {
         elementCard.innerHTML += createCardEventTemplate();
       };
 
-      logout;
+      logout();
     },
   };
    

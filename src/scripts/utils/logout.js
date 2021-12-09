@@ -2,7 +2,7 @@ import AuthSource from '../data/auth-source';
 
 async function logout() {
     if(localStorage.getItem('user')) {
-        const logoutBtn = document.querySelector('#sign-out');
+        const logoutBtn = document.querySelector('.sign-out');
         logoutBtn.addEventListener('click', async(e) => {
           e.preventDefault();
           let confirmation = confirm('Are you sure want to logout?');

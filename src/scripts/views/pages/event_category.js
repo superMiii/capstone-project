@@ -15,7 +15,7 @@ const eventCategory = {
       <div class="conatiner-all-event">
         <div class="all-event d-flex flex-column align-items-center">
           <h1>Event By Category</h1>
-          <p style="color: #17A471;">all event in here</p>
+          <p style="color: #17A471;"></p>
           <div class="category-all-event d-flex flex-wrap flex-row justify-content-evenly">
             
           </div>
@@ -66,8 +66,12 @@ const eventCategory = {
         const otherPageNum = document.querySelectorAll('.page-number .page-link');
         addClassActive(destinationPageNum, otherPageNum);
 
+        // menambahkan penjelasan pada judul
+        const nameCategory = document.querySelector('.all-event p');
+        nameCategory.innerHTML = events.data[0].category.category_name;
+
         // logout
-        logout;
+        logout();
     },
   };
    

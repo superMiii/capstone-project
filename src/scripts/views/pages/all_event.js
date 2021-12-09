@@ -66,7 +66,7 @@ const allEvent = {
         addClassActive(destinationPageNum, otherPageNum);
 
         // logout
-        logout;
+        logout();
     },
   };
    
