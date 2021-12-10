@@ -25,7 +25,7 @@ The Lumen framework is open-sourced software licensed under the [MIT license](ht
 
 ## Install on local repository
 
-to clone this back-end API can use with this Command:
+to clone this back-end API you can use with this command:
 
 ```
 git clone -b master https://github.com/superMiii/capstone-project.git
@@ -66,4 +66,4 @@ And this for API Documentation Website Share My Events [Documentation SME API Fr
 
 And this url some endpoint for API [SME Heroku](https://sme-capstone-backend.herokuapp.com/api/v1/events).
 
-And this url some endpoint for API [SME Heroku](https://sme-capstone-backend.herokuapp.com/api/v1/events/{event_id}).
+And this url some endpoint for API [SME Heroku](https://sme-capstone-backend.herokuapp.com/api/v1/events/2).
