@@ -23,10 +23,47 @@ If you discover a security vulnerability within Lumen, please send an e-mail to 
 
 The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
-## Deployed API to Heroku
+## Install on local repository
 
-And this url endpoint for deployed API [SME Heroku](https://sme-capstone-backend.herokuapp.com/api/v1/events).
+to clone this back-end API can use with this Command:
+
+```
+git clone -b master https://github.com/superMiii/capstone-project.git
+```
+
+or you can pull or fork this back-end project whatever you want
+
+After that, we can duplicate and rename `.env.example` to `.env`. (the function of this file to configure your database connection, just like laravel project).
+
+After finishing configuring the `.env` file. you can open a terminal and type the command:
+
+```
+composer install
+```
+
+(this command will install dependencies which are in `composer.json` file)
+of course the above command can only be done if your computer has the installed a composer library.
+
+after that, you can type command:
+
+```
+php artisan migrate --seed
+```
+
+(This command will create a new table in the database you configured earlier, and also create a new record for each table. each record has random data because i use `faker` library from laravel lumen).
+
+after that you can run the API lumen from localhost with this command:
+
+```
+php -S localhost:8000/ -t public
+```
 
 ## Documentation API
 
 And this for API Documentation Website Share My Events [Documentation SME API From Postman](https://documenter.getpostman.com/view/12251477/UVJfjFdA).
+
+## Deployed API to Heroku
+
+And this url some endpoint for API [SME Heroku](https://sme-capstone-backend.herokuapp.com/api/v1/events).
+
+And this url some endpoint for API [SME Heroku](https://sme-capstone-backend.herokuapp.com/api/v1/events/{event_id}).
