@@ -64,6 +64,8 @@ And this for API Documentation Website Share My Events [Documentation SME API Fr
 
 ## Deployed API to Heroku
 
-And this url some endpoint for API [SME Heroku](https://sme-capstone-backend.herokuapp.com/api/v1/events).
+And this url some endpoint for get all events [SME Heroku](https://sme-capstone-backend.herokuapp.com/api/v1/events).
 
-And this url some endpoint for API [SME Heroku](https://sme-capstone-backend.herokuapp.com/api/v1/events/2).
+And this url some endpoint for get one event [SME Heroku](https://sme-capstone-backend.herokuapp.com/api/v1/events/2).
+
+For complete endpoints, see the documentation.
