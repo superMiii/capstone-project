@@ -18,9 +18,6 @@ class componentNavbar extends HTMLElement {
                         <li class="nav-item nav-home">
                             <a class="nav-link" aria-current="page" href="#/home">Home</a>
                         </li>
-                        <li class="nav-item nav-favorite">
-                            <a class="nav-link" aria-current="page" href="#/favorite">Favorite</a>
-                        </li>
                         <li class="nav-item nav-allEvent">
                             <a class="nav-link" aria-current="page" href="#/all_event/1">All Event</a>
                         </li>
@@ -36,6 +33,7 @@ class componentNavbar extends HTMLElement {
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                     <li><a class="dropdown-item" href="#/my_account">My Account</a></li>
                                     <li><a class="dropdown-item btn-my-events" href="#/my_events">My Events</a></li>
+                                    <li><a class="dropdown-item btn-my-events" href="#/favorite">Favorite Event</a></li>
                                     <li><a class="dropdown-item btn-upload-event" href="#/upload_event">Upload Event</a></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li><button class="dropdown-item sign-out">Log Out</button></li>
