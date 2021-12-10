@@ -53,33 +53,27 @@ const my_events = {
             myEvent.data.forEach((event, index) => {
                 elementTable.innerHTML += createTableEventTemplate(event, index+1);
             });
-            const imgInput = document.querySelector('#image-input');
-            const btnUpdateEvent = document.querySelectorAll('.submit-edit');
-            const btnDeleteEvent = document.querySelector('#delete');
-            const imgPreview = document.querySelector('#preview-image');
-            // update event
-            imgInput.onchange = (e) => {
-                const [file] = imgInput.files;
-                console.log(file);
-                if(file) {
-                    imgPreview.src = URL.createObjectURL(file);
-                }
-            };
-            for (let i = 0; i <= btnUpdateEvent.length; i++) {
-                btnUpdateEvent[i].addEventListener('click', async (e) => {
+            
+            // delete event
+            const btnDeleteEvent = document.querySelectorAll('#delete');
+            for(let i=0; i<=btnDeleteEvent.length; i++) {
+                btnDeleteEvent[i].addEventListener('click', async (e) => {
                     e.preventDefault();
-                    updateEvent();
+                    const id = e.target.getAttribute('data-value');
+                    console.log(id);
+                    let confirmation = confirm('Are you sure want to delete?');
+                    const userLocalStorage = JSON.parse(localStorage.getItem('user'));
+                    if(confirmation) {
+                        const deleteEvent = await EventsSource.deleteEvent(id, userLocalStorage.api_token);
+                        if(deleteEvent.status == true) {
+                            alert(deleteEvent.message);
+                            location.href = '#/my_events';
+                        } else {
+                            alert(deleteEvent.message);
+                        }
+                    }
                 });
             }
-
-            // delete event
-            btnDeleteEvent.addEventListener('click', async (e) => {
-                e.preventDefault();
-                const id = e.target.getAttribute('data-value');
-                console.log(id);
-                const userLocalStorage = JSON.parse(localStorage.getItem('user'));
-                const deleteEvent = await EventsSource.deleteEvent()
-            });
 
             // logout
             logout();

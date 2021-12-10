@@ -102,30 +102,14 @@ const createTableEventTemplate = (event, index) => `
         <td>
             <a href="#/detail/${event.id}" class="badge btn-sign-up">Detail</a>        
             <a href="#" id="delete" data-value="${event.id}" class="badge btn-danger text-decoration-none">Hapus</a>
-            <a data-bs-toggle="modal" class="badge btn-success" data-bs-target="#myModal${event.id}">Edit
-            </a>
+            <a href="#/edit_event/${event.id}" class="badge btn-success edit text-decoration-none">Edit</a>
         </td>
     </tr>
-
-
-    <!-- Modal -->
-    <div class="modal fade" id="myModal${event.id}" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="myModalLabel">${event.name}</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            ${createUpdateEventTemplate(event)}
-        </div>
-        </div>
-    </div>
-    </div>
 `;
 
 const createUpdateEventTemplate = (event) => `
     <div class="upload-event">
+        <form action="#" id="edit-event">
             <br>
             <input type="hidden" id="id-event" name="id-event" value="${event.id}"><br><br>
             <label for="image-input"><h6>Image:</h6></label><br>
@@ -163,6 +147,7 @@ const createUpdateEventTemplate = (event) => `
             <textarea id="description-event" name="description-event" required>${event.description}</textarea><br><br>
 
             <button class="btn-submit-sme submit-edit" type="submit">Submit</button>
+        </form>
     </div>
 `;
 
