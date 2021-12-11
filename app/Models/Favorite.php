@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Event extends Model
+class Favorite extends Model
 {
     use HasFactory;
 
@@ -15,7 +15,7 @@ class Event extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'description', 'poster', 'time', 'place', 'date', 'register_link', 'ticket_price', 'category_id', 'user_id'
+        'user_id', 'event_id'
     ];
 
     public function user()
@@ -23,13 +23,8 @@ class Event extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function category()
+    public function event()
     {
-        return $this->belongsTo(Category::class, 'category_id');
-    }
-
-    public function favorite()
-    {
-        return $this->hasMany(Favorite::class);
+        return $this->belongsTo(Event::class, 'event_id');
     }
 }

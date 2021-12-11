@@ -48,6 +48,11 @@ $router->group(['prefix' => 'api/v1'], function () use ($router) {
         $router->put('/user', 'UserController@updateProfile');
         $router->put('/user/changepassword', 'UserController@changePassword');
 
+        // favorite
+        $router->get('/favorite/{user_id}', 'FavoriteController@showAllFavoriteUser');
+        $router->post('/favorite', 'FavoriteController@addFavorite');
+        $router->delete('/favorite/{id}', 'FavoriteController@destroy');
+
         // logout
         $router->post('/logout', 'AuthController@logout');
     });
