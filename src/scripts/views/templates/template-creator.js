@@ -59,7 +59,7 @@ const createDetailTemplate = (detail) => `
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <img src="${detail.poster.match('https://') ? detail.poster : CONFIG.BASE_IMAGE_POSTER_URL+detail.poster}" class="card-img-top" alt="...">
+            <img src="${detail.poster.match('16') ? CONFIG.BASE_IMAGE_POSTER_URL+detail.poster : detail.poster.match('https://') ? detail.poster : './images/assets/no-image.png'}" class="card-img-top" alt="...">
         </div>
         </div>
     </div>

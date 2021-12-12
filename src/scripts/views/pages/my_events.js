@@ -34,49 +34,49 @@ const my_events = {
         const userLocalStorage = JSON.parse(localStorage.getItem('user'));
 
         const myEvent = await EventsSource.eventByUserId(userLocalStorage.id, userLocalStorage.api_token);
-            elementInnerMyAccount.innerHTML = `
-                    <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Event Name</th>
-                            <th scope="col">Category</th>
-                            <th scope="col">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody class="event-table">
+        elementInnerMyAccount.innerHTML = `
+                <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Event Name</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody class="event-table">
 
-                    </tbody>
-                </table>    
-            `;
-            const elementTable = document.querySelector('.event-table');
-            myEvent.data.forEach((event, index) => {
-                elementTable.innerHTML += createTableEventTemplate(event, index+1);
-            });
-            
-            // delete event
-            const btnDeleteEvent = document.querySelectorAll('#delete');
-            for(let i=0; i<=btnDeleteEvent.length; i++) {
-                btnDeleteEvent[i].addEventListener('click', async (e) => {
-                    e.preventDefault();
-                    const id = e.target.getAttribute('data-value');
-                    console.log(id);
-                    let confirmation = confirm('Are you sure want to delete?');
-                    const userLocalStorage = JSON.parse(localStorage.getItem('user'));
-                    if(confirmation) {
-                        const deleteEvent = await EventsSource.deleteEvent(id, userLocalStorage.api_token);
-                        if(deleteEvent.status == true) {
-                            alert(deleteEvent.message);
-                            location.href = '#/my_events';
-                        } else {
-                            alert(deleteEvent.message);
-                        }
+                </tbody>
+            </table>    
+        `;
+        const elementTable = document.querySelector('.event-table');
+        myEvent.data.forEach((event, index) => {
+            elementTable.innerHTML += createTableEventTemplate(event, index+1);
+        });
+        
+        // delete event
+        const btnDeleteEvent = document.querySelectorAll('#delete');
+        for(let i=0; i<=btnDeleteEvent.length; i++) {
+            btnDeleteEvent[i].addEventListener('click', async (e) => {
+                e.preventDefault();
+                const id = e.target.getAttribute('data-value');
+                console.log(id);
+                let confirmation = confirm('Are you sure want to delete?');
+                const userLocalStorage = JSON.parse(localStorage.getItem('user'));
+                if(confirmation) {
+                    const deleteEvent = await EventsSource.deleteEvent(id, userLocalStorage.api_token);
+                    if(deleteEvent.status == true) {
+                        alert(deleteEvent.message);
+                        location.href = '#/my_events';
+                    } else {
+                        alert(deleteEvent.message);
                     }
-                });
-            }
+                }
+            });
+        }
 
-            // logout
-            logout();
+        // logout
+        logout();
     },
   };
    
