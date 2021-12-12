@@ -75,7 +75,7 @@ const createCardEventTemplate = (event) => `
                     <a href="#/detail/${event.id}">${event.name}</a>
                 </h5>
                 <button class="btn-like" style="border: none; background-color: white">
-                    <img src="./images/assets/like.png" style="width: 30px; height: 30px;" alt="">
+                    <img src="./images/assets/liked.png" style="width: 30px; height: 30px; padding: 3px;" alt="">
                 </button>
             </div>
             <div class="category-card">
