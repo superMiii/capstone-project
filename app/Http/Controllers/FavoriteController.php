@@ -9,11 +9,11 @@ use Illuminate\Support\Facades\Validator;
 
 class FavoriteController extends Controller
 {
-    public function showAllFavoriteUser(Request $request, $user_id)
+    public function showAllFavoriteUser(Request $request)
     {
         $user = User::where('api_token', $request->api_token)->first();
-        if ($user->id == $user_id) {
-            $data = Favorite::latest()->with(['user', 'event'])->where('user_id', $user_id)->paginate(10);
+        if ($user->id) {
+            $data = Favorite::latest()->with(['user', 'event'])->where('user_id', $user->id)->paginate(10);
 
             if ($data) {
                 return response()->json([
@@ -31,7 +31,7 @@ class FavoriteController extends Controller
         } else {
             return response()->json([
                 'status' => false,
-                'message' => 'id user isn\'t yours',
+                'message' => 'id user not found',
                 'data' => []
             ], 404);
         }
