@@ -7,16 +7,25 @@ class UsersSource {
         return responseJson.data;
     }
 
-    static async updateProfile(apiToken) {
-        const response = await fetch(API_ENDPOINT.UPDATE_PROFILE(apiToken));
+    static async updateProfile(apiToken, data) {
+        const response = await fetch(API_ENDPOINT.UPDATE_PROFILE(apiToken), {
+            method: 'POST',
+            body: data
+        });
         const responseJson = response.json();
-        return responseJson.data;
+        return responseJson;
     }
 
-    static async changePassword(apiToken) {
-        const response = await fetch(API_ENDPOINT.CHANGE_PASSWORD(apiToken));
+    static async changePassword(apiToken, data) {
+        const response = await fetch(API_ENDPOINT.CHANGE_PASSWORD(apiToken), {
+            method: 'PUT',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
         const responseJson = await response.json();
-        return responseJson.data;
+        return responseJson;
     }
 }
 

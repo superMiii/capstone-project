@@ -6,7 +6,7 @@ const API_ENDPOINT = {
     LOGOUT: (apiToken) => `${CONFIG.BASE_URL}logout?api_token=${apiToken}`,
     USER_PROFILE: (apiToken) => `${CONFIG.BASE_URL}user?api_token=${apiToken}`,
     UPDATE_PROFILE: (apiToken) => `${CONFIG.BASE_URL}user?api_token=${apiToken}`,
-    CHANGE_PASSWORD: (apiToken) => `${CONFIG.BASE_URL}user/changepasword?api_token=${apiToken}`,
+    CHANGE_PASSWORD: (apiToken) => `${CONFIG.BASE_URL}user/changepassword?api_token=${apiToken}`,
     EVENTS: (page) => `${CONFIG.BASE_URL}events?page=${page}`,
     EVENT_DETAIL: (id) => `${CONFIG.BASE_URL}events/${id}`,
     EVENT_SEARCH: (keyword) => `${CONFIG.BASE_URL}events/search?keyword=${keyword}`,
