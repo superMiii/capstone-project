@@ -16,6 +16,10 @@ const API_ENDPOINT = {
     ADD_EVENT: (apiToken) => `${CONFIG.BASE_URL}events?api_token=${apiToken}`,
     UPDATE_EVENT: (id, apiToken) => `${CONFIG.BASE_URL}events/${id}?api_token=${apiToken}`,
     DELETE_EVENT: (id, apiToken) => `${CONFIG.BASE_URL}events/${id}?api_token=${apiToken}`,
+    SHOW_FAVORITE: (apiToken) => `${CONFIG.BASE_URL}favorite?api_token=${apiToken}`,
+    GET_FAVORITE: (event_id, apiToken) => `${CONFIG.BASE_URL}favorite/${event_id}?api_token=${apiToken}`,
+    ADD_FAVORITE: (apiToken) => `${CONFIG.BASE_URL}favorite?api_token=${apiToken}`,
+    DELETE_FAVORITE: (event_id, apiToken) => `${CONFIG.BASE_URL}favorite/${event_id}?api_token=${apiToken}`,
     CATEGORIES: `${CONFIG.BASE_URL}categories`,
 }
 

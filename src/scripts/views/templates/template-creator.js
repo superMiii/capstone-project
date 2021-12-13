@@ -10,6 +10,8 @@ const createDetailTemplate = (detail) => `
         </div>
         <div class="info-detail">
             <h2>${detail.name}</h2>
+            <div class="button-like-container">
+            </div>
             <div class="category-card">
                 <img src="./images/assets/category.png" alt="">
                 <p>${detail.category.category_name}</p>
@@ -59,7 +61,7 @@ const createDetailTemplate = (detail) => `
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <img src="${detail.poster.match('16') ? CONFIG.BASE_IMAGE_POSTER_URL+detail.poster : detail.poster.match('https://') ? detail.poster : './images/assets/no-image.png'}" class="card-img-top" alt="...">
+            <img src="${detail.poster.match('https://') ? detail.poster : CONFIG.BASE_IMAGE_POSTER_URL+detail.poster}" class="card-img-top" alt="...">
         </div>
         </div>
     </div>
@@ -74,9 +76,6 @@ const createCardEventTemplate = (event) => `
                 <h5 class="card-title">
                     <a href="#/detail/${event.id}">${event.name}</a>
                 </h5>
-                <button class="btn-like" style="border: none; background-color: white">
-                    <img src="./images/assets/liked.png" style="width: 30px; height: 30px; padding: 3px;" alt="">
-                </button>
             </div>
             <div class="category-card">
                 <img src="./images/assets/category.png" alt="">
@@ -241,6 +240,18 @@ const createUploadEventTemplate = () => `
     </div>
 `
 
+const createFavoriteButtonTemplate = () => `
+    <button class="btn-like" style="border: none; background-color: white">
+        <img src="./images/assets/like.png" style="width: 30px; height: 30px; padding: 3px;" alt="">
+    </button>
+`;
+
+const createUnfavoriteButtonTemplate = () => `
+    <button class="btn-like" style="border: none; background-color: white">
+        <img src="./images/assets/liked.png" style="width: 30px; height: 30px; padding: 3px;" alt="">
+    </button>
+`;
+
     export {
         createCardEventTemplate, 
         createTableEventTemplate, 
@@ -250,5 +261,7 @@ const createUploadEventTemplate = () => `
         createMyAccountTemplate,
         createUploadEventTemplate,
         createUpdateEventTemplate,
-        createPageNumber, 
+        createPageNumber,
+        createFavoriteButtonTemplate,
+        createUnfavoriteButtonTemplate, 
     };
