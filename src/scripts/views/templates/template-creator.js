@@ -13,27 +13,27 @@ const createDetailTemplate = (detail) => `
             <div class="button-like-container">
             </div>
             <div class="category-card">
-                <img src="./images/assets/category.png" alt="">
+                <img loading="lazy" src="./images/assets/category.png" alt="">
                 <p>${detail.category.category_name}</p>
             </div>
             <div class="date-card">
-                <img src="./images/assets/calendar.png" alt="">
+                <img loading="lazy" src="./images/assets/calendar.png" alt="">
                 <p>${detail.date}</p>
             </div>
             <div class="time-card">
-                <img src="./images/assets/time.png" alt="">
+                <img loading="lazy" src="./images/assets/time.png" alt="">
                 <p>${detail.time}</p>
             </div>
             <div class="price-card">
-                <img src="./images/assets/ticket.png" alt="">
+                <img loading="lazy" src="./images/assets/ticket.png" alt="">
                 <p>${detail.ticket_price}</p>
             </div>
             <div class="place-card">
-                <img src="./images/assets/place.png" alt="">
+                <img loading="lazy" src="./images/assets/place.png" alt="">
                 <p>${detail.place}</p>
             </div>
             <div class="link-card">
-                <img src="./images/assets/link.png" alt="">
+                <img loading="lazy" src="./images/assets/link.png" alt="">
                 <p>
                     <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseRegisterLink" role="button" aria-expanded="false" aria-controls="collapseRegisterLink">
                         Register Link
@@ -61,7 +61,7 @@ const createDetailTemplate = (detail) => `
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <img src="${detail.poster.match('https://') ? detail.poster : CONFIG.BASE_IMAGE_POSTER_URL+detail.poster}" class="card-img-top" alt="...">
+            <img loading="lazy" src="${detail.poster.match('https://') ? detail.poster : CONFIG.BASE_IMAGE_POSTER_URL+detail.poster}" class="card-img-top" alt="...">
         </div>
         </div>
     </div>
@@ -70,7 +70,7 @@ const createDetailTemplate = (detail) => `
 
 const createCardEventTemplate = (event) => `
     <div class="myCard">
-        <img src="${event.poster.match('https://') ? event.poster : CONFIG.BASE_IMAGE_POSTER_URL+event.poster}" class="card-img-top" alt="${event.name}">
+        <img loading="lazy" src="${event.poster.match('https://') ? event.poster : CONFIG.BASE_IMAGE_POSTER_URL+event.poster}" class="card-img-top" alt="${event.name}">
         <div class="card-body">
             <div class="d-flex justify-content-between align-items-lg-start">
                 <h5 class="card-title">
@@ -78,15 +78,15 @@ const createCardEventTemplate = (event) => `
                 </h5>
             </div>
             <div class="category-card">
-                <img src="./images/assets/category.png" alt="">
+                <img loading="lazy" src="./images/assets/category.png" alt="">
                 <p>${event.category.category_name}</p>
             </div>
             <div class="date-card">
-                <img src="./images/assets/time.png" alt="">
+                <img loading="lazy" src="./images/assets/time.png" alt="">
                 <p>${event.date}</p>
             </div>
             <div class="place-card">
-                <img src="./images/assets/place.png" alt="">
+                <img loading="lazy" src="./images/assets/place.png" alt="">
                 <p>${event.place}</p>
             </div>
         </div>
@@ -154,7 +154,7 @@ const createCategoryTemplate = (category) => `
             <div class="${category.category_name.toLowerCase()}">
               <a href="#/event-category/${category.id}/1">
                 <div>
-                  <img src="./images/assets/${category.category_name.toLowerCase()}.png" alt=""> 
+                  <img loading="lazy" src="./images/assets/${category.category_name.toLowerCase()}.png" alt=""> 
                 </div>
                 <p>${category.category_name}</p>
               </a>

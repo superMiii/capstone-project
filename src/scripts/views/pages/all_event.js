@@ -39,7 +39,7 @@ const allEvent = {
         const events = await EventsSource.allEvents(dataId);
         const eventsElement = document.querySelector('.inner-all-event-card');
         events.data.forEach((event) => {
-          eventsElement.innerHTML += createCardEventTemplate(event) ;
+          eventsElement.innerHTML += createCardEventTemplate(event);
         });
 
         // untuk menampilkan event berdasarkan category
