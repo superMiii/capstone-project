@@ -15,7 +15,7 @@ const Home = {
               <a href="#" >Get Started</a>
           </div>
           <div class="description-img">
-            <img src="./images/heros/myhero.jpg" alt="">
+            <img loading="lazy" src="./images/heros/myhero.jpg" alt="">
           </div>
         </div>
 
@@ -28,21 +28,21 @@ const Home = {
             <div class="all-benefit d-flex justify-content-around flex-wrap">
               <div class="benefit-sme">
                 <div>
-                  <img src="./images/benefit/faster.png" alt=""> 
+                  <img loading="lazy" src="./images/benefit/faster.png" alt=""> 
                 </div>
                 <h4>Faster</h4>
                 <p>search for events faster with the category feature</p>
               </div>
               <div class="benefit-sme">
                 <div>
-                  <img src="./images/benefit/better.png" alt=""> 
+                  <img loading="lazy" src="./images/benefit/better.png" alt=""> 
                 </div>
                 <h4>Better</h4>
                 <p>better than searching for events manually</p>
               </div>
               <div class="benefit-sme">
                 <div>
-                  <img src="./images/benefit/trusted.png" alt="">
+                  <img loading="lazy" src="./images/benefit/trusted.png" alt="">
                 </div>
                 <h4>Trusted</h4>
                 <p>trusted because it presents quality events</p>
