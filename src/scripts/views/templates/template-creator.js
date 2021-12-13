@@ -185,7 +185,7 @@ const createPageNumber = (pageOrigin, number) => `
 
 const createMyAccountTemplate = (myAccount) => `
     <div class="img-account" style="margin: 30px;">
-        <img src="${CONFIG.BASE_IMAGE_USER_URL + myAccount.poster ? './images/assets/account.png' : CONFIG.BASE_IMAGE_USER_URL + myAccount.poster}" alt="">
+        <img src="${CONFIG.BASE_IMAGE_USER_URL+myAccount.picture ? CONFIG.BASE_IMAGE_USER_URL + myAccount.picture : './images/assets/account.png'}" alt="">
     </div>
     <div class="data-account" style="margin: 30px;">
         <p>Nama :</p>
@@ -194,8 +194,44 @@ const createMyAccountTemplate = (myAccount) => `
         <p>${myAccount.email}</p>
         <p>Password :</p>
         <p>****</p>
+        <button type="button" class="btn btn-primary edit-profile">Edit Profile</button>
+        <button type="button" class="btn btn-primary change-password">Change Password</button>
     </div>
 `
+
+const createFormUpdateProfileTemplate = (myAccount) => `
+    <div class="upload-event">
+        <form action="#" id="update-profile">
+        <div class="img-account" style="margin: 30px;">
+            <img src="${CONFIG.BASE_IMAGE_USER_URL+myAccount.picture ? CONFIG.BASE_IMAGE_USER_URL + myAccount.picture : './images/assets/account.png'}" alt="" id="preview-image">
+            <input type="file" id="image-input" accept="image/png, image/jpg, image/jpeg" name="image-input"><br><br>
+        </div>
+        <div class="data-account" style="margin: 30px;">
+            <p>Nama :</p>
+            <input type="text" id="name" name="name" value="${myAccount.name}">
+            <p>Email :</p>
+            <input type="email" id="email" name="email" value="${myAccount.email}" disabled>
+            <button type="submit" class="btn btn-primary submit">Submit</button>
+            <a href="#/all_event/1" class="btn btn-primary back">Back</a>
+        </div>
+        </form>
+    </div>
+`;
+
+const createFormChangePasswordTemplate = () => `
+    <div class="upload-event">
+        <form action="#" id="change-pass">
+        <div class="data-account" style="margin: 30px;">
+            <p>New Password :</p>
+            <input type="password" id="password" name="password">
+            <p>Confirm New Password :</p>
+            <input type="password" id="password_confirmation" name="password_confirmation">
+            <button type="submit" class="btn btn-primary submit">Submit</button>
+            <a href="#/all_event/1" class="btn btn-primary back">Back</a>
+        </div>
+        </form>
+    </div>
+`;
 
 const createUploadEventTemplate = () => `
     <div class="upload-event">
@@ -263,5 +299,7 @@ const createUnfavoriteButtonTemplate = () => `
         createUpdateEventTemplate,
         createPageNumber,
         createFavoriteButtonTemplate,
-        createUnfavoriteButtonTemplate, 
+        createUnfavoriteButtonTemplate,
+        createFormUpdateProfileTemplate,
+        createFormChangePasswordTemplate, 
     };
