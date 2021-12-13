@@ -37,6 +37,34 @@ class FavoriteController extends Controller
         }
     }
 
+    public function showFavoriteUser(Request $request, $event_id)
+    {
+        $user = User::where('api_token', $request->api_token)->first();
+        if ($user->id) {
+            $data = Favorite::latest()->with(['user', 'event'])->where('user_id', $user->id)->where('event_id', $event_id)->first();
+
+            if ($data) {
+                return response()->json([
+                    'status' => true,
+                    'message' => 'successfully get data.',
+                    'data' => $data
+                ], 200);
+            } else {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'data not found',
+                    'data' => null
+                ], 404);
+            }
+        } else {
+            return response()->json([
+                'status' => false,
+                'message' => 'id user not found',
+                'data' => []
+            ], 404);
+        }
+    }
+
     public function addFavorite(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -52,21 +80,29 @@ class FavoriteController extends Controller
         } else {
             $user = User::where('api_token', $request->api_token)->first();
             if ($user->id == $request->user_id) {
-                $data = Favorite::create([
-                    'user_id' => $request->user_id,
-                    'event_id' => $request->event_id
-                ]);
-
-                if ($data) {
-                    return response()->json([
-                        'status' => true,
-                        'message' => 'add to favorite successfully',
-                    ], 201);
-                } else {
+                $favorite = Favorite::where('user_id', $user->id)->where('event_id', $request->event_id)->first();
+                if ($favorite) {
                     return response()->json([
                         'status' => false,
-                        'message' => 'add to favorite failed',
+                        'message' => 'you can\'t add event to favorite twice',
                     ], 400);
+                } else {
+                    $data = Favorite::create([
+                        'user_id' => $request->user_id,
+                        'event_id' => $request->event_id
+                    ]);
+
+                    if ($data) {
+                        return response()->json([
+                            'status' => true,
+                            'message' => 'add to favorite successfully',
+                        ], 201);
+                    } else {
+                        return response()->json([
+                            'status' => false,
+                            'message' => 'add to favorite failed',
+                        ], 400);
+                    }
                 }
             } else {
                 return response()->json([
@@ -77,10 +113,10 @@ class FavoriteController extends Controller
         }
     }
 
-    public function destroy(Request $request, $id)
+    public function destroy(Request $request, $event_id)
     {
         $user = User::where('api_token', $request->api_token)->first();
-        $favorite = Favorite::find($id);
+        $favorite = Favorite::where('event_id', $event_id)->where('user_id', $user->id)->first();
         if ($user->id == $favorite->user_id) {
             if ($favorite) {
                 $favorite->delete();

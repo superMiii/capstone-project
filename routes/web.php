@@ -50,8 +50,9 @@ $router->group(['prefix' => 'api/v1'], function () use ($router) {
 
         // favorite
         $router->get('/favorite', 'FavoriteController@showAllFavoriteUser');
+        $router->get('/favorite/{event_id}', 'FavoriteController@showFavoriteUser');
         $router->post('/favorite', 'FavoriteController@addFavorite');
-        $router->delete('/favorite/{id}', 'FavoriteController@destroy');
+        $router->delete('/favorite/{event_id}', 'FavoriteController@destroy');
 
         // logout
         $router->post('/logout', 'AuthController@logout');
