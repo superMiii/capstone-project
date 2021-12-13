@@ -1,7 +1,6 @@
 import EventsSource from '../../data/events-source';
 import { createTableEventTemplate } from "../templates/template-creator";
 import logout from '../../utils/logout';
-import updateEvent from '../../utils/updateEvent';
 
 const my_events = {
     async render() {
