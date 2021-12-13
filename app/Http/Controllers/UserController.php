@@ -95,7 +95,7 @@ class UserController extends Controller
                 ]);
                 if ($data) {
                     return response()->json([
-                        'status' => false,
+                        'status' => true,
                         'message' => 'password successfully changed',
                     ], 200);
                 } else {
