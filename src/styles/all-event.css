@@ -72,3 +72,22 @@
 .inner-all-event-card {
     margin-bottom: 30px;
 }
+/* search event */
+.search-event {
+    margin: 10px 30px;
+    padding: 10px;
+    box-shadow: 0 8px 16px 0 rgba(179, 65, 250, 0.2);
+    border-radius: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+.search-full {
+    background: #cacaca;
+    border: none;
+    border-radius: 5px;
+    flex: 1 1 100%;
+    padding: 0 12px;
+    width: 80%;
+    height: 30px;
+}

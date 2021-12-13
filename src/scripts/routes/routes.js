@@ -9,6 +9,7 @@ import my_account from '../views/pages/my_account';
 import my_events from '../views/pages/my_events';
 import upload_event from '../views/pages/upload_event';
 import edit_event from '../views/pages/edit_event';
+import searchEvent from '../views/pages/search_event';
  
 const routes = {
   '/': Home, // default page
@@ -23,6 +24,7 @@ const routes = {
   '/my_events': my_events,
   '/upload_event': upload_event,
   '/edit_event/:id': edit_event,
+  '/search_event/:id/:page': searchEvent,
 };
  
 export default routes;

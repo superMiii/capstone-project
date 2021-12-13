@@ -19,6 +19,10 @@ const allEvent = {
           <div class="category-all-event d-flex flex-wrap flex-row justify-content-evenly">
             
           </div>
+          <div class="search-event">
+            <input type="text" name="keyword" placeholder="Kata Kunci" class="search-full">
+            <button type="submit" class="btn btn-success btn-search">search</button>
+          </div>
           <div class="inner-all-event">
             <div class="inner-all-event-card d-flex flex-wrap flex-row justify-content-center">
             
@@ -64,6 +68,15 @@ const allEvent = {
         const destinationPageNum = document.querySelector(`.inner-page-number .page-number:nth-child(${dataId}) .page-link`);
         const otherPageNum = document.querySelectorAll('.page-number .page-link');
         addClassActive(destinationPageNum, otherPageNum);
+
+
+        // event pencarian
+        const btnSearch = document.querySelector('.btn-search');
+        btnSearch.addEventListener('click', async (e) => {
+          e.preventDefault();
+          const inputSearch = document.querySelector('.search-full');
+          location.href = `#/search_event/${inputSearch.value}/1`;
+        })
 
         // logout
         logout();

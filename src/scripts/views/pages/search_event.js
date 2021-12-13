@@ -5,24 +5,24 @@ import { createCategoryTemplate,
         createPaginationItemTemplate,
         createPageNumber,
         } from "../templates/template-creator";
-import UrlParser from "../../routes/url-parser";
 import addClassActive from "../../utils/add-class-active";
+import UrlParser from "../../routes/url-parser";
 import logout from "../../utils/logout";
 
-const eventCategory = {
+const searchEvent = {
     async render() {
       return `
       <div class="conatiner-all-event">
         <div class="all-event d-flex flex-column align-items-center">
-          <h1>Event By Category</h1>
-          <p style="color: #17A471;"></p>
+          <h1>Search Event</h1>
+          <p style="color: #17A471;">you can search all event in here</p>
           <div class="category-all-event d-flex flex-wrap flex-row justify-content-evenly">
             
           </div>
           <div class="search-event">
-          <input type="text" name="keyword" placeholder="Kata Kunci" class="search-full">
-          <button type="submit" class="btn btn-success btn-search">search</button>
-        </div>
+            <input type="text" name="keyword" placeholder="Kata Kunci" class="search-full">
+            <button type="submit" class="btn btn-success btn-search">search</button>
+          </div>
           <div class="inner-all-event">
             <div class="inner-all-event-card d-flex flex-wrap flex-row justify-content-center">
             
@@ -37,14 +37,15 @@ const eventCategory = {
         const elementLinkNavAll = document.querySelector(".nav-allEvent a");
         const allNavLink = document.querySelectorAll('.nav-item .nav-link');
         addClassActive(elementLinkNavAll, allNavLink);
-
+        
         const url = UrlParser.parseActiveUrlWithoutCombiner();
         const dataId = url.id;
         const dataPage = url.page;
-        const events = await EventsSource.eventByCategory(dataId, dataPage);
+        console.log(url)
+        const events = await EventsSource.searchEvent(dataId, dataPage);
         const eventsElement = document.querySelector('.inner-all-event-card');
         events.data.forEach((event) => {
-          eventsElement.innerHTML += createCardEventTemplate(event) ;
+          eventsElement.innerHTML += createCardEventTemplate(event);
         });
 
         // untuk menampilkan event berdasarkan category
@@ -70,10 +71,6 @@ const eventCategory = {
         const otherPageNum = document.querySelectorAll('.page-number .page-link');
         addClassActive(destinationPageNum, otherPageNum);
 
-        // menambahkan penjelasan pada judul
-        const nameCategory = document.querySelector('.all-event p');
-        nameCategory.innerHTML = events.data[0].category.category_name;
-
         // event pencarian
         const btnSearch = document.querySelector('.btn-search');
         btnSearch.addEventListener('click', async (e) => {
@@ -87,4 +84,4 @@ const eventCategory = {
     },
   };
    
-  export default eventCategory;
+  export default searchEvent;
