@@ -45,15 +45,17 @@ const detail = {
 
         // like button
         const btnLike = document.querySelector('.button-like-container');
-        LikeButtonPresenter.init({
-          buttonLikeContainer: btnLike,
-          favorite: FavoritesSource,
-          eventFavorite: {
-            event_id: details.id,
-            user_id: userLocalStorage.id,
-            api_token: userLocalStorage.api_token,
-          },
-        });
+        if ( userLocalStorage ) {
+          LikeButtonPresenter.init({
+            buttonLikeContainer: btnLike,
+            favorite: FavoritesSource,
+            eventFavorite: {
+              event_id: details.id,
+              user_id: userLocalStorage.id,
+              api_token: userLocalStorage.api_token,
+            },
+          });
+        }
     },
   };
 
