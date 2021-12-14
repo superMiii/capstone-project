@@ -76,7 +76,7 @@ const Sign_In = {
           title: `${login.message}`,
           showConfirmButton: false,
           timer: 1500
-      });
+        });
         location.href = '#/my_account';
       }
     }

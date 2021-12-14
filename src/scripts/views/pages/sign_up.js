@@ -1,4 +1,5 @@
 import AuthSource from "../../data/auth-source";
+import Swal from 'sweetalert2';
 
 const Sign_Up = {
     async render() {
@@ -52,13 +53,31 @@ const Sign_Up = {
         const signUp = await AuthSource.register(data);
         if(signUp.status == false) {
             if(signUp.message.email || signUp.message.password) {
-                // alert(signUp.message.email);
-                alert(signUp.message.password);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: `${signUp.message.email}`,
+                });
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: `${signUp.message.password}`,
+                });
             } else {
-                alert(signUp.message);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: `${signUp.message}`,
+                  });
             }
         } else {
-            alert(signUp.message);
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: `${signUp.message}`,
+                showConfirmButton: false,
+                timer: 1500
+              });
             location.href = '#/sign_in';
         }
     }
