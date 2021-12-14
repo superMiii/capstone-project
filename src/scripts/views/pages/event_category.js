@@ -21,7 +21,7 @@ const eventCategory = {
           </div>
           <div class="search-event">
           <input type="text" name="keyword" placeholder="Kata Kunci" class="search-full">
-          <button type="submit" class="btn btn-success btn-search">search</button>
+          <button type="submit" class="btn-search">search</button>
         </div>
           <div class="inner-all-event">
             <div class="inner-all-event-card d-flex flex-wrap flex-row justify-content-center">

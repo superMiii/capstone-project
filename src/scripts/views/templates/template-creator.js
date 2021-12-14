@@ -35,7 +35,7 @@ const createDetailTemplate = (detail, formatRupiah) => `
             <div class="link-card">
                 <img loading="lazy" src="./images/assets/link.png" alt="">
                 <p>
-                    <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseRegisterLink" role="button" aria-expanded="false" aria-controls="collapseRegisterLink">
+                    <a class="btn-sign-up" data-bs-toggle="collapse" href="#collapseRegisterLink" role="button" aria-expanded="false" aria-controls="collapseRegisterLink">
                         Register Link
                     </a>
                 </p>
@@ -194,8 +194,8 @@ const createMyAccountTemplate = (myAccount) => `
         <p>${myAccount.email}</p>
         <p>Password :</p>
         <p>****</p>
-        <button type="button" class="btn btn-primary edit-profile">Edit Profile</button>
-        <button type="button" class="btn btn-primary change-password">Change Password</button>
+        <button type="button" class="btn-sign-in edit-profile">Edit Profile</button>
+        <button type="button" class="btn-sign-up change-password">Change Password</button>
     </div>
 `
 
@@ -211,8 +211,7 @@ const createFormUpdateProfileTemplate = (myAccount) => `
             <input type="text" id="name" name="name" value="${myAccount.name}">
             <p>Email :</p>
             <input type="email" id="email" name="email" value="${myAccount.email}" disabled>
-            <button type="submit" class="btn btn-primary submit">Submit</button>
-            <a href="#/all_event/1" class="btn btn-primary back">Back</a>
+            <button type="submit" class="btn-sign-in submit">Submit</button>
         </div>
         </form>
     </div>
@@ -226,8 +225,7 @@ const createFormChangePasswordTemplate = () => `
             <input type="password" id="password" name="password">
             <p>Confirm New Password :</p>
             <input type="password" id="password_confirmation" name="password_confirmation">
-            <button type="submit" class="btn btn-primary submit">Submit</button>
-            <a href="#/all_event/1" class="btn btn-primary back">Back</a>
+            <button type="submit" class="btn-sign-in submit">Submit</button>
         </div>
         </form>
     </div>
