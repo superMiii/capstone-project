@@ -1,6 +1,6 @@
 import CONFIG from '../../globals/config';
 
-const createDetailTemplate = (detail) => `
+const createDetailTemplate = (detail, formatRupiah) => `
     <div class="all-info-detail d-flex flex-row justify-content-evenly flex-wrap">
         <div class="image-detail">
             <button data-bs-toggle="modal" data-bs-target="#myModal">
@@ -26,7 +26,7 @@ const createDetailTemplate = (detail) => `
             </div>
             <div class="price-card">
                 <img loading="lazy" src="./images/assets/ticket.png" alt="">
-                <p>${detail.ticket_price}</p>
+                <p>Rp. ${formatRupiah}</p>
             </div>
             <div class="place-card">
                 <img loading="lazy" src="./images/assets/place.png" alt="">
