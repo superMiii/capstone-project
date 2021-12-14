@@ -100,7 +100,7 @@ const createTableEventTemplate = (event, index) => `
         <td>${event.category.category_name}</td>
         <td>
             <a href="#/detail/${event.id}" class="badge btn-sign-up">Detail</a>        
-            <a href="#" id="delete" data-value="${event.id}" class="badge btn-danger text-decoration-none">Hapus</a>
+            <a href="#/my_events" data-value="${event.id}" class="delete badge btn-danger text-decoration-none">Hapus</a>
             <a href="#/edit_event/${event.id}" class="badge btn-success edit text-decoration-none">Edit</a>
         </td>
     </tr>
