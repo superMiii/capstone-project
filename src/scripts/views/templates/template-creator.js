@@ -151,7 +151,7 @@ const createUpdateEventTemplate = (event) => `
 `;
 
 const createCategoryTemplate = (category) => `
-            <div class="${category.category_name.toLowerCase()}">
+            <div data-aos="zoom-in" class="${category.category_name.toLowerCase()}">
               <a href="#/event-category/${category.id}/1">
                 <div>
                   <img loading="lazy" src="./images/assets/${category.category_name.toLowerCase()}.png" alt=""> 
