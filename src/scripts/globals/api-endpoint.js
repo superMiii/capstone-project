@@ -9,7 +9,7 @@ const API_ENDPOINT = {
     CHANGE_PASSWORD: (apiToken) => `${CONFIG.BASE_URL}user/changepassword?api_token=${apiToken}`,
     EVENTS: (page) => `${CONFIG.BASE_URL}events?page=${page}`,
     EVENT_DETAIL: (id) => `${CONFIG.BASE_URL}events/${id}`,
-    EVENT_SEARCH: (keyword) => `${CONFIG.BASE_URL}events/search?keyword=${keyword}`,
+    EVENT_SEARCH: (keyword, page) => `${CONFIG.BASE_URL}events/search?keyword=${keyword}&page=${page}`,
     EVENT_LATEST: (limit) => `${CONFIG.BASE_URL}events/latest?limit=${limit}`,
     EVENTS_USER: (id, apiToken) => `${CONFIG.BASE_URL}events/user/${id}?api_token=${apiToken}`,
     EVENTS_CATEGORY: (id, page) => `${CONFIG.BASE_URL}events/category/${id}?page=${page}`,

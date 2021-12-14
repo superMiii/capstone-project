@@ -30,8 +30,8 @@ class EventsSource {
         return responseJson.data;
     }
 
-    static async searchEvent(keyword) {
-        const response = await fetch(API_ENDPOINT.EVENT_SEARCH(keyword));
+    static async searchEvent(keyword, page) {
+        const response = await fetch(API_ENDPOINT.EVENT_SEARCH(keyword, page));
         const responseJson = await response.json();
         return responseJson.data;
     }
