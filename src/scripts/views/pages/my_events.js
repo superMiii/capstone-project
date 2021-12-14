@@ -33,6 +33,16 @@ const my_events = {
         const elementInnerMyAccount = document.querySelector(".inner-my-account");
         const userLocalStorage = JSON.parse(localStorage.getItem('user'));
 
+        // check jika blm login
+        if(!userLocalStorage) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: `Please login first to see your events`,
+            });
+            location.href = '#/sign_in';
+        }
+        
         const myEvent = await EventsSource.eventByUserId(userLocalStorage.id, userLocalStorage.api_token);
         elementInnerMyAccount.innerHTML = `
                 <table class="table">

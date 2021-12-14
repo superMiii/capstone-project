@@ -42,6 +42,16 @@ const edit_event = {
         const elementInnerMyAccount = document.querySelector(".inner-my-account");
         const userLocalStorage = JSON.parse(localStorage.getItem('user'));
 
+        // check jika blm login
+        if(!userLocalStorage) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: `Please login first to edit your event`,
+            });
+            location.href = '#/sign_in';
+        }
+
         // edit event
         elementInnerMyAccount.innerHTML = createUpdateEventTemplate(dataEvent);
         const imgInput = document.querySelector('#image-input');

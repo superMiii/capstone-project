@@ -34,6 +34,16 @@ const upload_event = {
         const elementInnerMyAccount = document.querySelector(".inner-my-account");
         const userLocalStorage = JSON.parse(localStorage.getItem('user'));
 
+        // check jika blm login
+        if(!userLocalStorage) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: `Please login first to add events`,
+            });
+            location.href = '#/sign_in';
+        }
+
         // add event
         elementTitle.innerHTML = 'Upload Event';
         elementInnerMyAccount.innerHTML = createUploadEventTemplate();

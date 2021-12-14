@@ -1,6 +1,7 @@
 import UsersSource from '../../data/users-source';
 import { createFormChangePasswordTemplate, createFormUpdateProfileTemplate, createMyAccountTemplate } from "../templates/template-creator";
 import logout from '../../utils/logout';
+import Swal from 'sweetalert2';
 
 const my_account = {
     async render() {
@@ -31,6 +32,17 @@ const my_account = {
         // ambil data dari API
         const elementInnerMyAccount = document.querySelector(".inner-my-account");
         const userLocalStorage = JSON.parse(localStorage.getItem('user'));
+
+        // check jika blm login
+        if(!userLocalStorage) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: `Please login first to see your profile`,
+            });
+            location.href = '#/sign_in';
+        }
+
         const myAccount = await UsersSource.showProfile(userLocalStorage.api_token);
         elementInnerMyAccount.innerHTML = createMyAccountTemplate(myAccount);
 
