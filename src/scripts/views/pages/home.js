@@ -12,7 +12,12 @@ const Home = {
               <h3>Let’s <span>find</span> your</h3>
               <h3><span>event</span> today</h3>
               <p>You are free to share and find updated information about online events</p>
-              <a href="#" >Get Started</a>
+              ${localStorage.getItem('user') 
+                ? `
+                <a href="#/upload_event" >Get Started</a>
+                ` : `
+                <a href="#/sign_in" >Get Started</a>
+                `}
           </div>
           <div class="description-img">
             <img loading="lazy" src="./images/heros/myhero.jpg" alt="">
