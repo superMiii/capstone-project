@@ -2,6 +2,7 @@ import EventsSource from '../../data/events-source';
 import { createUpdateEventTemplate } from "../templates/template-creator";
 import logout from '../../utils/logout';
 import UrlParser from '../../routes/url-parser';
+import Swal from 'sweetalert2';
 
 const edit_event = {
     async render() {
@@ -35,7 +36,6 @@ const edit_event = {
 
         // ambil data dari API
         const oneEvent = await EventsSource.eventById(dataId);
-        console.log(oneEvent)
         const dataEvent = oneEvent.data;
 
         // manipulasi dom inner-my-account
@@ -49,7 +49,6 @@ const edit_event = {
         const imgPreview = document.querySelector('#preview-image');
         imgInput.onchange = (e) => {
             const [file] = imgInput.files;
-            console.log(file);
             if(file) {
                 imgPreview.src = URL.createObjectURL(file);
                 imgPreview.className = 'img-thumbnail w-50';
@@ -67,7 +66,6 @@ const edit_event = {
             const registerLink = document.querySelector('#register-link');
             const ticketPrice = document.querySelector('#ticket-price');
             const categoryId = document.querySelector('#category-event');
-            console.log(imgInput.files[0]);
             const data = new FormData();
             data.append('_method', 'put');
             data.append('id', idEvent.value);
@@ -85,7 +83,22 @@ const edit_event = {
             data.append('user_id', userLocalStorage.id);
             
             const addEvent = await EventsSource.updateEvent(idEvent.value, userLocalStorage.api_token, data);
-            location.href= '#/my_events/';
+            if ( addEvent.status == true ) {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Your work has been saved',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                location.href = '#/my_events';
+            }else{
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: `Something went wrong!`,
+                });
+            };
         });
 
         // logout

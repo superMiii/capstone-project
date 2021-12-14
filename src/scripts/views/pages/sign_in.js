@@ -1,4 +1,5 @@
 import AuthSource from "../../data/auth-source";
+import Swal from 'sweetalert2';
 
 const Sign_In = {
     async render() {
@@ -45,10 +46,22 @@ const Sign_In = {
       // yid buat validasi di frone-end nya ini masih kureng banget, nnti tinggal refactor lagi aja ya code nya
       if(login.status == false) {
         if(login.message.email || login.message.password) {
-          alert(login.message.email);
-          alert(login.message.password);
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: `${login.message.email}`,
+          });
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: `${login.message.password}`,
+          });
         } else {
-          alert(login.message);
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: `${login.message}`,
+          });
         }
       } else {
         const dataLogin = {
@@ -57,7 +70,13 @@ const Sign_In = {
           api_token: login.data.api_token,
         };
         localStorage.setItem('user', JSON.stringify(dataLogin));
-        alert(login.message);
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: `${login.message}`,
+          showConfirmButton: false,
+          timer: 1500
+        });
         location.href = '#/my_account';
       }
     }

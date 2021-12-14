@@ -40,9 +40,8 @@
     color: #5921F6;
 }
 
-.description-img img {
+.myLottie {
     max-width: 500px;
-    border-radius: 50px 0 50px 0;
 }
 
 /* === BENEFIT === */

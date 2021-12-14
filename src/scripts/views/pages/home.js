@@ -2,6 +2,7 @@ import EventsSource from "../../data/events-source";
 import { createCardEventTemplate } from "../templates/template-creator";
 import addClassActive from "../../utils/add-class-active";
 import logout from "../../utils/logout";
+import anmLottie from "../../utils/anm_lottie";
 
 const Home = {
     async render() {
@@ -12,10 +13,15 @@ const Home = {
               <h3>Let’s <span>find</span> your</h3>
               <h3><span>event</span> today</h3>
               <p>You are free to share and find updated information about online events</p>
-              <a href="#" >Get Started</a>
+              ${localStorage.getItem('user') 
+                ? `
+                <a href="#/upload_event" >Get Started</a>
+                ` : `
+                <a href="#/sign_in" >Get Started</a>
+                `}
           </div>
-          <div class="description-img">
-            <img loading="lazy" src="./images/heros/myhero.jpg" alt="">
+          <div  class="myLottie">
+            
           </div>
         </div>
 
@@ -26,21 +32,21 @@ const Home = {
               <h3>Find Event Faster</h3>
             </div>
             <div class="all-benefit d-flex justify-content-around flex-wrap">
-              <div class="benefit-sme">
+              <div data-aos="zoom-in" class="benefit-sme">
                 <div>
                   <img loading="lazy" src="./images/benefit/faster.png" alt=""> 
                 </div>
                 <h4>Faster</h4>
                 <p>search for events faster with the category feature</p>
               </div>
-              <div class="benefit-sme">
+              <div data-aos="zoom-in" class="benefit-sme">
                 <div>
                   <img loading="lazy" src="./images/benefit/better.png" alt=""> 
                 </div>
                 <h4>Better</h4>
                 <p>better than searching for events manually</p>
               </div>
-              <div class="benefit-sme">
+              <div data-aos="zoom-in" class="benefit-sme">
                 <div>
                   <img loading="lazy" src="./images/benefit/trusted.png" alt="">
                 </div>
@@ -60,7 +66,7 @@ const Home = {
             <div class="container-carouselEvent d-flex flex-wrap justify-content-evenly">
               <div id="carouselControls" class="carousel carousel-dark slide justify-content-center" data-bs-ride="carousel">
                 
-                <div class="carousel-inner">
+                <div data-aos="zoom-in" class="carousel-inner">
                   
                 </div>
 
@@ -89,6 +95,9 @@ const Home = {
       const allNavLink = document.querySelectorAll('.nav-item .nav-link');
       addClassActive(elementLinkNavHome, allNavLink);
 
+      // lottie
+      anmLottie.play();
+
       // ambil data latest
       const latestEvent = await EventsSource.latestEvent(5);
       const latestEventElement = document.querySelector('.carousel-inner');
@@ -103,6 +112,7 @@ const Home = {
       const carouselItem = document.querySelector(".carousel-item:nth-child(1)");
       carouselItem.classList.add("active");
 
+      // logout
       logout();
     },
   };

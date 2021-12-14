@@ -11,6 +11,8 @@ import '../styles/my-account.css';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './views/app';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 // import component
 import './component/component_navbar';
@@ -23,8 +25,10 @@ import './component/component_footer';
   
   window.addEventListener('hashchange', () => {
     app.renderPage();
+    AOS.init();
   });
   
   window.addEventListener('load', () => {
     app.renderPage();
+    AOS.init();
   });

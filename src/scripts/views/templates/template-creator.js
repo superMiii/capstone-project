@@ -1,6 +1,6 @@
 import CONFIG from '../../globals/config';
 
-const createDetailTemplate = (detail) => `
+const createDetailTemplate = (detail, formatRupiah) => `
     <div class="all-info-detail d-flex flex-row justify-content-evenly flex-wrap">
         <div class="image-detail">
             <button data-bs-toggle="modal" data-bs-target="#myModal">
@@ -26,7 +26,7 @@ const createDetailTemplate = (detail) => `
             </div>
             <div class="price-card">
                 <img loading="lazy" src="./images/assets/ticket.png" alt="">
-                <p>${detail.ticket_price}</p>
+                <p>Rp. ${formatRupiah}</p>
             </div>
             <div class="place-card">
                 <img loading="lazy" src="./images/assets/place.png" alt="">
@@ -100,7 +100,7 @@ const createTableEventTemplate = (event, index) => `
         <td>${event.category.category_name}</td>
         <td>
             <a href="#/detail/${event.id}" class="badge btn-sign-up">Detail</a>        
-            <a href="#" id="delete" data-value="${event.id}" class="badge btn-danger text-decoration-none">Hapus</a>
+            <a href="#/my_events" data-value="${event.id}" class="delete badge btn-danger text-decoration-none">Hapus</a>
             <a href="#/edit_event/${event.id}" class="badge btn-success edit text-decoration-none">Edit</a>
         </td>
     </tr>
@@ -151,7 +151,7 @@ const createUpdateEventTemplate = (event) => `
 `;
 
 const createCategoryTemplate = (category) => `
-            <div class="${category.category_name.toLowerCase()}">
+            <div data-aos="zoom-in" class="${category.category_name.toLowerCase()}">
               <a href="#/event-category/${category.id}/1">
                 <div>
                   <img loading="lazy" src="./images/assets/${category.category_name.toLowerCase()}.png" alt=""> 

@@ -1,6 +1,7 @@
 import EventsSource from '../../data/events-source';
 import { createTableEventTemplate } from "../templates/template-creator";
 import logout from '../../utils/logout';
+import Swal from 'sweetalert2';
 
 const my_events = {
     async render() {
@@ -54,21 +55,46 @@ const my_events = {
         });
         
         // delete event
-        const btnDeleteEvent = document.querySelectorAll('#delete');
-        for(let i=0; i<=btnDeleteEvent.length; i++) {
+        const btnDeleteEvent = document.querySelectorAll('.delete');
+        for(let i=0; i<btnDeleteEvent.length; i++) {
             btnDeleteEvent[i].addEventListener('click', async (e) => {
                 e.preventDefault();
                 const id = e.target.getAttribute('data-value');
-                console.log(id);
-                let confirmation = confirm('Are you sure want to delete?');
                 const userLocalStorage = JSON.parse(localStorage.getItem('user'));
-                if(confirmation) {
+
+                let confirmation = await Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                        return true;
+                        }
+                    })
+                
+                if(confirmation == true) {
                     const deleteEvent = await EventsSource.deleteEvent(id, userLocalStorage.api_token);
                     if(deleteEvent.status == true) {
-                        alert(deleteEvent.message);
-                        location.href = '#/my_events';
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Your work has been saved',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        setTimeout(() => {
+                            location.reload();
+                        }, 1500);
                     } else {
-                        alert(deleteEvent.message);
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: `Something went wrong!`,
+                        });
                     }
                 }
             });

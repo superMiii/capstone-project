@@ -38,7 +38,15 @@ const detail = {
 
         // manipulasi innerdetail
         const innerDetailElement = document.querySelector(".inner-detail");
-        innerDetailElement.innerHTML = createDetailTemplate(details);
+        const ticket = details.ticket_price;
+        const rubah = (angka) =>{
+          var reverse = angka.toString().split('').reverse().join(''),
+          ribuan = reverse.match(/\d{1,3}/g);
+          ribuan = ribuan.join('.').split('').reverse().join('');
+          return ribuan;
+        }
+        let formatRupiah = rubah(ticket);
+        innerDetailElement.innerHTML = createDetailTemplate(details, formatRupiah);
 
         // logout
         logout();

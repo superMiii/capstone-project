@@ -1,6 +1,7 @@
 import EventsSource from '../../data/events-source';
 import { createUploadEventTemplate } from "../templates/template-creator";
 import logout from '../../utils/logout';
+import Swal from 'sweetalert2';
 
 const upload_event = {
     async render() {
@@ -72,7 +73,22 @@ const upload_event = {
             data.append('user_id', userLocalStorage.id);
             
             const addEvent = await EventsSource.addEvent(userLocalStorage.api_token, data);
-            console.log(addEvent);
+            if ( addEvent.status == true ) {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Your work has been saved',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                location.href = '#/my_events';
+            }else{
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: `Something went wrong!`,
+                });
+            };
         });
 
         // logout
