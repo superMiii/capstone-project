@@ -23,14 +23,15 @@ class EventFactory extends Factory
     {
         return [
             'name' => $this->faker->sentence(),
-            'description' => $this->faker->paragraph(mt_rand(2, 3)),
+            'description' => $this->faker->paragraph(mt_rand(2, 5)),
             'poster' => $this->faker->imageUrl(360, 360, 'events', true, 'image', true),
             'time' => $this->faker->time(),
             'place' => $this->faker->streetName(),
             'date' => $this->faker->date('Y-m-d'),
             'register_link' => $this->faker->url(),
             'ticket_price' => $this->faker->randomNumber(5, true),
-            'category_id' => mt_rand(1, 4),
+            'status' => $this->faker->randomElement(['approved', 'not approved', 'waiting']),
+            'category_id' => mt_rand(1, 5),
             'user_id' => mt_rand(1, 5)
         ];
     }

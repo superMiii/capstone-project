@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('picture')->nullable();
             $table->string('email')->unique();
             $table->string('password');
+            $table->enum('role', ['admin', 'user']);
             $table->string('api_token')->nullable();
             $table->timestamps();
         });

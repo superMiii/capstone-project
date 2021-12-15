@@ -12,7 +12,7 @@ class EventController extends Controller
 {
     public function showAll()
     {
-        $data = Event::latest()->with(['user', 'category'])->paginate(10);
+        $data = Event::latest()->with(['user', 'category'])->where('status', 'approved')->paginate(10);
         if ($data) {
             return response()->json([
                 'status' => true,
@@ -30,7 +30,7 @@ class EventController extends Controller
 
     public function showById($id)
     {
-        $data = Event::with(['user', 'category'])->find($id);
+        $data = Event::with(['user', 'category'])->where('status', 'approved')->find($id);
         if ($data) {
             return response()->json([
                 'status' => true,
@@ -49,6 +49,7 @@ class EventController extends Controller
     public function showByKeyword(Request $request)
     {
         $data = Event::latest()->with(['user', 'category'])
+            ->where('status', 'approved')
             ->where('name', 'LIKE', '%' . $request->keyword . '%')
             ->orWhere('place', 'LIKE', '%' . $request->keyword . '%')
             ->orWhere('date', 'LIKE', '%' . $request->keyword . '%')
@@ -74,7 +75,7 @@ class EventController extends Controller
 
     public function showLatestLimit(Request $request)
     {
-        $data = Event::latest()->with(['user', 'category'])->limit($request->limit)->get();
+        $data = Event::latest()->with(['user', 'category'])->where('status', 'approved')->limit($request->limit)->get();
         if ($data) {
             return response()->json([
                 'status' => true,
@@ -129,7 +130,7 @@ class EventController extends Controller
     {
         $category = Category::find($id);
         if ($category) {
-            $data = Event::latest()->with(['user', 'category'])->where('category_id', $id)->paginate(10);
+            $data = Event::latest()->with(['user', 'category'])->where('status', 'approved')->where('category_id', $id)->paginate(10);
             if ($data) {
                 return response()->json([
                     'status' => true,
@@ -185,6 +186,7 @@ class EventController extends Controller
                 'date' => $request->date,
                 'register_link' => $request->register_link,
                 'ticket_price' => $request->ticket_price,
+                'status' => 'waiting',
                 'category_id' => $request->category_id,
                 'user_id' => $request->user_id,
             ]);

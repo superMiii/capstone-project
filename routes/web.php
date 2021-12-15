@@ -54,6 +54,19 @@ $router->group(['prefix' => 'api/v1'], function () use ($router) {
         $router->post('/favorite', 'FavoriteController@addFavorite');
         $router->delete('/favorite/{event_id}', 'FavoriteController@destroy');
 
+        $router->group(['prefix' => '/admin'], function () use ($router) {
+            // users
+            $router->get('/users', 'AdminController@showAllUsers');
+            $router->get('/users/{id}', 'AdminController@showDetailUser');
+            $router->put('/users/role/{id}', 'AdminController@changeRole');
+            $router->delete('/users/{id}', 'AdminController@deleteUser');
+
+            // events
+            $router->get('/events', 'AdminController@showAllEvents');
+            $router->put('/events/{id}/status', 'AdminController@changeStatusEvent');
+            $router->delete('/events/{id}', 'AdminController@deleteEvent');
+        });
+
         // logout
         $router->post('/logout', 'AuthController@logout');
     });
