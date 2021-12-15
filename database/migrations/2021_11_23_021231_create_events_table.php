@@ -24,8 +24,8 @@ class CreateEventsTable extends Migration
             $table->string('register_link');
             $table->string('ticket_price');
             $table->enum('status', ['approved', 'not approved', 'waiting']);
-            $table->integer('category_id');
-            $table->integer('user_id');
+            $table->foreignId('category_id');
+            $table->foreignId('user_id');
             $table->timestamps();
         });
     }
