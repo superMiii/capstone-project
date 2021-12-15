@@ -11,6 +11,9 @@ class App {
   async renderPage() {
     const url = UrlParser.parseActiveUrlWithCombiner();
     const page = routes[url];
+    if (page == undefined) {
+      this._content.innerHTML = ` <h1 class="d-flex justify-content-center"> 404 Not Found </h1> `
+    }
     this._navbar.innerHTML = `
     <component-navbar></component-navbar>
     `
