@@ -58,7 +58,7 @@ $router->group(['prefix' => 'api/v1'], function () use ($router) {
             // users
             $router->get('/users', 'AdminController@showAllUsers');
             $router->get('/users/{id}', 'AdminController@showDetailUser');
-            $router->put('/users/role/{id}', 'AdminController@changeRole');
+            $router->put('/users/{id}/role', 'AdminController@changeRole');
             $router->delete('/users/{id}', 'AdminController@deleteUser');
 
             // events

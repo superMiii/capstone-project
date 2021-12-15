@@ -60,7 +60,7 @@ php -S localhost:8000/ -t public
 
 ## Documentation API
 
-And this for API Documentation Website Share My Events [Documentation SME API From Postman](https://documenter.getpostman.com/view/12251477/UVJfjFdA).
+And this for API Documentation Website Share My Events [Documentation SME API From Postman](https://documenter.getpostman.com/view/12251477/UVR8nmzb).
 
 ## Deployed API to Heroku
 
