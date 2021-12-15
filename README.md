@@ -68,4 +68,4 @@ And this url some endpoint for get all events [SME Heroku](https://sme-capstone-
 
 And this url some endpoint for get one event [SME Heroku](https://sme-capstone-backend.herokuapp.com/api/v1/events/2).
 
-For complete endpoints, see the documentation.
+For complete endpoints, see the documentation API.
