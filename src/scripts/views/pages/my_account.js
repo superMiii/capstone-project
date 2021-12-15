@@ -58,7 +58,7 @@ const my_account = {
                 const [file] = imgInput.files;
                 if(file) {
                     imgPreview.src = URL.createObjectURL(file);
-                    imgPreview.className = 'w-50';
+                    imgPreview.className = 'img-thumbnail rounded';
                 }
             };
             formUpdateProfile.addEventListener('submit', async (e) => {

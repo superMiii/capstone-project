@@ -34,9 +34,9 @@
 
 /* == MY ACCOUNT == */
 .img-account img {
-    width: 18rem;
-    background-color: #17A471;
-    border-radius: 50%;
+    max-width: 200px;
+    object-fit: cover;
+    border-radius: 10px;
 }
 
 .data-account p:nth-child(2n) {
