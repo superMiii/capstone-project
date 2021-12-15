@@ -27,7 +27,6 @@ import {
   
     async _isEventExist(event_id, user_id, apiToken) {
       const event = await this._favorite.getFavorite(event_id, apiToken);
-      console.log(event.data);
       return event.data;
     },
   
@@ -37,8 +36,6 @@ import {
       const likeButton = document.querySelector('.btn-like');
       likeButton.addEventListener('click', async () => {
         const addFavorite = await this._favorite.addFavorite(api_token, data);
-        console.log(addFavorite);
-        console.log(data);
         this._renderButton();
       });
     },

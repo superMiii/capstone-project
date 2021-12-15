@@ -52,7 +52,6 @@ const upload_event = {
         const imgPreview = document.querySelector('#preview-image');
         imgInput.onchange = (e) => {
             const [file] = imgInput.files;
-            console.log(file);
             if(file) {
                 imgPreview.src = URL.createObjectURL(file);
                 imgPreview.className = 'img-thumbnail w-50';
@@ -69,7 +68,6 @@ const upload_event = {
             const registerLink = document.querySelector('#register-link');
             const ticketPrice = document.querySelector('#ticket-price');
             const categoryId = document.querySelector('#category-event');
-            console.log(name.value);
             const data = new FormData();
             data.append('poster', imgInput.files[0]);
             data.append('name', name.value);

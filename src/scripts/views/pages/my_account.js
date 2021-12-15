@@ -65,7 +65,6 @@ const my_account = {
                 e.preventDefault();
                 const imgInput = document.querySelector('#image-input');
                 const name = document.querySelector('#name');
-                console.log(imgInput.files[0]);
                 const data = new FormData();
                 data.append('_method', 'put');
                 if(imgInput.files[0]) {
@@ -73,7 +72,6 @@ const my_account = {
                 }
                 data.append('name', name.value);
                 const updateProfile = await UsersSource.updateProfile(userLocalStorage.api_token, data);
-                console.log(updateProfile);
                 location.href= '#/my_account/';
             });
         });

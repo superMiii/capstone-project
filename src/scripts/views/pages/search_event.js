@@ -41,7 +41,6 @@ const searchEvent = {
         const url = UrlParser.parseActiveUrlWithoutCombiner();
         const dataId = url.id;
         const dataPage = url.page;
-        console.log(url)
         const events = await EventsSource.searchEvent(dataId, dataPage);
         const eventsElement = document.querySelector('.inner-all-event-card');
         events.data.forEach((event) => {

@@ -42,7 +42,6 @@ const Favorite = {
       // manipulasi isi kontent
       const elementCard = document.querySelector(".inner-favorite");
       favorites.data.data.forEach((i) => {
-        console.log(i);
         elementCard.innerHTML += createCardEventTemplate(i.event) ;
       });
 
