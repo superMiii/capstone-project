@@ -63,6 +63,7 @@ $router->group(['prefix' => 'api/v1'], function () use ($router) {
 
             // events
             $router->get('/events', 'AdminController@showAllEvents');
+            $router->get('/events/{id}', 'AdminController@showDetailEvent');
             $router->put('/events/{id}/status', 'AdminController@changeStatusEvent');
             $router->delete('/events/{id}', 'AdminController@deleteEvent');
         });

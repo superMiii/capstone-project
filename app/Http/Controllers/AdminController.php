@@ -176,6 +176,33 @@ class AdminController extends Controller
         }
     }
 
+    public function showDetailEvent(Request $request, $id)
+    {
+        $user_id = User::where('api_token', $request->api_token)->first();
+        if ($user_id->role == 'admin') {
+            $event = Event::with(['user', 'category'])->find($id);
+            if ($event) {
+                return response()->json([
+                    'status' => true,
+                    'message' => 'get detail event successfully',
+                    'data' => $event
+                ], 200);
+            } else {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'failed. data not found',
+                    'data' => null
+                ], 404);
+            }
+        } else {
+            return response()->json([
+                'status' => false,
+                'message' => 'failed. forbidden to access',
+                'data' => null
+            ], 403);
+        }
+    }
+
     public function changeStatusEvent(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
