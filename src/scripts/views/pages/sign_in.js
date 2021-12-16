@@ -64,20 +64,39 @@ const Sign_In = {
           });
         }
       } else {
-        const dataLogin = {
-          id: login.data.user.id,
-          name: login.data.user.name,
-          api_token: login.data.api_token,
-        };
-        localStorage.setItem('user', JSON.stringify(dataLogin));
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: `${login.message}`,
-          showConfirmButton: false,
-          timer: 1500
-        });
-        location.href = '#/my_account';
+        if ( login.data.user.role == "admin" ) {
+          const dataLogin = {
+            id: login.data.user.id,
+            name: login.data.user.name,
+            role: login.data.user.role,
+            api_token: login.data.api_token,
+          };
+          localStorage.setItem('user', JSON.stringify(dataLogin));
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: `${login.message}`,
+            showConfirmButton: false,
+            timer: 1500
+          });
+          location.href = '#/my_account';
+        }else{
+          const dataLogin = {
+            id: login.data.user.id,
+            name: login.data.user.name,
+            role: login.data.user.role,
+            api_token: login.data.api_token,
+          };
+          localStorage.setItem('user', JSON.stringify(dataLogin));
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: `${login.message}`,
+            showConfirmButton: false,
+            timer: 1500
+          });
+          location.href = '#/my_account';
+        }
       }
     }
   };
