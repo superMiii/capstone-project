@@ -41,9 +41,13 @@ const Favorite = {
       const favorites = await FavoritesSource.allFavorites(userSessionStorage.api_token);
       // manipulasi isi kontent
       const elementCard = document.querySelector(".inner-favorite");
-      favorites.data.data.forEach((i) => {
-        elementCard.innerHTML += createCardEventTemplate(i.event) ;
-      });
+      if(favorites.data.data.length == 0) {
+        elementCard.innerHTML = '<h4 class="alert alert-danger text-center">Events favorite not found. Try to add some events to favorite</h4>';
+      } else {
+        favorites.data.data.forEach((i) => {
+          elementCard.innerHTML += createCardEventTemplate(i.event) ;
+        });
+      }
 
       logout();
     },
