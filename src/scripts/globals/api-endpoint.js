@@ -21,6 +21,14 @@ const API_ENDPOINT = {
     ADD_FAVORITE: (apiToken) => `${CONFIG.BASE_URL}favorite?api_token=${apiToken}`,
     DELETE_FAVORITE: (event_id, apiToken) => `${CONFIG.BASE_URL}favorite/${event_id}?api_token=${apiToken}`,
     CATEGORIES: `${CONFIG.BASE_URL}categories`,
+    ADMIN_ALL_USERS: (apiToken) => `${CONFIG.BASE_URL}admin/users?api_token=${apiToken}`,
+    ADMIN_DETAIL_USER: (id, apiToken) => `${CONFIG.BASE_URL}admin/users/${id}?api_token=${apiToken}`,
+    ADMIN_CHANGE_ROLE_USER: (id, apiToken) => `${CONFIG.BASE_URL}admin/users/${id}/role?api_token=${apiToken}`,
+    ADMIN_DELETE_USER: (id, apiToken) => `${CONFIG.BASE_URL}admin/users/${id}?api_token=${apiToken}`,
+    ADMIN_ALL_EVENTS: (apiToken) => `${CONFIG.BASE_URL}admin/events?api_token=${apiToken}`,
+    ADMIN_DETAIL_EVENT: (id, apiToken) => `${CONFIG.BASE_URL}admin/events/${id}?api_token=${apiToken}`,
+    ADMIN_APPROVED_EVENT: (id, apiToken) => `${CONFIG.BASE_URL}admin/events/${id}/status?api_token=${apiToken}`,
+    ADMIN_DELETE_EVENT: (id, apiToken) => `${CONFIG.BASE_URL}admin/events/${id}?api_token=${apiToken}`
 }
 
 export default API_ENDPOINT;

@@ -1,3 +1,5 @@
+import AdminSource from "../../data/admin-source";
+import logout from "../../utils/logout";
 import { createDashboardTemplate } from "../templates/template-creator";
 
 const Admin = {
@@ -27,9 +29,15 @@ const Admin = {
         sideBar.classList.toggle('active');
     });
 
+    const userSessionStorage = JSON.parse(sessionStorage.getItem('user'));
+
     // content
     const content = document.querySelector('.content');
-    content.innerHTML = createDashboardTemplate();
+    const countUsers = await AdminSource.allUsers(userSessionStorage.api_token);
+    const countEvents = await AdminSource.allEvents(userSessionStorage.api_token);
+    content.innerHTML = createDashboardTemplate(countEvents, countUsers);
+
+    logout();
     }
   };
    

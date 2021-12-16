@@ -13,6 +13,8 @@ import searchEvent from '../views/pages/search_event';
 import Admin from '../views/pages/admin';
 import AdminUser from '../views/pages/admin_user';
 import AdminEvents from '../views/pages/admin_events';
+import AdminEventStatus from '../views/pages/admin_event_status';
+import AdminUserRole from '../views/pages/admin_user_role';
  
 const routes = {
   '/': Home, // default page
@@ -30,7 +32,9 @@ const routes = {
   '/search_event/:id/:page': searchEvent,
   '/admin': Admin,
   '/admin_user': AdminUser,
+  '/admin_user/:id': AdminUserRole,
   '/admin_events': AdminEvents,
+  '/admin_events/:id': AdminEventStatus,
 };
  
 export default routes;

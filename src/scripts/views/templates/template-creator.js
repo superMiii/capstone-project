@@ -286,7 +286,7 @@ const createUnfavoriteButtonTemplate = () => `
     </button>
 `;
 
-const createDashboardTemplate = () => `
+const createDashboardTemplate = (events, users) => `
             <h1 class="mt-4">Dashboard</h1>
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item active">Dashboard</li>
@@ -296,7 +296,7 @@ const createDashboardTemplate = () => `
                     <div class="card bg-primary text-white mb-4">
                         <div class="card-body">
                             User
-                            <div class="quantyty"><h1>6</h1></div>
+                            <div class="quantyty"><h1>${users.length}</h1></div>
                         </div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
                             <a class="small text-white stretched-link" href="#/admin_user">View Details</a>
@@ -308,7 +308,7 @@ const createDashboardTemplate = () => `
                     <div class="card bg-success text-white mb-4">
                         <div class="card-body">
                             Events
-                            <div class="quantyty"><h1>4</h1></div>
+                            <div class="quantyty"><h1>${events.length}</h1></div>
                         </div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
                             <a class="small text-white stretched-link" href="#/admin_events">View Details</a>
@@ -319,20 +319,111 @@ const createDashboardTemplate = () => `
             </div>
 `
 
-const createAdminUserTemplate = () => `
-            <h1 class="mt-4">User</h1>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#/admin">Dashboard</a></li>
-                <li class="breadcrumb-item active" aria-current="page">User</li>
-            </ol>
+const createAdminUserTemplate = (user) => `
+    <div class="img-account" style="margin: 30px;">
+        <img src="${CONFIG.BASE_IMAGE_USER_URL+user.picture ? CONFIG.BASE_IMAGE_USER_URL + user.picture : './images/assets/account.png'}" alt="">
+    </div>
+    <div class="data-account" style="margin: 30px;">
+        <p>Nama :</p>
+        <p>${user.name}</p>
+        <p>Email :</p>
+        <p>${user.email}</p>
+        <p>Password :</p>
+        <p>****</p>
+        Role : <button data-bs-toggle="modal" data-bs-target="#myModal" class="btn-sign-up">${user.role}</button>
+        <a href="#" data-value="${user.id}" class="delete btn-danger btn-sign-in text-decoration-none">Hapus</a>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="myModalLabel">${user.name}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <input type="hidden" id="id-user" name="id-user" value="${user.id}"><br><br>
+            <select name="role-user" id="role-user" class="form-select" required>
+                <option value="admin" ${user.role == 'admin' ? 'selected' : ''}>Admin</option>
+                <option value="user" ${user.role == 'user' ? 'selected' : ''}>User</option>
+            </select>
+            <button class="badge btn-submit-sme edit-role" type="submit">Submit</button>
+        </div>
+        </div>
+    </div>
+    </div>
 `
 
-const createAdminEventsTemplate = () => `
-            <h1 class="mt-4">Events</h1>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#/admin">Dashboard</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Events</li>
-            </ol>
+const createAdminEventsTemplate = (event, formatRupiah) => `
+    <div class="all-info-detail d-flex flex-row justify-content-evenly flex-wrap">
+    <div class="image-detail">
+            <img src="${event.poster.match('https://') ? event.poster : CONFIG.BASE_IMAGE_POSTER_URL+event.poster}" alt="">
+    </div>
+    <div class="info-detail">
+        <h2>${event.name}</h2>
+        Status : <button data-bs-toggle="modal" data-bs-target="#myModal" class="btn-sign-up">${event.status}</button>
+        <a href="#" data-value="${event.id}" class="delete btn-danger btn-sign-in text-decoration-none">Hapus</a>
+        <div class="category-card">
+            <img loading="lazy" src="./images/assets/category.png" alt="">
+            <p>${event.category.category_name}</p>
+        </div>
+        <div class="date-card">
+            <img loading="lazy" src="./images/assets/calendar.png" alt="">
+            <p>${event.date}</p>
+        </div>
+        <div class="time-card">
+            <img loading="lazy" src="./images/assets/time.png" alt="">
+            <p>${event.time}</p>
+        </div>
+        <div class="price-card">
+            <img loading="lazy" src="./images/assets/ticket.png" alt="">
+            <p>Rp. ${formatRupiah}</p>
+        </div>
+        <div class="place-card">
+            <img loading="lazy" src="./images/assets/place.png" alt="">
+            <p>${event.place}</p>
+        </div>
+        <div class="link-card">
+            <img loading="lazy" src="./images/assets/link.png" alt="">
+            <p>
+                <a class="btn-sign-up" data-bs-toggle="collapse" href="#collapseRegisterLink" role="button" aria-expanded="false" aria-controls="collapseRegisterLink">
+                    Register Link
+                </a>
+            </p>
+            <div class="collapse" id="collapseRegisterLink">
+                <div class="card card-body">
+                ${event.register_link}
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="description-detail">
+    <h2>Description</h2>
+    <p>${event.description}</p>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="myModalLabel">${event.name}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <input type="hidden" id="id-event" name="id-event" value="${event.id}"><br><br>
+            <select name="status-event" id="status-event" class="form-select" required>
+                <option value="approved" ${event.status == 'approved' ? 'selected' : ''}>Approved</option>
+                <option value="not approved" ${event.status == 'not approved' ? 'selected' : ''}>Not Approved</option>
+                <option value="waiting" ${event.status == 'waiting' ? 'selected' : ''}>Waiting</option>
+            </select>
+            <button class="badge btn-submit-sme edit-status" type="submit">Submit</button>
+        </div>
+        </div>
+    </div>
+    </div>
 `
 
     export {
