@@ -97,7 +97,7 @@ class EventController extends Controller
         if ($user) {
             $user_id = User::where('api_token', $request->api_token)->first();
             if ($id == $user_id->id) {
-                $data = Event::latest()->with(['user', 'category'])->where('user_id', $id)->paginate(10);
+                $data = Event::latest()->with(['user', 'category'])->where('user_id', $id)->get();
                 if ($data) {
                     return response()->json([
                         'status' => true,
