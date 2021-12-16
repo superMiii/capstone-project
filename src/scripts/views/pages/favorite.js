@@ -26,10 +26,10 @@ const Favorite = {
       addClassActive(elementLinkNavFav, allNavLink);
 
       // ambil data dari API
-      const userLocalStorage = JSON.parse(localStorage.getItem('user'));
+      const userSessionStorage = JSON.parse(sessionStorage.getItem('user'));
 
       // check jika blm login
-      if(!userLocalStorage) {
+      if(!userSessionStorage) {
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
@@ -38,7 +38,7 @@ const Favorite = {
         location.href = '#/sign_in';
       }
 
-      const favorites = await FavoritesSource.allFavorites(userLocalStorage.api_token);
+      const favorites = await FavoritesSource.allFavorites(userSessionStorage.api_token);
       // manipulasi isi kontent
       const elementCard = document.querySelector(".inner-favorite");
       favorites.data.data.forEach((i) => {

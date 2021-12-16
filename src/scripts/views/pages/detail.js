@@ -26,7 +26,7 @@ const detail = {
         for (let i = 0; i < navbarLink.length; i++) {
             navbarLink[i].classList.remove('active');
         }
-        const userLocalStorage = JSON.parse(localStorage.getItem('user'));
+        const userSessionStorage = JSON.parse(sessionStorage.getItem('user'));
 
         // ambil data id dari url
         const url = UrlParser.parseActiveUrlWithoutCombiner();
@@ -53,14 +53,14 @@ const detail = {
 
         // like button
         const btnLike = document.querySelector('.button-like-container');
-        if ( userLocalStorage ) {
+        if ( userSessionStorage ) {
           LikeButtonPresenter.init({
             buttonLikeContainer: btnLike,
             favorite: FavoritesSource,
             eventFavorite: {
               event_id: details.id,
-              user_id: userLocalStorage.id,
-              api_token: userLocalStorage.api_token,
+              user_id: userSessionStorage.id,
+              api_token: userSessionStorage.api_token,
             },
           });
         }

@@ -23,19 +23,19 @@ class componentNavbar extends HTMLElement {
                         </li>
                     </ul>
                     <div class="d-flex">
-                        ${localStorage.getItem('user') 
+                        ${sessionStorage.getItem('user') 
                             ? 
                             `<div class="dropdown d-flex align-items-center">
                                 <button class="btn btn-secondary dropdown-toggle" style="background-color: white; border: none; border-radius: 50px; color: gray;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                     <img src="./images/assets/account.png" style="border-radius: 50%; width: 25px; background-color: #17A471;" alt="account logo">
-                                    ${JSON.parse(localStorage.getItem('user')).name}
+                                    ${JSON.parse(sessionStorage.getItem('user')).name}
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                     <li><a class="dropdown-item" href="#/my_account">My Account</a></li>
                                     <li><a class="dropdown-item btn-my-events" href="#/my_events">My Events</a></li>
                                     <li><a class="dropdown-item btn-my-events" href="#/favorite">Favorite Event</a></li>
                                     <li><a class="dropdown-item btn-upload-event" href="#/upload_event">Upload Event</a></li>
-                                    ${JSON.parse(localStorage.getItem('user')).role == 'admin' ? '<li><a class="dropdown-item btn-upload-event" href="#/admin">Admin Page</a></li>' : ''}
+                                    ${JSON.parse(sessionStorage.getItem('user')).role == 'admin' ? '<li><a class="dropdown-item btn-upload-event" href="#/admin">Admin Page</a></li>' : ''}
                                     <li><hr class="dropdown-divider"></li>
                                     <li><button class="dropdown-item sign-out">Log Out</button></li>
                                 </ul>

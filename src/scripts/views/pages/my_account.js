@@ -31,10 +31,10 @@ const my_account = {
 
         // ambil data dari API
         const elementInnerMyAccount = document.querySelector(".inner-my-account");
-        const userLocalStorage = JSON.parse(localStorage.getItem('user'));
+        const userSessionStorage = JSON.parse(sessionStorage.getItem('user'));
 
         // check jika blm login
-        if(!userLocalStorage) {
+        if(!userSessionStorage) {
             Swal.fire({
             icon: 'error',
             title: 'Oops...',
@@ -43,7 +43,7 @@ const my_account = {
             location.href = '#/sign_in';
         }
 
-        const myAccount = await UsersSource.showProfile(userLocalStorage.api_token);
+        const myAccount = await UsersSource.showProfile(userSessionStorage.api_token);
         elementInnerMyAccount.innerHTML = createMyAccountTemplate(myAccount);
 
         // edit profile
@@ -71,7 +71,7 @@ const my_account = {
                     data.append('picture', imgInput.files[0]);
                 }
                 data.append('name', name.value);
-                const updateProfile = await UsersSource.updateProfile(userLocalStorage.api_token, data);
+                const updateProfile = await UsersSource.updateProfile(userSessionStorage.api_token, data);
                 location.href= '#/my_account/';
             });
         });
@@ -90,7 +90,7 @@ const my_account = {
                     password: passwordInput,
                     password_confirmation: passwordConfirmationInput
                 };
-                const changePass = await UsersSource.changePassword(userLocalStorage.api_token, data);
+                const changePass = await UsersSource.changePassword(userSessionStorage.api_token, data);
                 if (changePass.status) {
                     alert(changePass.message);
                     location.href= '#/my_account/';

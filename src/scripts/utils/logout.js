@@ -2,11 +2,11 @@ import AuthSource from '../data/auth-source';
 import Swal from 'sweetalert2';
 
 async function logout() {
-    if(localStorage.getItem('user')) {
+    if(sessionStorage.getItem('user')) {
         const logoutBtn = document.querySelector('.sign-out');
         logoutBtn.addEventListener('click', async(e) => {
           e.preventDefault();
-          const userLocalStorage = JSON.parse(localStorage.getItem('user'));
+          const userSessionStorage = JSON.parse(sessionStorage.getItem('user'));
 
           let confirmation = await Swal.fire({
             title: 'Are you sure want to logout?',
@@ -21,9 +21,9 @@ async function logout() {
                 }
             })
           if (confirmation == true) {
-              const logout = await AuthSource.logout(userLocalStorage.api_token);
+              const logout = await AuthSource.logout(userSessionStorage.api_token);
               if(logout.status == true){
-                  localStorage.removeItem('user');
+                  sessionStorage.removeItem('user');
                   location.href = '#/sign_in';
               }
           }

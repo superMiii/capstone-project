@@ -13,7 +13,7 @@ const Home = {
               <h3>Let’s <span>find</span> your</h3>
               <h3><span>event</span> today</h3>
               <p>You are free to share and find updated information about online events</p>
-              ${localStorage.getItem('user') 
+              ${sessionStorage.getItem('user') 
                 ? `
                 <a href="#/upload_event" >Get Started</a>
                 ` : `

@@ -31,10 +31,10 @@ const my_events = {
 
         // manipulasi dom inner-my-account
         const elementInnerMyAccount = document.querySelector(".inner-my-account");
-        const userLocalStorage = JSON.parse(localStorage.getItem('user'));
+        const userSessionStorage = JSON.parse(sessionStorage.getItem('user'));
 
         // check jika blm login
-        if(!userLocalStorage) {
+        if(!userSessionStorage) {
             Swal.fire({
             icon: 'error',
             title: 'Oops...',
@@ -43,7 +43,7 @@ const my_events = {
             location.href = '#/sign_in';
         }
         
-        const myEvent = await EventsSource.eventByUserId(userLocalStorage.id, userLocalStorage.api_token);
+        const myEvent = await EventsSource.eventByUserId(userSessionStorage.id, userSessionStorage.api_token);
         elementInnerMyAccount.innerHTML = `
                 <table class="table">
                 <thead>
@@ -70,7 +70,7 @@ const my_events = {
             btnDeleteEvent[i].addEventListener('click', async (e) => {
                 e.preventDefault();
                 const id = e.target.getAttribute('data-value');
-                const userLocalStorage = JSON.parse(localStorage.getItem('user'));
+                const userSessionStorage = JSON.parse(sessionStorage.getItem('user'));
 
                 let confirmation = await Swal.fire({
                     title: 'Are you sure?',
@@ -87,7 +87,7 @@ const my_events = {
                     })
                 
                 if(confirmation == true) {
-                    const deleteEvent = await EventsSource.deleteEvent(id, userLocalStorage.api_token);
+                    const deleteEvent = await EventsSource.deleteEvent(id, userSessionStorage.api_token);
                     if(deleteEvent.status == true) {
                         Swal.fire({
                             position: 'center',

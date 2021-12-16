@@ -32,10 +32,10 @@ const upload_event = {
         // manipulasi dom inner-my-account
         const elementTitle = document.querySelector(".combined-title h1");
         const elementInnerMyAccount = document.querySelector(".inner-my-account");
-        const userLocalStorage = JSON.parse(localStorage.getItem('user'));
+        const userSessionStorage = JSON.parse(sessionStorage.getItem('user'));
 
         // check jika blm login
-        if(!userLocalStorage) {
+        if(!userSessionStorage) {
             Swal.fire({
             icon: 'error',
             title: 'Oops...',
@@ -78,9 +78,9 @@ const upload_event = {
             data.append('register_link', registerLink.value);
             data.append('ticket_price', ticketPrice.value);
             data.append('category_id', categoryId.value);
-            data.append('user_id', userLocalStorage.id);
+            data.append('user_id', userSessionStorage.id);
             
-            const addEvent = await EventsSource.addEvent(userLocalStorage.api_token, data);
+            const addEvent = await EventsSource.addEvent(userSessionStorage.api_token, data);
             if ( addEvent.status == true ) {
                 Swal.fire({
                     position: 'center',

@@ -71,7 +71,7 @@ const Sign_In = {
             role: login.data.user.role,
             api_token: login.data.api_token,
           };
-          localStorage.setItem('user', JSON.stringify(dataLogin));
+          sessionStorage.setItem('user', JSON.stringify(dataLogin));
           Swal.fire({
             position: 'center',
             icon: 'success',
@@ -87,7 +87,7 @@ const Sign_In = {
             role: login.data.user.role,
             api_token: login.data.api_token,
           };
-          localStorage.setItem('user', JSON.stringify(dataLogin));
+          sessionStorage.setItem('user', JSON.stringify(dataLogin));
           Swal.fire({
             position: 'center',
             icon: 'success',
