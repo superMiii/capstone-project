@@ -35,6 +35,7 @@ class componentNavbar extends HTMLElement {
                                     <li><a class="dropdown-item btn-my-events" href="#/my_events">My Events</a></li>
                                     <li><a class="dropdown-item btn-my-events" href="#/favorite">Favorite Event</a></li>
                                     <li><a class="dropdown-item btn-upload-event" href="#/upload_event">Upload Event</a></li>
+                                    ${JSON.parse(localStorage.getItem('user')).role == 'admin' ? '<li><a class="dropdown-item btn-upload-event" href="#/admin">Admin Page</a></li>' : ''}
                                     <li><hr class="dropdown-divider"></li>
                                     <li><button class="dropdown-item sign-out">Log Out</button></li>
                                 </ul>
