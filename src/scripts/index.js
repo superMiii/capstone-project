@@ -8,6 +8,7 @@ import '../styles/favorite.css';
 import '../styles/all-event.css';
 import '../styles/detail.css';
 import '../styles/my-account.css';
+import '../styles/admin.css';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './views/app';
@@ -18,6 +19,7 @@ import "gridjs/dist/theme/mermaid.css";
 // import component
 import './component/component_navbar';
 import './component/component_footer';
+import './component/component_sidebar';
 
   const app = new App({
     content: document.querySelector('#mainContent'),
