@@ -1,4 +1,5 @@
 import { Grid, html } from "gridjs";
+import Swal from "sweetalert2";
 import API_ENDPOINT from "../../globals/api-endpoint";
 import logout from "../../utils/logout";
 import { createAdminUserTemplate } from "../templates/template-creator";
@@ -37,6 +38,25 @@ const AdminUser = {
       });
 
       const userSessionStorage = JSON.parse(sessionStorage.getItem('user'));
+
+      // check jika blm login
+      if(!userSessionStorage) {
+        Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: `Please login first to access administrator`,
+        });
+        location.href = '#/sign_in';
+      }
+      // check jika user bukan admin
+      if(userSessionStorage.role == 'user') {
+        Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: `Forbidden access administrator`,
+        });
+        location.href = '#/home';
+      }
 
       // content
       const content = document.querySelector('.all-event');

@@ -39,6 +39,26 @@ const AdminUserRole = {
       });
 
       const userSessionStorage = JSON.parse(sessionStorage.getItem('user'));
+      
+        // check jika blm login
+        if(!userSessionStorage) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: `Please login first to access administrator`,
+            });
+            location.href = '#/sign_in';
+        }
+        // check jika user bukan admin
+        if(userSessionStorage.role == 'user') {
+            Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: `Forbidden access administrator`,
+            });
+            location.href = '#/home';
+        }
+      
       // ambil data id dari url
       const url = UrlParser.parseActiveUrlWithoutCombiner();
       const dataId = url.id;
