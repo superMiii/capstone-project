@@ -30,7 +30,7 @@ class EventController extends Controller
 
     public function showById($id)
     {
-        $data = Event::with(['user', 'category'])->where('status', 'approved')->find($id);
+        $data = Event::with(['user', 'category'])->find($id);
         if ($data) {
             return response()->json([
                 'status' => true,
