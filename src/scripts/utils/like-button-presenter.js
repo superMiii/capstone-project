@@ -1,3 +1,4 @@
+import Swal from 'sweetalert2';
 import {
     createFavoriteButtonTemplate,
     createUnfavoriteButtonTemplate,
@@ -36,6 +37,21 @@ import {
       const likeButton = document.querySelector('.btn-like');
       likeButton.addEventListener('click', async () => {
         const addFavorite = await this._favorite.addFavorite(api_token, data);
+        if(addFavorite.status) {
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Successfully added to favorite',
+            showConfirmButton: false,
+            timer: 1500
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: `Something went wrong!`,
+          });
+        }
         this._renderButton();
       });
     },
@@ -45,7 +61,22 @@ import {
   
       const likeButton = document.querySelector('.btn-like');
       likeButton.addEventListener('click', async () => {
-        await this._favorite.deleteFavorite(event_id, api_token);
+        const deleteFavorite = await this._favorite.deleteFavorite(event_id, api_token);
+        if(deleteFavorite.status) {
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Successfully delete from favorite',
+            showConfirmButton: false,
+            timer: 1500
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: `Something went wrong!`,
+          });
+        }
         this._renderButton();
       });
     },
