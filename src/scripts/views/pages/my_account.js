@@ -72,7 +72,27 @@ const my_account = {
                 }
                 data.append('name', name.value);
                 const updateProfile = await UsersSource.updateProfile(userSessionStorage.api_token, data);
-                location.href= '#/my_account/';
+                if(updateProfile.status) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Your work has been saved',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    setTimeout(() => {
+                        location.reload();
+                    }, 1500);
+                    const myAccountPicture = await UsersSource.showProfile(userSessionStorage.api_token);
+                    userSessionStorage.picture = myAccountPicture.picture;
+                    sessionStorage.setItem('user', JSON.stringify(userSessionStorage));
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: `Something went wrong!`,
+                    });
+                }
             });
         });
 
@@ -92,10 +112,22 @@ const my_account = {
                 };
                 const changePass = await UsersSource.changePassword(userSessionStorage.api_token, data);
                 if (changePass.status) {
-                    alert(changePass.message);
-                    location.href= '#/my_account/';
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Your work has been saved',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    setTimeout(() => {
+                        location.reload();
+                    }, 1500);
                 } else {
-                    alert(changePass.message.password);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: `Something went wrong!`,
+                    });
                 }
             })
         });

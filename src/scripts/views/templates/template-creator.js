@@ -12,34 +12,34 @@ const createDetailTemplate = (detail, formatRupiah) => `
             <h2>${detail.name}</h2>
             <div class="button-like-container">
             </div>
-            <div class="category-card">
+            <div class="category-card my-2">
                 <img loading="lazy" src="./images/assets/category.png" alt="">
                 <p>${detail.category.category_name}</p>
             </div>
-            <div class="date-card">
+            <div class="date-card my-2">
                 <img loading="lazy" src="./images/assets/calendar.png" alt="">
                 <p>${detail.date}</p>
             </div>
-            <div class="time-card">
+            <div class="time-card my-2">
                 <img loading="lazy" src="./images/assets/time.png" alt="">
                 <p>${detail.time}</p>
             </div>
-            <div class="price-card">
+            <div class="price-card my-2">
                 <img loading="lazy" src="./images/assets/ticket.png" alt="">
                 <p>Rp. ${formatRupiah}</p>
             </div>
-            <div class="place-card">
+            <div class="place-card my-2">
                 <img loading="lazy" src="./images/assets/place.png" alt="">
                 <p>${detail.place}</p>
             </div>
-            <div class="link-card">
+            <div class="link-card my-2">
                 <img loading="lazy" src="./images/assets/link.png" alt="">
                 <p>
                     <a class="btn-sign-up" data-bs-toggle="collapse" href="#collapseRegisterLink" role="button" aria-expanded="false" aria-controls="collapseRegisterLink">
                         Register Link
                     </a>
                 </p>
-                <div class="collapse" id="collapseRegisterLink">
+                <div class="collapse mt-2" id="collapseRegisterLink">
                     <div class="card card-body">
                     ${detail.register_link}
                     </div>
@@ -184,8 +184,11 @@ const createPageNumber = (pageOrigin, number) => `
 `;
 
 const createMyAccountTemplate = (myAccount) => `
-    <div class="img-account" style="margin: 30px;">
-        <img src="${CONFIG.BASE_IMAGE_USER_URL+myAccount.picture ? CONFIG.BASE_IMAGE_USER_URL + myAccount.picture : './images/assets/account.png'}" alt="">
+    <div class="img-account image-detail" style="margin: 30px;">
+    <button data-bs-toggle="modal" data-bs-target="#myModal">
+        <img src="${myAccount.picture.match('https://') ? myAccount.picture : myAccount.picture.match('16') ? CONFIG.BASE_IMAGE_USER_URL + myAccount.picture : './images/assets/account.png'}" alt="">
+    </button>
+    <p>*click to enlarge image</p>
     </div>
     <div class="data-account" style="margin: 30px;">
         <p>Nama :</p>
@@ -197,21 +200,42 @@ const createMyAccountTemplate = (myAccount) => `
         <button type="button" class="btn-sign-in edit-profile">Edit Profile</button>
         <button type="button" class="btn-sign-up change-password">Change Password</button>
     </div>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="myModalLabel">${myAccount.name} Profile</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <img loading="lazy" src="${myAccount.picture.match('https://') ? myAccount.picture : myAccount.picture.match('16') ? CONFIG.BASE_IMAGE_USER_URL + myAccount.picture : './images/assets/account.png'}" class="card-img-top" alt="...">
+        </div>
+        </div>
+    </div>
+    </div>
 `
 
 const createFormUpdateProfileTemplate = (myAccount) => `
     <div class="upload-event">
         <form action="#" id="update-profile">
-        <div class="img-account" style="margin: 30px;">
-            <img src="${CONFIG.BASE_IMAGE_USER_URL+myAccount.picture ? CONFIG.BASE_IMAGE_USER_URL + myAccount.picture : './images/assets/account.png'}" alt="" id="preview-image">
-            <input type="file" id="image-input" accept="image/png, image/jpg, image/jpeg" name="image-input"><br><br>
-        </div>
-        <div class="data-account" style="margin: 30px;">
-            <p>Nama :</p>
-            <input type="text" id="name" name="name" value="${myAccount.name}">
-            <p>Email :</p>
-            <input type="email" id="email" name="email" value="${myAccount.email}" disabled>
-            <button type="submit" class="btn-sign-in submit">Submit</button>
+        <div class="data-account">
+            <div class="mb-3">
+                <img src="${myAccount.picture.match('https://') ? myAccount.picture : myAccount.picture.match('16') ? CONFIG.BASE_IMAGE_USER_URL + myAccount.picture : './images/assets/account.png'}" alt="" id="preview-image">
+                <input type="file" id="image-input" class="form-control" accept="image/png, image/jpg, image/jpeg" name="image-input">
+            </div>
+            <div class="mb-3">
+                <label for="name">Nama</label>
+                <input type="text" class="form-control" id="name" name="name" value="${myAccount.name}">
+            </div>
+            <div class="mb-3">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" value="${myAccount.email}" disabled>
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn-sign-in submit">Submit</button>
+            </div>
         </div>
         </form>
     </div>
@@ -220,12 +244,18 @@ const createFormUpdateProfileTemplate = (myAccount) => `
 const createFormChangePasswordTemplate = () => `
     <div class="upload-event">
         <form action="#" id="change-pass">
-        <div class="data-account" style="margin: 30px;">
-            <p>New Password :</p>
-            <input type="password" id="password" name="password">
-            <p>Confirm New Password :</p>
-            <input type="password" id="password_confirmation" name="password_confirmation">
-            <button type="submit" class="btn-sign-in submit">Submit</button>
+        <div class="data-account">
+            <div class="mb-3">
+                <label for="password">New Password</label>
+                <input type="password" class="form-control" id="password" name="password">
+            </div>
+            <div class="mb-3">
+                <label for="password_confirmation">Confirm New Password</label>
+                <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn-sign-in submit">Submit</button>
+            </div>
         </div>
         </form>
     </div>
@@ -320,10 +350,10 @@ const createDashboardTemplate = (events, users) => `
 `
 
 const createAdminUserTemplate = (user) => `
-    <div class="img-account" style="margin: 30px;">
+    <div class="img-account">
         <img src="${CONFIG.BASE_IMAGE_USER_URL+user.picture ? CONFIG.BASE_IMAGE_USER_URL + user.picture : './images/assets/account.png'}" alt="">
     </div>
-    <div class="data-account" style="margin: 30px;">
+    <div class="data-account">
         <p>Nama :</p>
         <p>${user.name}</p>
         <p>Email :</p>
@@ -348,7 +378,7 @@ const createAdminUserTemplate = (user) => `
                 <option value="admin" ${user.role == 'admin' ? 'selected' : ''}>Admin</option>
                 <option value="user" ${user.role == 'user' ? 'selected' : ''}>User</option>
             </select>
-            <button class="badge btn-submit-sme edit-role" type="submit">Submit</button>
+            <button class="btn-submit-sme edit-role" type="submit">Submit</button>
         </div>
         </div>
     </div>
@@ -364,34 +394,34 @@ const createAdminEventsTemplate = (event, formatRupiah) => `
         <h2>${event.name}</h2>
         Status : <button data-bs-toggle="modal" data-bs-target="#myModal" class="btn-sign-up">${event.status}</button>
         <a href="#" data-value="${event.id}" class="delete btn-danger btn-sign-in text-decoration-none">Hapus</a>
-        <div class="category-card">
+        <div class="category-card my-2">
             <img loading="lazy" src="./images/assets/category.png" alt="">
             <p>${event.category.category_name}</p>
         </div>
-        <div class="date-card">
+        <div class="date-card my-2">
             <img loading="lazy" src="./images/assets/calendar.png" alt="">
             <p>${event.date}</p>
         </div>
-        <div class="time-card">
+        <div class="time-card my-2">
             <img loading="lazy" src="./images/assets/time.png" alt="">
             <p>${event.time}</p>
         </div>
-        <div class="price-card">
+        <div class="price-card my-2">
             <img loading="lazy" src="./images/assets/ticket.png" alt="">
             <p>Rp. ${formatRupiah}</p>
         </div>
-        <div class="place-card">
+        <div class="place-card my-2">
             <img loading="lazy" src="./images/assets/place.png" alt="">
             <p>${event.place}</p>
         </div>
-        <div class="link-card">
+        <div class="link-card my-2">
             <img loading="lazy" src="./images/assets/link.png" alt="">
             <p>
                 <a class="btn-sign-up" data-bs-toggle="collapse" href="#collapseRegisterLink" role="button" aria-expanded="false" aria-controls="collapseRegisterLink">
                     Register Link
                 </a>
             </p>
-            <div class="collapse" id="collapseRegisterLink">
+            <div class="collapse mt-2" id="collapseRegisterLink">
                 <div class="card card-body">
                 ${event.register_link}
                 </div>
@@ -419,7 +449,7 @@ const createAdminEventsTemplate = (event, formatRupiah) => `
                 <option value="not approved" ${event.status == 'not approved' ? 'selected' : ''}>Not Approved</option>
                 <option value="waiting" ${event.status == 'waiting' ? 'selected' : ''}>Waiting</option>
             </select>
-            <button class="badge btn-submit-sme edit-status" type="submit">Submit</button>
+            <button class="btn-submit-sme edit-status" type="submit">Submit</button>
         </div>
         </div>
     </div>

@@ -12,6 +12,7 @@ const my_events = {
                 <div class="combined-title">
                     <h1>My Events</h1>
                     <p>you can see your events in here</p>
+                    <a href="#/upload_event/" class="btn-sign-in">Add event</a>
                 </div>
                 <div class="combined-page">
                     <div class="inner-my-account d-flex align-items-center flex-wrap justify-content-center"></div>
@@ -65,11 +66,11 @@ const my_events = {
 
         // grid
         new Grid({
-            columns: ['Event Name', 'Category', 'Action'],
+            columns: ['Event Name', 'Category', 'status', 'Action'],
             server: {
                 url: `https://sme-capstone-backend.herokuapp.com/api/v1/events/user/${userSessionStorage.id}?api_token=${userSessionStorage.api_token}`,
                 then: events => events.data.map(event => 
-                    [event.name, event.category.category_name, html(`<a href="#/detail/${event.id}" class="badge btn-sign-up">Detail</a>        
+                    [event.name, event.category.category_name, html(`<span class="badge ${event.status == 'waiting' ? 'bg-warning' : event.status == 'approved' ? 'bg-success' : 'bg-danger'}">${event.status}</span>`), html(`<a href="#/detail/${event.id}" class="badge btn-sign-up">Detail</a>        
                     <a href="#/my_events" data-value="${event.id}" class="delete badge btn-danger text-decoration-none">Hapus</a>
                     <a href="#/edit_event/${event.id}" class="badge btn-success edit text-decoration-none">Edit</a>`)]  
                 ),
@@ -85,6 +86,7 @@ const my_events = {
         
         // delete event
         const btnDeleteEvent = document.querySelectorAll('.delete');
+        console.log(btnDeleteEvent)
         for(let i=0; i<btnDeleteEvent.length; i++) {
             btnDeleteEvent[i].addEventListener('click', async (e) => {
                 e.preventDefault();

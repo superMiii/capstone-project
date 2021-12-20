@@ -75,7 +75,11 @@ const allEvent = {
         btnSearch.addEventListener('click', async (e) => {
           e.preventDefault();
           const inputSearch = document.querySelector('.search-full');
-          location.href = `#/search_event/${inputSearch.value}/1`;
+          if(inputSearch.value) {
+            location.href = `#/search_event/${inputSearch.value}/1`;
+          } else {
+            location.href = `#/all_event/1`;
+          }
         })
 
         // logout

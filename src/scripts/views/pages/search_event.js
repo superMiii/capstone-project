@@ -43,9 +43,13 @@ const searchEvent = {
         const dataPage = url.page;
         const events = await EventsSource.searchEvent(dataId, dataPage);
         const eventsElement = document.querySelector('.inner-all-event-card');
-        events.data.forEach((event) => {
-          eventsElement.innerHTML += createCardEventTemplate(event);
-        });
+        if(events.data.length == 0) {
+          eventsElement.innerHTML = `<h4 class="alert alert-danger text-center">Events with keyword '${dataId}' is not found.</h4>`;
+        } else {
+          events.data.forEach((event) => {
+            eventsElement.innerHTML += createCardEventTemplate(event);
+          });
+        }
 
         // untuk menampilkan event berdasarkan category
         const categories = await CategoriesSource.allCategories();
@@ -75,7 +79,11 @@ const searchEvent = {
         btnSearch.addEventListener('click', async (e) => {
           e.preventDefault();
           const inputSearch = document.querySelector('.search-full');
-          location.href = `#/search_event/${inputSearch.value}/1`;
+          if(inputSearch.value) {
+            location.href = `#/search_event/${inputSearch.value}/1`;
+          } else {
+            location.href = `#/all_event/1`;
+          }
         })
 
         // logout

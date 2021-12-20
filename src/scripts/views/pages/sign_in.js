@@ -69,6 +69,7 @@ const Sign_In = {
             id: login.data.user.id,
             name: login.data.user.name,
             role: login.data.user.role,
+            picture: login.data.user.picture,
             api_token: login.data.api_token,
           };
           sessionStorage.setItem('user', JSON.stringify(dataLogin));
@@ -85,6 +86,7 @@ const Sign_In = {
             id: login.data.user.id,
             name: login.data.user.name,
             role: login.data.user.role,
+            picture: login.data.user.picture,
             api_token: login.data.api_token,
           };
           sessionStorage.setItem('user', JSON.stringify(dataLogin));
