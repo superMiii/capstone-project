@@ -96,7 +96,9 @@ const AdminEventStatus = {
                 showConfirmButton: false,
                 timer: 1500
             });
-            location.href = '#/admin_events';
+            setTimeout(() => {
+              location.reload();
+            }, 1600);
         }else{
             Swal.fire({
                 icon: 'error',

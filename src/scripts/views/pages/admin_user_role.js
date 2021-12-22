@@ -89,8 +89,8 @@ const AdminUserRole = {
                 timer: 1500
             });
             setTimeout(() => {
-                location.href = '#/admin_user';
-            }, 1500);
+                location.reload();
+              }, 1600);
         }else{
             Swal.fire({
                 icon: 'error',

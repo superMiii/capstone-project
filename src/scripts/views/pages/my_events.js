@@ -44,45 +44,47 @@ const my_events = {
         }
         
         const myEvent = await EventsSource.eventByUserId(userSessionStorage.id, userSessionStorage.api_token);
-        // elementInnerMyAccount.innerHTML = `
-        //         <table class="table">
-        //         <thead>
-        //             <tr>
-        //                 <th scope="col">#</th>
-        //                 <th scope="col">Event Name</th>
-        //                 <th scope="col">Category</th>
-        //                 <th scope="col">Action</th>
-        //             </tr>
-        //         </thead>
-        //         <tbody class="event-table">
+        console.log(myEvent)
+        elementInnerMyAccount.innerHTML = `
+                <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Event Name</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody class="event-table">
 
-        //         </tbody>
-        //     </table>    
-        // `;
-        // const elementTable = document.querySelector('.event-table');
-        // myEvent.data.forEach((event, index) => {
-        //     elementTable.innerHTML += createTableEventTemplate(event, index+1);
-        // });
+                </tbody>
+            </table>    
+        `;
+        const elementTable = document.querySelector('.event-table');
+        myEvent.forEach((event, index) => {
+            elementTable.innerHTML += createTableEventTemplate(event, index+1);
+        });
 
-        // grid
-        new Grid({
-            columns: ['Event Name', 'Category', 'status', 'Action'],
-            server: {
-                url: `https://sme-capstone-backend.herokuapp.com/api/v1/events/user/${userSessionStorage.id}?api_token=${userSessionStorage.api_token}`,
-                then: events => events.data.map(event => 
-                    [event.name, event.category.category_name, html(`<span class="badge ${event.status == 'waiting' ? 'bg-warning' : event.status == 'approved' ? 'bg-success' : 'bg-danger'}">${event.status}</span>`), html(`<a href="#/detail/${event.id}" class="badge btn-sign-up">Detail</a>        
-                    <a href="#/my_events" data-value="${event.id}" class="delete badge btn-danger text-decoration-none">Hapus</a>
-                    <a href="#/edit_event/${event.id}" class="badge btn-success edit text-decoration-none">Edit</a>`)]  
-                ),
-            },
-            width: '100%',
-            pagination: {
-                enable: true,
-                limit: 5,
-            },
-            search: true,
-            sort: true,
-        }).render(elementInnerMyAccount);
+        // // grid
+        // new Grid({
+        //     columns: ['Event Name', 'Category', 'status', 'Action'],
+        //     server: {
+        //         url: `https://sme-capstone-backend.herokuapp.com/api/v1/events/user/${userSessionStorage.id}?api_token=${userSessionStorage.api_token}`,
+        //         then: events => events.data.map(event => 
+        //             [event.name, event.category.category_name, html(`<span class="badge ${event.status == 'waiting' ? 'bg-warning' : event.status == 'approved' ? 'bg-success' : 'bg-danger'}">${event.status}</span>`), html(`<a href="#/detail/${event.id}" class="badge btn-sign-up">Detail</a>        
+        //             <a href="#/my_events" data-value="${event.id}" class="delete badge btn-danger text-decoration-none">Hapus</a>
+        //             <a href="#/edit_event/${event.id}" class="badge btn-success edit text-decoration-none">Edit</a>`)]  
+        //         ),
+        //     },
+        //     width: '100%',
+        //     pagination: {
+        //         enable: true,
+        //         limit: 5,
+        //     },
+        //     search: true,
+        //     sort: true,
+        // }).render(elementInnerMyAccount);
         
         // delete event
         const btnDeleteEvent = document.querySelectorAll('.delete');

@@ -99,6 +99,9 @@ const createTableEventTemplate = (event, index) => `
         <td>${event.name}</td>
         <td>${event.category.category_name}</td>
         <td>
+            <span class="badge ${event.status == 'waiting' ? 'bg-warning' : event.status == 'approved' ? 'bg-success' : 'bg-danger'}">${event.status}</span>
+        </td>
+        <td>
             <a href="#/detail/${event.id}" class="badge btn-sign-up">Detail</a>        
             <a href="#/my_events" data-value="${event.id}" class="delete badge btn-danger text-decoration-none">Hapus</a>
             <a href="#/edit_event/${event.id}" class="badge btn-success edit text-decoration-none">Edit</a>
@@ -212,9 +215,18 @@ const createMyAccountTemplate = (myAccount) => `
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
+<<<<<<< HEAD
             <img loading="lazy" src="${JSON.parse(sessionStorage.getItem('user')).picture
             ? CONFIG.BASE_IMAGE_USER_URL + JSON.parse(sessionStorage.getItem('user')).picture
             : './images/assets/account.png'}" class="card-img-top" alt="...">
+=======
+            <img loading="lazy" src="${JSON.parse(sessionStorage.getItem('user')).picture == null 
+            ? './images/assets/account.png' 
+            : sessionStorage.getItem('user').picture.match('https://') 
+            ? JSON.parse(sessionStorage.getItem('user')).picture 
+            : CONFIG.BASE_IMAGE_USER_URL + JSON.parse(sessionStorage.getItem('user')).picture
+}" class="card-img-top" alt="...">
+>>>>>>> 48fb71f72f7a94ad84b6c654377188ed126a239c
         </div>
         </div>
     </div>
