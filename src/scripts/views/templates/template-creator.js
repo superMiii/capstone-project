@@ -186,7 +186,9 @@ const createPageNumber = (pageOrigin, number) => `
 const createMyAccountTemplate = (myAccount) => `
     <div class="img-account image-detail" style="margin: 30px;">
     <button data-bs-toggle="modal" data-bs-target="#myModal">
-        <img src="${myAccount.picture.match('https://') ? myAccount.picture : myAccount.picture.match('16') ? CONFIG.BASE_IMAGE_USER_URL + myAccount.picture : './images/assets/account.png'}" alt="">
+        <img src="${JSON.parse(sessionStorage.getItem('user')).picture
+        ? CONFIG.BASE_IMAGE_USER_URL + JSON.parse(sessionStorage.getItem('user')).picture
+        : './images/assets/account.png'}" alt="">
     </button>
     <p>*click to enlarge image</p>
     </div>
@@ -210,7 +212,9 @@ const createMyAccountTemplate = (myAccount) => `
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <img loading="lazy" src="${myAccount.picture.match('https://') ? myAccount.picture : myAccount.picture.match('16') ? CONFIG.BASE_IMAGE_USER_URL + myAccount.picture : './images/assets/account.png'}" class="card-img-top" alt="...">
+            <img loading="lazy" src="${JSON.parse(sessionStorage.getItem('user')).picture
+            ? CONFIG.BASE_IMAGE_USER_URL + JSON.parse(sessionStorage.getItem('user')).picture
+            : './images/assets/account.png'}" class="card-img-top" alt="...">
         </div>
         </div>
     </div>
@@ -222,7 +226,9 @@ const createFormUpdateProfileTemplate = (myAccount) => `
         <form action="#" id="update-profile">
         <div class="data-account">
             <div class="mb-3">
-                <img src="${myAccount.picture.match('https://') ? myAccount.picture : myAccount.picture.match('16') ? CONFIG.BASE_IMAGE_USER_URL + myAccount.picture : './images/assets/account.png'}" alt="" id="preview-image">
+                <img src="${JSON.parse(sessionStorage.getItem('user')).picture
+                ? CONFIG.BASE_IMAGE_USER_URL + JSON.parse(sessionStorage.getItem('user')).picture
+                : './images/assets/account.png'}" alt="" id="preview-image">
                 <input type="file" id="image-input" class="form-control" accept="image/png, image/jpg, image/jpeg" name="image-input">
             </div>
             <div class="mb-3">
