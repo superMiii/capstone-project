@@ -123,9 +123,11 @@ class AdminController extends Controller
 
             if ($user) {
                 if ($user->picture) {
-                    $path_name = 'users_profile/' . $user->picture;
-                    if (file_exists($path_name)) {
-                        unlink($path_name);
+                    if ($user->picture != 'account.png') {
+                        $path_name = 'users_profile/' . $user->picture;
+                        if (file_exists($path_name)) {
+                            unlink($path_name);
+                        }
                     }
                 }
                 $user->delete();

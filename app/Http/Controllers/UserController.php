@@ -43,9 +43,11 @@ class UserController extends Controller
             $user = User::where('api_token', $request->api_token)->first();
             if ($request->picture) {
                 if ($user->picture) {
-                    $path_name = 'users_profile/' . $user->picture;
-                    if (file_exists($path_name)) {
-                        unlink($path_name);
+                    if ($user->picture != 'account.png') {
+                        $path_name = 'users_profile/' . $user->picture;
+                        if (file_exists($path_name)) {
+                            unlink($path_name);
+                        }
                     }
                 }
                 $pictureName = time() . '-' . $request->picture->getClientOriginalName();
