@@ -70,7 +70,9 @@ const createDetailTemplate = (detail, formatRupiah) => `
 
 const createCardEventTemplate = (event) => `
     <div class="myCard">
-        <img loading="lazy" src="${event.poster.match('https://') ? event.poster : CONFIG.BASE_IMAGE_POSTER_URL+event.poster}" class="card-img-top" alt="${event.name}">
+        <a href="#/detail/${event.id}">
+            <img loading="lazy" src="${event.poster.match('https://') ? event.poster : CONFIG.BASE_IMAGE_POSTER_URL+event.poster}" class="card-img-top" alt="${event.name}">
+        </a>
         <div class="card-body">
             <div class="d-flex justify-content-between align-items-lg-start">
                 <h5 class="card-title">
@@ -215,18 +217,9 @@ const createMyAccountTemplate = (myAccount) => `
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-<<<<<<< HEAD
             <img loading="lazy" src="${JSON.parse(sessionStorage.getItem('user')).picture
             ? CONFIG.BASE_IMAGE_USER_URL + JSON.parse(sessionStorage.getItem('user')).picture
             : './images/assets/account.png'}" class="card-img-top" alt="...">
-=======
-            <img loading="lazy" src="${JSON.parse(sessionStorage.getItem('user')).picture == null 
-            ? './images/assets/account.png' 
-            : sessionStorage.getItem('user').picture.match('https://') 
-            ? JSON.parse(sessionStorage.getItem('user')).picture 
-            : CONFIG.BASE_IMAGE_USER_URL + JSON.parse(sessionStorage.getItem('user')).picture
-}" class="card-img-top" alt="...">
->>>>>>> 48fb71f72f7a94ad84b6c654377188ed126a239c
         </div>
         </div>
     </div>
