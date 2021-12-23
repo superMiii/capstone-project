@@ -99,6 +99,9 @@ const createTableEventTemplate = (event, index) => `
         <td>${event.name}</td>
         <td>${event.category.category_name}</td>
         <td>
+            <span class="badge ${event.status == 'waiting' ? 'bg-warning' : event.status == 'approved' ? 'bg-success' : 'bg-danger'}">${event.status}</span>
+        </td>
+        <td>
             <a href="#/detail/${event.id}" class="badge btn-sign-up">Detail</a>        
             <a href="#/my_events" data-value="${event.id}" class="delete badge btn-danger text-decoration-none">Hapus</a>
             <a href="#/edit_event/${event.id}" class="badge btn-success edit text-decoration-none">Edit</a>
