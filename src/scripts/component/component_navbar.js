@@ -29,7 +29,12 @@ class componentNavbar extends HTMLElement {
                             ? 
                             `<div class="dropdown d-flex align-items-center">
                                 <button class="btn btn-secondary dropdown-toggle" style="background-color: white; border: none; border-radius: 50px; color: gray;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="${JSON.parse(sessionStorage.getItem('user')).picture.match('https://') ? JSON.parse(sessionStorage.getItem('user')).picture : JSON.parse(sessionStorage.getItem('user')).picture.match('16') ? CONFIG.BASE_IMAGE_USER_URL + JSON.parse(sessionStorage.getItem('user')).picture : './images/assets/account.png'}" style="border-radius: 50%; width: 25px; background-color: #17A471;" alt="account logo">
+                                    <img src="${JSON.parse(sessionStorage.getItem('user')).picture == null 
+                                    ? './images/assets/account.png' 
+                                    : sessionStorage.getItem('user').picture.match('https://') 
+                                    ? JSON.parse(sessionStorage.getItem('user')).picture 
+                                    : CONFIG.BASE_IMAGE_USER_URL + JSON.parse(sessionStorage.getItem('user')).picture
+                                    }" style="border-radius: 50%; width: 25px; background-color: #17A471;" alt="account logo">
                                     ${JSON.parse(sessionStorage.getItem('user')).name}
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
